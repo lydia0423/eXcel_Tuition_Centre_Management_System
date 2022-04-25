@@ -15,7 +15,7 @@ struct Tutor {
 		double hourlyPayRate, double experience, int rating);
 };
 
-void registerNewTutor(Tutor tutorList[], int numberOfTutor);
+//void registerNewTutor(Tutor tutorList[], int numberOfTutor);
 //void saveTutor(Tutor* newTutor);
 void generateTutorRecord(Tutor tutorist[]);
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
@@ -25,7 +25,7 @@ void displayAllTutors(Tutor tutorList[], int numberOfTutor);
 //void searchTutorBySubject();
 //void sortTutorById();
 //void sortTutorByRating();
-//void sortTutorByHourlyPayRate();
+void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 //void viewProfile();
 //void deleteTutorRecord();
 

@@ -11,10 +11,15 @@ int main() {
 	generateTutorRecord(tutorList);
 	//displayAllTutors();
 
-	numberOfTutor++;
+	/*numberOfTutor++;
 	Tutor* tutorList = new Tutor[numberOfTutor];
-	registerNewTutor(tutorList, numberOfTutor);
-	displayAllTutors(tutorList, numberOfTutor);
+	registerNewTutor(tutorList, numberOfTutor);*/
+	//displayAllTutors(tutorList, numberOfTutor);
+
+	int sizeOfTutorList = 3;
+	int endIndex = sizeOfTutorList - 1;
+	Tutor* temp = new Tutor[sizeOfTutorList];
+	sortTutorByHourlyPayRate(tutorList, 0, endIndex, temp);
 
 	return 0;
 }

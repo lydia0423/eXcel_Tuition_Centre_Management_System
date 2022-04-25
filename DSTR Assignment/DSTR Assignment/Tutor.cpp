@@ -35,59 +35,59 @@ Tutor::Tutor(string tutorId, string name, int ic, string fieldOfStudy, string ad
 }
 
 // Ask the user to key in the tutor details
-void registerNewTutor(Tutor tutorList[], int numberOfTutor)
-{
-	 numberOfTutor += 1;
-	 Tutor* tutorList = new Tutor[numberOfTutor];
-     cout << "Please enter the following details to register a new tutor." << endl;
-     cout << string(20, '=') << endl;
-
-     cout << "Tutor Id : ";
-     getline(cin, tutorId);
-     cout << "Tutor Name : ";
-     getline(cin, name);
-     cout << "IC : ";
-     cin >> ic;
-     cout << "Field of study : ";
-     getline(cin, fieldOfStudy);
-     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-     cout << "Address : ";
-     getline(cin, address);
-     cout << "Phone Number : ";
-     cin >> phone;
-     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-     cout << "Date Joined : ";
-     getline(cin, dateJoined);
-     cout << "Date Terminated : ";
-     getline(cin, dateTerminated);
-     cout << "Tuition Center Code : ";
-     getline(cin, tuitionCenterCode);
-     cout << "Tuition Center Name : ";
-     getline(cin, tuitionCenterName);
-     cout << "Subject Code : ";
-     getline(cin, subjectCode);
-     cout << "Subject Name : ";
-     getline(cin, subjectName);
-     cout << "Password : ";
-     getline(cin, password);
-     cout << "Hourly Pay Rate : ";
-     cin >> hourlyPayRate;
-     cout << "Experince of teaching : ";
-     cin >> experience;
-	 cout << "Rating : ";
-	 cin >> rating;
-
-	 for (int i = 0; i <= numberOfTutor; i++) {
-		 if (i == (numberOfTutor - 1)) {
-			 tutorList[i] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 5.0, 10.0, 4);
-		
-				 /*Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, dateTerminated,
-				 tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, rating);*/
-		 }
-	 }
-	 
-	 cout << "Successfully added the new tutor !" << endl;
- }
+//void registerNewTutor(Tutor tutorList[], int numberOfTutor)
+//{
+//	 numberOfTutor += 1;
+//	 Tutor* tutorList = new Tutor[numberOfTutor];
+//     cout << "Please enter the following details to register a new tutor." << endl;
+//     cout << string(20, '=') << endl;
+//
+//     cout << "Tutor Id : ";
+//     getline(cin, tutorId);
+//     cout << "Tutor Name : ";
+//     getline(cin, name);
+//     cout << "IC : ";
+//     cin >> ic;
+//     cout << "Field of study : ";
+//     getline(cin, fieldOfStudy);
+//     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//     cout << "Address : ";
+//     getline(cin, address);
+//     cout << "Phone Number : ";
+//     cin >> phone;
+//     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//     cout << "Date Joined : ";
+//     getline(cin, dateJoined);
+//     cout << "Date Terminated : ";
+//     getline(cin, dateTerminated);
+//     cout << "Tuition Center Code : ";
+//     getline(cin, tuitionCenterCode);
+//     cout << "Tuition Center Name : ";
+//     getline(cin, tuitionCenterName);
+//     cout << "Subject Code : ";
+//     getline(cin, subjectCode);
+//     cout << "Subject Name : ";
+//     getline(cin, subjectName);
+//     cout << "Password : ";
+//     getline(cin, password);
+//     cout << "Hourly Pay Rate : ";
+//     cin >> hourlyPayRate;
+//     cout << "Experince of teaching : ";
+//     cin >> experience;
+//	 cout << "Rating : ";
+//	 cin >> rating;
+//
+//	 for (int i = 0; i <= numberOfTutor; i++) {
+//		 if (i == (numberOfTutor - 1)) {
+//			 tutorList[i] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 5.0, 10.0, 4);
+//		
+//				 /*Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, dateTerminated,
+//				 tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, rating);*/
+//		 }
+//	 }
+//	 
+//	 cout << "Successfully added the new tutor !" << endl;
+// }
 
 // Add new tutor record into the array
  //void saveTutor(Tutor newTutor) {
@@ -98,9 +98,9 @@ void registerNewTutor(Tutor tutorList[], int numberOfTutor)
 // Generate tutor record every time the system is being compiled so the action has been done wouldn't affect it
 void generateTutorRecord(Tutor tutorList[]) 
 {
-	tutorList[0] = Tutor("TR001", "James", 123456789, "Biomedical", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.0, 10.0, 4);
-	tutorList[1] = Tutor("TR002", "Micheal", 123456789, "Physics", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 5.0, 10.0, 4);
-	tutorList[2] = Tutor("TR003", "Andy", 123456789, "Applied Maths", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 5.0, 10.0, 4);
+	tutorList[0] = Tutor("TR001", "James", 123456789, "Biomedical", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
+	tutorList[1] = Tutor("TR002", "Micheal", 123456789, "Physics", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
+	tutorList[2] = Tutor("TR003", "Andy", 123456789, "Applied Maths", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
 }
 
  // TODO: Display the records that categorized by location
@@ -111,18 +111,19 @@ void generateTutorRecord(Tutor tutorList[])
      << "\t" << "SubjectCode" << "\t" << "SubjectName" << "\t" << "HourlyPayRate" << "\t" << "Experience" << "\t" << "Rating" << endl;
      cout << string(210, '=') << endl;
 
-     if(tutorList != NULL){
-         for(int i = 0; i < numberOfTutor; i++){
-			 cout << tutorList[i].tutorId << "\t\t" << tutorList[i].name << "\t\t" << tutorList[i].ic << "\t\t" << tutorList[i].fieldOfStudy << "\t\t"
-				 << tutorList[i].address << "\t\t" << tutorList[i].phone << "\t\t" << tutorList[i].dateJoined << "\t\t" << tutorList[i].dateTerminated
-				 << "\t\t" << tutorList[i].tuitionCenterCode << "\t\t" << tutorList[i].tuitionCenterName << "\t\t" << tutorList[i].subjectCode
-				 << "\t\t" << tutorList[i].subjectName << "\t\t" << tutorList[i].hourlyPayRate << "\t\t" << tutorList[i].experience << "\t\t" << tutorList[i].rating << endl;
+     if(tutorList != NULL)
+	 {
+         for(int i = 0; i < numberOfTutor; i++)
+		 {
+			 cout << tutorList[i].tutorId << "\t" << tutorList[i].name << "\t" << tutorList[i].ic << "\t" << tutorList[i].fieldOfStudy << "\t"
+				 << tutorList[i].address << "\t" << tutorList[i].phone << "\t" << tutorList[i].dateJoined << "\t" << tutorList[i].dateTerminated
+				 << "\t" << tutorList[i].tuitionCenterCode << "\t" << tutorList[i].tuitionCenterName << "\t" << tutorList[i].subjectCode
+				 << "\t" << tutorList[i].subjectName << "\t" << tutorList[i].hourlyPayRate << "\t" << tutorList[i].experience << "\t" << tutorList[i].rating << endl;
          }
-     }else{
+     }else
+	 {
          cout << "There is no any tutor record available. Please add the tutor record." << endl;
      }
-
-	 cout << &tutorList;
  }
 
 // // Modify =tutor record (only telephone number, date terminated, tuition center code and name)
@@ -143,8 +144,56 @@ void generateTutorRecord(Tutor tutorList[])
 // // Sort tutor by using rating give
 // void sortTutorByRating();
 
-// // Sort tutor based on the hourly pay rate
-// void sortTutorByHourlyPayRate();
+//merge function -- helper class
+void merge(Tutor tutorList[], int startIndex, int middle, int endIndex, Tutor temp[]) {
+	 int i = startIndex; //starting index for left sub array
+	 int j = middle + 1; //starting index for right sub array
+	 int k = startIndex; //starting index for temporary array
+
+	 //to make sure always in the range of the array
+	 while (i <= middle && j <= endIndex) {
+		 if (tutorList[i].hourlyPayRate <= tutorList[j].hourlyPayRate) 
+		 {
+			 temp[k] = tutorList[i]; // tutorList[i] is smaller than tutorList[j]
+			 i++;
+			 k++;
+		 }
+		 else 
+		 {
+			 temp[k] = tutorList[j]; //tutorList[j] is smaller than tutorList[i]
+			 j++;
+			 k++;
+		 }
+	 }
+
+	 while (i <= middle) 
+	 {
+		 temp[k] = tutorList[i]; // copy all elements from left sub array to temp as it is
+		 i++;
+		 k++;
+	 }
+
+	 while (j <= endIndex) 
+	 {
+		 temp[k] = tutorList[j]; // copy all elements from right sub array to temp as it is
+		 j++;
+		 k++;
+	 }
+
+	 system("cls");
+	 displayAllTutors(temp, endIndex + 1);
+ }
+
+// // Sort tutor based on the hourly pay rate (merge sort)
+ void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]) {
+	 if (startIndex < endIndex) 
+	 {
+		 int middle = (startIndex + endIndex) / 2;
+		 sortTutorByHourlyPayRate(tutorList, 0, middle, temp);
+		 sortTutorByHourlyPayRate(tutorList, middle + 1, endIndex, temp);
+		 merge(tutorList, startIndex, middle, endIndex, temp);
+	 }
+ };
 
 // // View profile
 // void viewProfile();
