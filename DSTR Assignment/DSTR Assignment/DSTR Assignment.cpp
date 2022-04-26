@@ -16,10 +16,12 @@ int main() {
 	registerNewTutor(tutorList, numberOfTutor);*/
 	//displayAllTutors(tutorList, numberOfTutor);
 
-	int sizeOfTutorList = 3;
+	/*int sizeOfTutorList = 3;
 	int endIndex = sizeOfTutorList - 1;
 	Tutor* temp = new Tutor[sizeOfTutorList];
 	sortTutorByHourlyPayRate(tutorList, 0, endIndex, temp);
+
+	searchTutorById(tutorList, 0, endIndex, "TR002");*/
 
 	return 0;
 }
