@@ -20,7 +20,7 @@ struct Tutor {
 void generateTutorRecord(Tutor tutorist[]);
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
 //void modifyTutorRecord();
-//void searchTutorById();
+void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
 //void searchTutorByRating();
 //void searchTutorBySubject();
 //void sortTutorById();
