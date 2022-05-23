@@ -19,6 +19,7 @@ struct Tutor {
 //void saveTutor(Tutor* newTutor);
 void generateTutorRecord(Tutor tutorist[]);
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
+void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor);
 //void modifyTutorRecord();
 void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
 //void searchTutorByRating();
@@ -26,6 +27,7 @@ void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tut
 //void sortTutorById();
 //void sortTutorByRating();
 void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
+void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 //void viewProfile();
 //void deleteTutorRecord();
 

@@ -6,22 +6,23 @@
 using namespace std;
 
 int main() {
-	int numberOfTutor = 3;
+	int numberOfTutor = 6;
 	Tutor* tutorList = new Tutor[numberOfTutor];
 	generateTutorRecord(tutorList);
-	//displayAllTutors();
+	//displayAllTutorsByLocation(tutorList, numberOfTutor);
 
 	/*numberOfTutor++;
 	Tutor* tutorList = new Tutor[numberOfTutor];
 	registerNewTutor(tutorList, numberOfTutor);*/
 	//displayAllTutors(tutorList, numberOfTutor);
 
-	/*int sizeOfTutorList = 3;
-	int endIndex = sizeOfTutorList - 1;
-	Tutor* temp = new Tutor[sizeOfTutorList];
-	sortTutorByHourlyPayRate(tutorList, 0, endIndex, temp);
+	//int sizeOfTutorList = 6;
+	//int endIndex = sizeOfTutorList - 1;
+	//Tutor* temp = new Tutor[sizeOfTutorList];
+	//sortTutorByHourlyPayRate(tutorList, 0, endIndex, temp);
+	//sortTutorByAddress(tutorList, 0, endIndex, temp);
 
-	searchTutorById(tutorList, 0, endIndex, "TR002");*/
+	//searchTutorById(tutorList, 0, endIndex, "tr002");
 
 	return 0;
 }
