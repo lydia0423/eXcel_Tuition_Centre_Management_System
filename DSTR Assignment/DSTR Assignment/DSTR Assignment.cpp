@@ -9,7 +9,7 @@ int main() {
 	int numberOfTutor = 6;
 	Tutor* tutorList = new Tutor[numberOfTutor];
 	generateTutorRecord(tutorList);
-	//displayAllTutorsByLocation(tutorList, numberOfTutor);
+	displayAllTutorsByLocation(tutorList, numberOfTutor);
 
 	/*numberOfTutor++;
 	Tutor* tutorList = new Tutor[numberOfTutor];

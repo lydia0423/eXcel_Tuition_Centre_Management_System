@@ -9,9 +9,9 @@ struct Tutor {
 	double hourlyPayRate, experience;
 	Tutor *nextAddress;
 	Tutor *prevAddress;
-}*headTutor, *tailTutor;
+};
 
-Tutor *addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, string address, int phone, string dateJoined, string dateTerminated,
+Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, string address, int phone, string dateJoined, string dateTerminated,
 	string tuitionCenterCode, string tuitionCenterName, string subjectCode, string subjectName, string password,
 	double hourlyPayRate, double experience, int rating);
 
@@ -23,21 +23,25 @@ void generateTutorRecord();
 
 void displayAllTutors();
 
-void modifyTutorRecord();
+void displayAllTutorsByLocation();
 
-void searchTutorById();
+//void modifyTutorRecord();
 
-void searchTutorByRating();
+void searchTutorById(string tutorId);
 
-void searchTutorBySubject();
+//void searchTutorByRating();
 
-void sortTutorById();
+//void searchTutorBySubject();
 
-void sortTutorByRating();
+//void sortTutorById();
 
-void sortTutorByHourlyPayRate();
+//void sortTutorByRating();
 
-void viewProfile();
+void mergeSortTutorByHourlyPayRate();
 
-void deleteTutorRecord();
+//void viewProfile();
+
+//void deleteTutorRecord();
+
+void getCurrentDateTime();
 

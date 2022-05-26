@@ -35,59 +35,84 @@ Tutor::Tutor(string tutorId, string name, int ic, string fieldOfStudy, string ad
 	this->rating = rating;
 }
 
+string convertToString(char* a, int size)
+{
+	int i;
+	string s = "";
+	for (i = 0; i < size; i++) {
+		s = s + a[i];
+	}
+	return s;
+}
+
 // Ask the user to key in the tutor details
 //void registerNewTutor(Tutor tutorList[], int numberOfTutor)
 //{
-//	 numberOfTutor += 1;
-//	 Tutor* tutorList = new Tutor[numberOfTutor];
-//     cout << "Please enter the following details to register a new tutor." << endl;
-//     cout << string(20, '=') << endl;
-//
-//     cout << "Tutor Id : ";
-//     getline(cin, tutorId);
-//     cout << "Tutor Name : ";
-//     getline(cin, name);
-//     cout << "IC : ";
-//     cin >> ic;
-//     cout << "Field of study : ";
-//     getline(cin, fieldOfStudy);
-//     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//     cout << "Address : ";
-//     getline(cin, address);
-//     cout << "Phone Number : ";
-//     cin >> phone;
-//     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//     cout << "Date Joined : ";
-//     getline(cin, dateJoined);
-//     cout << "Date Terminated : ";
-//     getline(cin, dateTerminated);
-//     cout << "Tuition Center Code : ";
-//     getline(cin, tuitionCenterCode);
-//     cout << "Tuition Center Name : ";
-//     getline(cin, tuitionCenterName);
-//     cout << "Subject Code : ";
-//     getline(cin, subjectCode);
-//     cout << "Subject Name : ";
-//     getline(cin, subjectName);
-//     cout << "Password : ";
-//     getline(cin, password);
-//     cout << "Hourly Pay Rate : ";
-//     cin >> hourlyPayRate;
-//     cout << "Experince of teaching : ";
-//     cin >> experience;
-//	 cout << "Rating : ";
-//	 cin >> rating;
-//
-//	 for (int i = 0; i <= numberOfTutor; i++) {
-//		 if (i == (numberOfTutor - 1)) {
-//			 tutorList[i] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Bukit Jalil", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 5.0, 10.0, 4);
-//		
-//				 /*Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, dateTerminated,
-//				 tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, rating);*/
-//		 }
-//	 }
-//	 
-//	 cout << "Successfully added the new tutor !" << endl;
+	//string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
+	//int phone, rating, ic;
+	//double hourlyPayRate, experience;
+
+	//cout << "Please enter the following details to register a new tutor." << endl;
+	//cout << string(20, '=') << endl;
+
+	//cout << "Tutor Id : ";
+	//getline(cin, tutorId);
+	//cout << "Tutor Name : ";
+	//getline(cin, name);
+	//cout << "IC : ";
+	//while (!(cin >> ic)) {
+	//	cout << "IC : ";
+	//	cin.clear();
+	//	cin.ignore(22, '\n');
+	//}
+	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//cout << "Field of study : ";
+	//getline(cin, fieldOfStudy);
+	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//cout << "Address : ";
+	//getline(cin, address);
+	//cout << "Phone Number : ";
+	//while (!(cin >> phone)) {
+	//	cout << "Phone Number : ";
+	//	cin.clear();
+	//	cin.ignore(22, '\n');
+	//}
+	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//cout << "Tuition Center Code : ";
+	//getline(cin, tuitionCenterCode);
+	//cout << "Tuition Center Name : ";
+	//getline(cin, tuitionCenterName);
+	//cout << "Subject Code : ";
+	//getline(cin, subjectCode);
+	//cout << "Subject Name : ";
+	//getline(cin, subjectName);
+	//cout << "Password : ";
+	//getline(cin, password);
+	//cout << "Hourly Pay Rate : ";
+	//while (!(cin >> hourlyPayRate)) {
+	//	cout << "Hourly Pay Rate : ";
+	//	cin.clear();
+	//	cin.ignore(22, '\n');
+	//}
+	//cout << "Experince of teaching : ";
+	//while (!(cin >> experience)) {
+	//	cout << "Experince of teaching : ";
+	//	cin.clear();
+	//	cin.ignore(22, '\n');
+	//}
+
+	////get current date
+	//char currDate[10];
+
+	//time_t t = time(NULL);
+	//struct tm tm = *localtime(&t);
+	//sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+	//dateJoined = convertToString(currDate, 10);
+
+	//Tutor* newTutor = addNewTutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, 0);
+	//saveTutor(newTutor);
+
+	//cout << endl << "Added new tutor successfully" << endl;
 // }
 
 // Add new tutor record into the array
@@ -108,28 +133,90 @@ void generateTutorRecord(Tutor tutorList[]) {
 
 
 void displayAllTutors(Tutor tutorList[], int numberOfTutor){
-     if(tutorList != NULL){
-         for(int i = 0; i < numberOfTutor; i++){
-			 cout << "TutorId" << "\t\t" << " : " << tutorList[i].tutorId << endl;
-			 cout << "TutorName" << "\t" << " : " << tutorList[i].name << endl;
-			 cout << "IC" << "\t\t" << " : " << tutorList[i].ic << endl;
-			 cout << "FieldOfStudy" << "\t" << " : " << tutorList[i].fieldOfStudy << endl;
-			 cout << "Address" << "\t\t" << " : " << tutorList[i].address << endl;
-			 cout << "Phone" << "\t\t" << " : " << tutorList[i].phone << endl;
-			 cout << "DateJoined" << "\t" << " : " << tutorList[i].dateJoined << endl;
-			 cout << "DateTerminated" << "\t" << " : " << tutorList[i].dateTerminated << endl;
-			 cout << "TuitionCenterCode" << ": " << tutorList[i].tuitionCenterCode << endl;
-			 cout << "TuitionCenterName" << ": " << tutorList[i].tuitionCenterName << endl;
-			 cout << "SubjectCode" << "\t" << " : " << tutorList[i].subjectCode << endl;
-			 cout << "SubjectName" << "\t" << " : " << tutorList[i].subjectName << endl;
-			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[i].hourlyPayRate << endl;
-			 cout << "Experience" << "\t" << " : " << tutorList[i].experience << endl;
-			 cout << "Rating" << "\t\t" << " : " << tutorList[i].rating << endl;
-			 cout << string(50, '=') << endl;
-         }
-     }else{
-         cout << "There is no any tutor record available. Please add the tutor record." << endl;
-     }
+     //display records by page
+	int chunk = 3; //prefer row for display per page
+	int totalPage = 0;
+	if (numberOfTutor <= 3) {
+		totalPage = 1;
+	}else if (numberOfTutor > 3) {
+		totalPage = (numberOfTutor / chunk) + 1;
+	}else {
+		totalPage = (numberOfTutor / chunk);
+	}
+
+	int page = 1;
+	int choose = 0;
+	int length = 0;
+	do {
+		int tmpRow = (page*chunk) - chunk; //start index
+		if (page != totalPage) {
+			length = page * chunk;
+		}
+		else {
+			length = numberOfTutor;
+		}
+
+		for (int i = tmpRow; i < length; i++) {
+			cout << "TutorId" << "\t\t" << " : " << tutorList[i].tutorId << endl;
+			cout << "TutorName" << "\t" << " : " << tutorList[i].name << endl;
+			cout << "IC" << "\t\t" << " : " << tutorList[i].ic << endl;
+			cout << "FieldOfStudy" << "\t" << " : " << tutorList[i].fieldOfStudy << endl;
+			cout << "Address" << "\t\t" << " : " << tutorList[i].address << endl;
+			cout << "Phone" << "\t\t" << " : " << tutorList[i].phone << endl;
+			cout << "DateJoined" << "\t" << " : " << tutorList[i].dateJoined << endl;
+			cout << "DateTerminated" << "\t" << " : " << tutorList[i].dateTerminated << endl;
+			cout << "TuitionCenterCode" << ": " << tutorList[i].tuitionCenterCode << endl;
+			cout << "TuitionCenterName" << ": " << tutorList[i].tuitionCenterName << endl;
+			cout << "SubjectCode" << "\t" << " : " << tutorList[i].subjectCode << endl;
+			cout << "SubjectName" << "\t" << " : " << tutorList[i].subjectName << endl;
+			cout << "HourlyPayRate" << "\t" << " : " << tutorList[i].hourlyPayRate << endl;
+			cout << "Experience" << "\t" << " : " << tutorList[i].experience << endl;
+			cout << "Rating" << "\t\t" << " : " << tutorList[i].rating << endl;
+			cout << string(50, '=') << endl;
+		}
+
+		if (totalPage == 1) {
+			cout << "You have reached end of the page." << endl;
+			return;
+		}
+		else {
+			cout << "1. Next " << endl;
+			cout << "2. Previous " << endl;
+			cout << "3. First Page " << endl;
+			cout << "4. Last Page " << endl;
+
+			cout << "Enter your choice : ";
+			cin >> choose;
+
+			switch (choose) {
+			case 0:
+				break;
+			case 1:
+				if (page < totalPage) {
+					system("cls");
+					page++;
+					break;
+				}else if (page == totalPage) {
+					cout << "You have reached end of the page." << endl;
+					return;
+				}
+			case 2:
+				if (page >= 1) {
+					system("cls");
+					page--;
+					break;
+				}
+			case 3:
+				system("cls");
+				page = 1;
+				break;
+			case 4:
+				system("cls");
+				page = totalPage;
+				break;
+			}
+		}
+	} while (choose != 0);
  }
 
 //merge function -- helper class
@@ -227,7 +314,7 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 
 		if (totalPage == 1) {
 			cout << "You have reached end of the page." << endl;
-			break;
+			return;
 		}
 		else {
 			cout << "1. Next " << endl;
@@ -246,6 +333,9 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 					system("cls");
 					page++;
 					break;
+				}else if (page == totalPage) {
+					cout << "You have reached end of the page." << endl;
+					return;
 				}
 			case 2:
 				if (page >= 1) {
@@ -281,7 +371,7 @@ string splitStr(string s, string del) {
 }
 
 string toUpper(string s) {
-	for (int i = 0; i < s.length() - 3; i++) {
+	for (int i = 0; i < (s.length() - 3); i++) {
 		s[i] = toupper(s[i]);
 	}
 

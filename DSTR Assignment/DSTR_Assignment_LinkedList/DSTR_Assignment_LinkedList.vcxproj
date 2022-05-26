@@ -152,7 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
-    <ClCompile Include="DSTR_Assignment_LinkedList.cpp" />
+    <ClCompile Include="DSTR_Assignment_Linked_List.cpp" />
     <ClCompile Include="HR.cpp" />
     <ClCompile Include="Tutor.cpp" />
   </ItemGroup>
