@@ -15,11 +15,14 @@ struct Tutor {
 		double hourlyPayRate, double experience, int rating);
 };
 
+int tutorMenu();
+Tutor* generateTutorRecord();
 //void registerNewTutor(Tutor tutorList[], int numberOfTutor);
 //void saveTutor(Tutor* newTutor);
-void generateTutorRecord(Tutor tutorist[]);
+
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
 void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor);
+Tutor* addNewTutor(Tutor* oldList, int size);
 //void modifyTutorRecord();
 void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
 //void searchTutorByRating();

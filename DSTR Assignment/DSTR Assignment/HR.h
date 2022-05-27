@@ -11,6 +11,8 @@ struct HumanResourceManager {
 	HumanResourceManager(string hrId, string name, int ic, int phone, string password);
 };
 
+int hrMenu();
+
 void registerNewHR();
 
 void generateNewHR();

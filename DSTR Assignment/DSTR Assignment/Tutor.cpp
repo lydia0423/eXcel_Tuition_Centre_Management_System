@@ -95,13 +95,17 @@ int tutorMenu() {
 	}
 }
 
-void generateTutorRecord(Tutor tutorList[]) {
+Tutor* generateTutorRecord() {
+	Tutor* tutorList = new Tutor[6];
+
 	tutorList[0] = Tutor("TR001", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
 	tutorList[1] = Tutor("TR002", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
 	tutorList[2] = Tutor("TR003", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
 	tutorList[3] = Tutor("TR004", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
 	tutorList[4] = Tutor("TR005", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
 	tutorList[5] = Tutor("TR006", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
+
+	return tutorList;
 }
 
 Tutor* addNewTutor(Tutor* oldList, int size) {
