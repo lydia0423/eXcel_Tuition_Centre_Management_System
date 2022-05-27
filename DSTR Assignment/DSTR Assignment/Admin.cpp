@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "Admin.h"
+#include "Tutor.h"
+#include "main.h"
 
 Admin::Admin(string adminId, string name, int ic, string address, int phone, string tuitionCenterCode, string tuitionCenterName, string password)
 {
@@ -91,7 +93,8 @@ int adminMenu() {
 			break;
 		case 10:
 			system("cls");
-			cout << "choice is 10";
+			Tutor* newList = addNewTutor(::tutorList, ::numberOfTutor);
+			
 			break;
 		default:
 			cout << "no choice";

@@ -169,14 +169,95 @@ string convertToString(char* a, int size)
 	// tutorList[numberOfTutor - 1] = newTutor;
  //}
 
+
+//function to add a new tutor
+Tutor* addNewTutor(Tutor* oldList, int size) {
+	
+	//Create new array 
+	Tutor* newList = new Tutor[size + 1];
+	//Copy data
+	for (int i = 0; i < size; i++) {
+		newList[i] = oldList[i];
+	}
+
+	string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
+	int phone, rating, ic;
+	double hourlyPayRate, experience;
+
+	cout << "Please enter the following details to register a new tutor." << endl;
+	cout << string(20, '=') << endl;
+
+	cout << "Tutor Id : ";
+	getline(cin, tutorId);
+	cout << "Tutor Name : ";
+	getline(cin, name);
+	cout << "IC : ";
+	while (!(cin >> ic)) {
+		cout << "IC : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Field of study : ";
+	cin >> fieldOfStudy;
+	//getline(cin, fieldOfStudy);
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Address : ";
+	getline(cin, address);
+	cout << "Phone Number : ";
+	while (!(cin >> phone)) {
+		cout << "Phone Number : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Tuition Center Code : ";
+	getline(cin, tuitionCenterCode);
+	cout << "Tuition Center Name : ";
+	getline(cin, tuitionCenterName);
+	cout << "Subject Code : ";
+	getline(cin, subjectCode);
+	cout << "Subject Name : ";
+	getline(cin, subjectName);
+	cout << "Password : ";
+	getline(cin, password);
+	cout << "Hourly Pay Rate : ";
+	while (!(cin >> hourlyPayRate)) {
+		cout << "Hourly Pay Rate : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	cout << "Experince of teaching : ";
+	while (!(cin >> experience)) {
+		cout << "Experince of teaching : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+
+	//get current date
+	char currDate[10];
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+	dateJoined = convertToString(currDate, 10);
+
+	newList[size] = Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, 0);
+
+	return newList;
+}
+
 // Generate tutor record every time the system is being compiled so the action has been done wouldn't affect it
-void generateTutorRecord(Tutor tutorList[]) {
+Tutor* generateTutorRecord() {
+	Tutor* tutorList = new Tutor[6];
+
 	tutorList[0] = Tutor("TR001", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
 	tutorList[1] = Tutor("TR002", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
 	tutorList[2] = Tutor("TR003", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
 	tutorList[3] = Tutor("TR004", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
 	tutorList[4] = Tutor("TR005", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
 	tutorList[5] = Tutor("TR006", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
+
+	return tutorList;
 }
 
 

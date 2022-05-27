@@ -108,7 +108,7 @@ string convertToString(char* a, int size)
 }
 
 // Ask the user to key in the tutor details
- void registerNewTutor(){
+void registerNewTutor(){
 	 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 	 int phone, rating, ic;
 	 double hourlyPayRate, experience;

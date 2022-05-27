@@ -11,11 +11,11 @@ struct Tutor {
 	Tutor *prevAddress;
 };
 
-int tutorMenu();
-
 Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, string address, int phone, string dateJoined, string dateTerminated,
 	string tuitionCenterCode, string tuitionCenterName, string subjectCode, string subjectName, string password,
 	double hourlyPayRate, double experience, int rating);
+
+int tutorMenu();
 
 void registerNewTutor();
 

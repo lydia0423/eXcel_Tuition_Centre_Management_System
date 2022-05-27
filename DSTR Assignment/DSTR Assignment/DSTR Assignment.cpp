@@ -1,14 +1,9 @@
-#include <iostream>
-#include <string>
-
-#include "Tutor.h"
-
-using namespace std;
+#include "main.h"
 
 int main() {
-	int numberOfTutor = 6;
-	Tutor* tutorList = new Tutor[numberOfTutor];
-	generateTutorRecord(tutorList);
+
+
+	
 	displayAllTutorsByLocation(tutorList, numberOfTutor);
 
 	/*numberOfTutor++;

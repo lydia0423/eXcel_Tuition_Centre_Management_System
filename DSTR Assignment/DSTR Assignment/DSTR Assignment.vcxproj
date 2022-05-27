@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="HR.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Tutor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
