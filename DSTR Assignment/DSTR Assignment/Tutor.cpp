@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cctype>
 #include <string>
+#include <ctime>
 #include "Tutor.h"
 
 
@@ -45,83 +46,54 @@ string convertToString(char* a, int size)
 	return s;
 }
 
-// Ask the user to key in the tutor details
-//void registerNewTutor(Tutor tutorList[], int numberOfTutor)
-//{
-	//string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
-	//int phone, rating, ic;
-	//double hourlyPayRate, experience;
+int tutorMenu() {
+	system("cls");
+	int choice = 99;
 
-	//cout << "Please enter the following details to register a new tutor." << endl;
-	//cout << string(20, '=') << endl;
+	while (choice != 0 && choice != -1)
+	{
+		//menu content
+		cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
+		cout << "The following actions are available for tutor : " << endl << endl;
+		//function introduction
+		cout << "1. View profile of yourself." << endl;
+		cout << "0. Logout and Go back to Login interface." << endl;
+		cout << "-1. Quit the whole system." << endl;
+		//ask choice
+		cout << endl << "Please enter correct number to select what action do you want : ";
 
-	//cout << "Tutor Id : ";
-	//getline(cin, tutorId);
-	//cout << "Tutor Name : ";
-	//getline(cin, name);
-	//cout << "IC : ";
-	//while (!(cin >> ic)) {
-	//	cout << "IC : ";
-	//	cin.clear();
-	//	cin.ignore(22, '\n');
-	//}
-	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	//cout << "Field of study : ";
-	//getline(cin, fieldOfStudy);
-	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	//cout << "Address : ";
-	//getline(cin, address);
-	//cout << "Phone Number : ";
-	//while (!(cin >> phone)) {
-	//	cout << "Phone Number : ";
-	//	cin.clear();
-	//	cin.ignore(22, '\n');
-	//}
-	//cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	//cout << "Tuition Center Code : ";
-	//getline(cin, tuitionCenterCode);
-	//cout << "Tuition Center Name : ";
-	//getline(cin, tuitionCenterName);
-	//cout << "Subject Code : ";
-	//getline(cin, subjectCode);
-	//cout << "Subject Name : ";
-	//getline(cin, subjectName);
-	//cout << "Password : ";
-	//getline(cin, password);
-	//cout << "Hourly Pay Rate : ";
-	//while (!(cin >> hourlyPayRate)) {
-	//	cout << "Hourly Pay Rate : ";
-	//	cin.clear();
-	//	cin.ignore(22, '\n');
-	//}
-	//cout << "Experince of teaching : ";
-	//while (!(cin >> experience)) {
-	//	cout << "Experince of teaching : ";
-	//	cin.clear();
-	//	cin.ignore(22, '\n');
-	//}
+		//read choice from user
+		cin >> choice;
+		//check whether the user's input is valid, until get expected input
+		while (cin.fail() || choice < -1 || choice > 10) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid Input!" << endl;
+			cout << "Please enter a correct number to select what action do you want : ";
+			cin >> choice;
+		}
 
-	////get current date
-	//char currDate[10];
+		//execute chosen function according to user's choice
+		switch (choice)
+		{
+		case -1:
+			system("cls");
+			cout << "Quiting the system, thank you for using!" << endl;
+			return choice;
+		case 0:
+			system("cls");
+			return choice;
+		case 1:
+			system("cls");
+			cout << "choice is 1";
+			break;
+		default:
+			cout << "no choice";
+			break;
+		}
+	}
+}
 
-	//time_t t = time(NULL);
-	//struct tm tm = *localtime(&t);
-	//sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-	//dateJoined = convertToString(currDate, 10);
-
-	//Tutor* newTutor = addNewTutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, 0);
-	//saveTutor(newTutor);
-
-	//cout << endl << "Added new tutor successfully" << endl;
-// }
-
-// Add new tutor record into the array
- //void saveTutor(Tutor newTutor) {
-	// numberOfTutor++;
-	// tutorList[numberOfTutor - 1] = newTutor;
- //}
-
-// Generate tutor record every time the system is being compiled so the action has been done wouldn't affect it
 void generateTutorRecord(Tutor tutorList[]) {
 	tutorList[0] = Tutor("TR001", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
 	tutorList[1] = Tutor("TR002", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
@@ -131,6 +103,80 @@ void generateTutorRecord(Tutor tutorList[]) {
 	tutorList[5] = Tutor("TR006", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
 }
 
+Tutor* addNewTutor(Tutor* oldList, int size) {
+
+	//Create new array 
+	Tutor* newList = new Tutor[size + 1];
+	//Copy data
+	for (int i = 0; i < size; i++) {
+		newList[i] = oldList[i];
+	}
+
+	string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
+	int phone, rating, ic;
+	double hourlyPayRate, experience;
+
+	cout << "Please enter the following details to register a new tutor." << endl;
+	cout << string(20, '=') << endl;
+
+	cout << "Tutor Id : ";
+	getline(cin, tutorId);
+	cout << "Tutor Name : ";
+	getline(cin, name);
+	cout << "IC : ";
+	while (!(cin >> ic)) {
+		cout << "IC : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Field of study : ";
+	cin >> fieldOfStudy;
+	//getline(cin, fieldOfStudy);
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Address : ";
+	getline(cin, address);
+	cout << "Phone Number : ";
+	while (!(cin >> phone)) {
+		cout << "Phone Number : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Tuition Center Code : ";
+	getline(cin, tuitionCenterCode);
+	cout << "Tuition Center Name : ";
+	getline(cin, tuitionCenterName);
+	cout << "Subject Code : ";
+	getline(cin, subjectCode);
+	cout << "Subject Name : ";
+	getline(cin, subjectName);
+	cout << "Password : ";
+	getline(cin, password);
+	cout << "Hourly Pay Rate : ";
+	while (!(cin >> hourlyPayRate)) {
+		cout << "Hourly Pay Rate : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	cout << "Experince of teaching : ";
+	while (!(cin >> experience)) {
+		cout << "Experince of teaching : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
+	
+	//get current date
+	char currDate[10];
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+	dateJoined = convertToString(currDate, 10);
+
+	newList[size] = Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, 0);
+
+	return newList;
+}
 
 void displayAllTutors(Tutor tutorList[], int numberOfTutor){
      //display records by page
