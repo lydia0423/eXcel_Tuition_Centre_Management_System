@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include "Admin.h"
@@ -94,7 +95,6 @@ int adminMenu() {
 		case 10:
 			system("cls");
 			Tutor* newList = addNewTutor(::tutorList, ::numberOfTutor);
-
 			break;
 		default:
 			cout << "no choice";
