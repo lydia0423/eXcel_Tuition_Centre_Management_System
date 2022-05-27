@@ -15,6 +15,8 @@ struct Tutor {
 		double hourlyPayRate, double experience, int rating);
 };
 
+int tutorMenu();
+
 //void registerNewTutor(Tutor tutorList[], int numberOfTutor);
 //void saveTutor(Tutor* newTutor);
 void generateTutorRecord(Tutor tutorist[]);

@@ -11,7 +11,7 @@ struct Tutor {
 	Tutor *prevAddress;
 };
 
-void tutorMenu();
+int tutorMenu();
 
 Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, string address, int phone, string dateJoined, string dateTerminated,
 	string tuitionCenterCode, string tuitionCenterName, string subjectCode, string subjectName, string password,
