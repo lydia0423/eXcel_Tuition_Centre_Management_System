@@ -4,6 +4,8 @@
 
 using namespace std;
 
+
+
 struct Tutor {
 	string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 	int phone, rating, ic;
@@ -15,8 +17,11 @@ struct Tutor {
 		double hourlyPayRate, double experience, int rating);
 };
 
+
+
 int tutorMenu();
 Tutor* generateTutorRecord();
+
 //void registerNewTutor(Tutor tutorList[], int numberOfTutor);
 //void saveTutor(Tutor* newTutor);
 
@@ -33,4 +38,5 @@ void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, T
 void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 //void viewProfile();
 //void deleteTutorRecord();
+
 

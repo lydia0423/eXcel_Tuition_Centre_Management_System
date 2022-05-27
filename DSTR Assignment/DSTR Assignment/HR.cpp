@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "HR.h"
+#include "Tutor.h"
+
 
 HumanResourceManager::HumanResourceManager(string hrId, string name, int ic, int phone, string password)
 {
@@ -86,8 +88,14 @@ int hrMenu() {
 			cout << "choice is 8";
 			break;
 		case 9:
+		{
 			system("cls");
-			cout << "choice is 9";
+			Tutor* tutorList = generateTutorRecord();
+			int numberOfTutor = 6;
+			Tutor* newList = addNewTutor(tutorList, numberOfTutor);
+			tutorList = newList;
+			numberOfTutor++;
+		}
 			break;
 		case 10:
 			system("cls");

@@ -1,9 +1,8 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include "Admin.h"
 #include "Tutor.h"
-#include "main.h"
+
 
 Admin::Admin(string adminId, string name, int ic, string address, int phone, string tuitionCenterCode, string tuitionCenterName, string password)
 {
@@ -89,12 +88,18 @@ int adminMenu() {
 			cout << "choice is 8";
 			break;
 		case 9:
+		{
 			system("cls");
-			cout << "choice is 9";
+			Tutor* tutorList = generateTutorRecord();
+			int numberOfTutor = 6;
+			Tutor* newList = addNewTutor(tutorList, numberOfTutor);
+			tutorList = newList;
+			numberOfTutor++;
+		}	
 			break;
 		case 10:
 			system("cls");
-			Tutor* newList = addNewTutor(::tutorList, ::numberOfTutor);
+			cout << "choice is 10";
 			break;
 		default:
 			cout << "no choice";
@@ -102,6 +107,7 @@ int adminMenu() {
 		}
 	}
 }
+
 
 void registerNewAdmin()
 {
