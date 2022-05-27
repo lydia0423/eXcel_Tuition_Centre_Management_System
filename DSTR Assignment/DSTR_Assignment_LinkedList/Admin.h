@@ -18,3 +18,5 @@ void registerNewAdmin(Admin* newAdmin);
 void generateNewAdmin();
 
 void displayAllAdmins();
+
+int adminMenu();

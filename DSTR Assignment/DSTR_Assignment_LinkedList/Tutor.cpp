@@ -541,5 +541,53 @@ void mergeSortTutorByHourlyPayRate() {
 // View profile
 //void viewProfile();
 
-// Delete the tutor record after 6 months termination (only HR can do it)
+// Delete the tutor record (only after 6 months termination can be deleted) (only HR can do it)
 //void deleteTutorRecord();
+
+int tutorMenu() {
+	system("cls");
+	int choice = 99;
+
+	while (choice != 0 && choice != -1)
+	{
+		//menu content
+		cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
+		cout << "The following actions are available for tutor : " << endl << endl;
+		//function introduction
+		cout << "1. View profile of yourself." << endl;
+		cout << "0. Logout and Go back to Login interface." << endl;
+		cout << "-1. Quit the whole system." << endl;
+		//ask choice
+		cout << endl << "Please enter correct number to select what action do you want : ";
+
+		//read choice from user
+		cin >> choice;
+		//check whether the user's input is valid, until get expected input
+		while (cin.fail() || choice < -1 || choice > 10) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid Input!" << endl;
+			cout << "Please enter a correct number to select what action do you want : ";
+			cin >> choice;
+		}
+
+		//execute chosen function according to user's choice
+		switch (choice)
+		{
+		case -1:
+			system("cls");
+			cout << "Quiting the system, thank you for using!" << endl;
+			return choice;
+		case 0:
+			system("cls");
+			return choice;
+		case 1:
+			system("cls");
+			cout << "choice is 1";
+			break;
+		default:
+			cout << "no choice";
+			break;
+		}
+	}
+}

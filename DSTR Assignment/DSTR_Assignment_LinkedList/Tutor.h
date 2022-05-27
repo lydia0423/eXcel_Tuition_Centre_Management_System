@@ -45,3 +45,4 @@ void mergeSortTutorByHourlyPayRate();
 
 void getCurrentDateTime();
 
+int tutorMenu();

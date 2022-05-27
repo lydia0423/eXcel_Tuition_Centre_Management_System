@@ -16,3 +16,5 @@ void registerNewHR(HumanResourceManager* newHR);
 void generateNewHR();
 
 void displayAllHRs();
+
+int hrMenu();
