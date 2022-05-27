@@ -18,6 +18,27 @@ HumanResourceManager* addNewHR(string hrId, string name, int ic, int phone, stri
 	return newHR;
 }
 
+void hrMenu() {
+	cout << "----------Welcome to Admin Menu----------" << endl;
+	cout << "The following actions are available for administrator : " << endl;
+
+	cout << "Display all tutors' record";
+	cout << "Display all tutors' record according to tutor's Location";
+	cout << "Search tutor's record by tutor's ID";
+	cout << "Search tutor's record by tutor's Overall Performance";
+	cout << "Search tutor's record by tutor's Teaching Subject";
+	cout << "Sort and display all tutor's record by tutor's ID";
+	cout << "Sort and display all tutor's record by tutor's Overall Performance";
+	cout << "Sort and display all tutor's record by tutor's Hourly Pay Rate";
+	cout << "Add a record for new tutor";
+	cout << "Modify tutor's record by tutor's ID";
+	cout << "Delete tutor's record by tutor's ID";
+
+	//void viewProfile()
+
+	cout << "Please enter correct number according to the followingselect the function you want to use";
+}
+
 void registerNewHR(HumanResourceManager* newHR) {
 	if (headHR == NULL) {
 		headHR = tailHR = newHR;

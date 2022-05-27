@@ -36,6 +36,16 @@ Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, str
 	return newTutor;
 }
 
+void tutorMenu() {
+	cout << "----------Welcome to Admin Menu----------" << endl;
+	cout << "The following actions are available for administrator : " << endl;
+
+
+	//void viewProfile()
+
+	cout << "Please enter correct number according to the followingselect the function you want to use";
+}
+
 // Add tutor record into the linked list
 void saveTutor(Tutor *newTutor) {
 	if (headTutor == NULL) {

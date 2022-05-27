@@ -11,6 +11,8 @@ struct HumanResourceManager {
 
 HumanResourceManager* addeNewHR(string hrId, string name, int ic, int phone, string password);
 
+void hrMenu();
+
 void registerNewHR(HumanResourceManager* newHR);
 
 void generateNewHR();

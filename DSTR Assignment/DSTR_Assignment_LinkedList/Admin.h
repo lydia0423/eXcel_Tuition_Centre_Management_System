@@ -11,6 +11,8 @@ struct Admin {
 	Admin* prevAddress;
 }*headAdmin, *tailAdmin;
 
+void adminMenu();
+
 Admin* addNewAdmin(string adminId, string name, int ic, string address, int phone, string tuitionCenterCode, string tuitionCenterName, string password);
 
 void registerNewAdmin(Admin* newAdmin);

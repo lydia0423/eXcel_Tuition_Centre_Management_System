@@ -4,6 +4,28 @@
 
 int sizeOfAdminLinkedList = 0;
 
+void adminMenu() {
+	cout << "----------Welcome to Admin Menu----------" << endl;
+	cout << "The following actions are available for administrator : " << endl;
+	
+	cout << "Display all tutors' record";
+	cout << "Display all tutors' record according to tutor's Location";	
+	cout << "Search tutor's record by tutor's ID";
+	cout << "Search tutor's record by tutor's Overall Performance";
+	cout << "Search tutor's record by tutor's Teaching Subject";
+	cout << "Sort and display all tutor's record by tutor's ID";
+	cout << "Sort and display all tutor's record by tutor's Overall Performance";
+	cout << "Sort and display all tutor's record by tutor's Hourly Pay Rate";
+	cout << "Add a record for new tutor";
+	cout << "Modify tutor's record by tutor's ID";
+
+
+	//void viewProfile()
+
+	cout << "Please enter correct number according to the followingselect the function you want to use";
+}
+
+
 Admin *addNewAdmin(string adminId, string name, int ic, string address, int phone, string tuitionCenterCode, string tuitionCenterName, string password) {
 	Admin* newAdmin = new Admin;
 
@@ -61,3 +83,4 @@ void displayAllAdmins() {
 
 	cout << endl << "List is ended here!" << endl << endl;
 }
+
