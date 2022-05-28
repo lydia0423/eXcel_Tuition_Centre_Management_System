@@ -47,53 +47,7 @@ string convertToString(char* a, int size)
 	return s;
 }
 
-int tutorMenu() {
-	system("cls");
-	int choice = 99;
 
-	while (choice != 0 && choice != -1)
-	{
-		//menu content
-		cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
-		cout << "The following actions are available for tutor : " << endl << endl;
-		//function introduction
-		cout << "1. View profile of yourself." << endl;
-		cout << "0. Logout and Go back to Login interface." << endl;
-		cout << "-1. Quit the whole system." << endl;
-		//ask choice
-		cout << endl << "Please enter correct number to select what action do you want : ";
-
-		//read choice from user
-		cin >> choice;
-		//check whether the user's input is valid, until get expected input
-		while (cin.fail() || choice < -1 || choice > 10) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "Invalid Input!" << endl;
-			cout << "Please enter a correct number to select what action do you want : ";
-			cin >> choice;
-		}
-
-		//execute chosen function according to user's choice
-		switch (choice)
-		{
-		case -1:
-			system("cls");
-			cout << "Quiting the system, thank you for using!" << endl;
-			return choice;
-		case 0:
-			system("cls");
-			return choice;
-		case 1:
-			system("cls");
-			cout << "choice is 1";
-			break;
-		default:
-			cout << "no choice";
-			break;
-		}
-	}
-}
 
 Tutor* generateTutorRecord() {
 	Tutor* tutorList = new Tutor[6];
@@ -407,7 +361,7 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 	} while (choose != 0);
 }
 
-// Modify =tutor record (only telephone number, date terminated, tuition center code and name)
+// Modify =tutor record ()
 // void modifyTutorRecord();
 
 string splitStr(string s, string del) {
@@ -469,10 +423,57 @@ string toUpper(string s) {
 // void searchTutorByRating();
 
 // // Search tutor based on the subject teaching
-// void searchTutorBySubject();
+ void searchTutorBySubject(Tutor* tutorList, int size) {
+	 system("cls");
+	 //ask and read searched subject from user
+	 string subjectKey;
+	 cout << "Please enter a substring of subject that you want to search: ";
+	 cin >> subjectKey;
+	 while (cin.fail()) {
+		 cin.clear();
+		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		 cout << "Invalid Input!" << endl;
+		 cout << "Please enter correct substring of subject that you want to search: ";
+		 cin >> subjectKey;
+	 }
+
+	 //searching
+	 int suitNo = 0; //variable for recording how many tutors match condition
+	 for (int i = 0; i < size; i++) {
+		 if (tutorList[i].subjectName.find(subjectKey) != string::npos){
+			 suitNo++;
+			 cout << "No. " << suitNo << "record of tutor who meets search criteria is as follows : " << endl;
+			 cout << "TutorId" << "\t\t" << " : " << tutorList[i].tutorId << endl;
+			 cout << "TutorName" << "\t" << " : " << tutorList[i].name << endl;
+			 cout << "IC" << "\t\t" << " : " << tutorList[i].ic << endl;
+			 cout << "FieldOfStudy" << "\t" << " : " << tutorList[i].fieldOfStudy << endl;
+			 cout << "Address" << "\t\t" << " : " << tutorList[i].address << endl;
+			 cout << "Phone" << "\t\t" << " : " << tutorList[i].phone << endl;
+			 cout << "DateJoined" << "\t" << " : " << tutorList[i].dateJoined << endl;
+			 cout << "DateTerminated" << "\t" << " : " << tutorList[i].dateTerminated << endl;
+			 cout << "TuitionCenterCode" << ": " << tutorList[i].tuitionCenterCode << endl;
+			 cout << "TuitionCenterName" << ": " << tutorList[i].tuitionCenterName << endl;
+			 cout << "SubjectCode" << "\t" << " : " << tutorList[i].subjectCode << endl;
+			 cout << "SubjectName" << "\t" << " : " << tutorList[i].subjectName << endl;
+			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[i].hourlyPayRate << endl;
+			 cout << "Experience" << "\t" << " : " << tutorList[i].experience << endl;
+			 cout << "Rating" << "\t\t" << " : " << tutorList[i].rating << endl;
+			 cout << endl;
+		 }
+	 }
+	 //
+	 if (suitNo == 0) {
+		 cout << "There is no tutors matching the search criteria" << endl;
+	 }
+	 system("pause");
+}
+
 
 // // Sort tutor by using tutor id
-// void sortTutorById();
+ void sortTutorById() {
+	 string upperId = toUpper(tutorId);
+	 int id = stoi(splitStr(upperId, "TR"));
+}
 
 // // Sort tutor by using rating give
 // void sortTutorByRating();
@@ -527,3 +528,51 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 
 // // Delete the tutor record after 6 months termination (only HR can do it)
 // void deleteTutorRecord();
+
+ int tutorMenu() {
+	 system("cls");
+	 int choice = 99;
+
+	 while (choice != 0 && choice != -1)
+	 {
+		 //menu content
+		 cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
+		 cout << "The following actions are available for tutor : " << endl << endl;
+		 //function introduction
+		 cout << "1. View profile of yourself." << endl;
+		 cout << "0. Logout and Go back to Login interface." << endl;
+		 cout << "-1. Quit the whole system." << endl;
+		 //ask choice
+		 cout << endl << "Please enter correct number to select what action do you want : ";
+
+		 //read choice from user
+		 cin >> choice;
+		 //check whether the user's input is valid, until get expected input
+		 while (cin.fail() || choice < -1 || choice > 10) {
+			 cin.clear();
+			 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			 cout << "Invalid Input!" << endl;
+			 cout << "Please enter a correct number to select what action do you want : ";
+			 cin >> choice;
+		 }
+
+		 //execute chosen function according to user's choice
+		 switch (choice)
+		 {
+		 case -1:
+			 system("cls");
+			 cout << "Quiting the system, thank you for using!" << endl;
+			 return choice;
+		 case 0:
+			 system("cls");
+			 return choice;
+		 case 1:
+			 system("cls");
+			 cout << "choice is 1";
+			 break;
+		 default:
+			 cout << "no choice";
+			 break;
+		 }
+	 }
+ }

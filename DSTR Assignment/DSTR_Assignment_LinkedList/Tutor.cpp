@@ -401,7 +401,7 @@ void displayAllTutorsByLocation() {
 	} while (choose != 0);
 }
 
-// Modify =tutor record (only telephone number, date terminated, tuition center code and name)
+// Modify =tutor record ()
 //void modifyTutorRecord();
 
 string splitStr(string s, string del) {
