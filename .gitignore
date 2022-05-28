@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+DSTR Assignment/DSTR_Assignment_LinkedList/resource.h
+DSTR Assignment/DSTR_Assignment_LinkedList/DSTR_Assignment_LinkedList.rc

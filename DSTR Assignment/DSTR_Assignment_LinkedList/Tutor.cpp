@@ -8,6 +8,9 @@
 Tutor* headTutor = new Tutor;
 Tutor* tailTutor = new Tutor;
 
+headTutor = NULL;
+tailTutor = NULL;
+
 int sizeOfTutorLinkedList = 0;
 Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, string address, int phone, string dateJoined, string dateTerminated,
 	string tuitionCenterCode, string tuitionCenterName, string subjectCode, string subjectName, string password,
@@ -507,7 +510,7 @@ void searchTutorBySubject() {
 		   // cout << "Please enter correct substring of subject that you want to search: ";
 		   // cin >> subjectKey;
 		//}
-		 while (current->nextAddress != NULL) {
+		 while (current != NULL) {
 			if (current->subjectName.find(subjectKey) != string::npos) {
 				matchNo = matchNo + 1;
 				cout << "Record of No." << matchNo << " Tutor matches the condition is as following : " << endl;
