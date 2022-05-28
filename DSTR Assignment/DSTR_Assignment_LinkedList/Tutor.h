@@ -31,7 +31,7 @@ void searchTutorById(string tutorId);
 
 //void searchTutorByRating();
 
-//void searchTutorBySubject();
+void searchTutorBySubject();
 
 //void sortTutorById();
 

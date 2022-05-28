@@ -13,7 +13,10 @@ int main()
 	//displayAllTutorsByLocation();
 	//mergeSortTutorByHourlyPayRate();
 	//searchTutorById("tr002");
-	registerNewTutor();
-	displayAllTutors();
+	//registerNewTutor();
+	//displayAllTutors();
+
+	searchTutorBySubject();
+
 	return 0;
 }

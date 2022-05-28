@@ -60,7 +60,7 @@ string convertToString(char* a, int size)
 }
 
 // Ask the user to key in the tutor details
- void registerNewTutor(){
+void registerNewTutor(){
 	 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 	 int phone, rating, ic;
 	 double hourlyPayRate, experience;
@@ -494,7 +494,7 @@ void searchTutorBySubject() {
 	}
 	else {
 		system("cls");
-		Tutor* current = headTutor->nextAddress;
+		Tutor* current = headTutor;
 		int matchNo = 0;
 		//ask and read searched subject from user
 		string subjectKey;
@@ -507,7 +507,7 @@ void searchTutorBySubject() {
 		   // cout << "Please enter correct substring of subject that you want to search: ";
 		   // cin >> subjectKey;
 		//}
-		while (current != NULL) {
+		 while (current->nextAddress != NULL) {
 			if (current->subjectName.find(subjectKey) != string::npos) {
 				matchNo = matchNo + 1;
 				cout << "Record of No." << matchNo << " Tutor matches the condition is as following : " << endl;
@@ -530,14 +530,21 @@ void searchTutorBySubject() {
 				current = current->nextAddress;
 			}
 		}
-		cout << endl << "These are all records that match searching condition.";
-		system("pause");
+		if (matchNo == 0) {
+			cout << endl << "There is no subject contains this substring.";
+		}
+		else {
+			cout << endl << "These are all records that match searching condition.";
+		}
+
 		return;	
 	}
 }
 
 // Sort tutor by using tutor id
-//void sortTutorById();
+void sortTutorById() {
+
+}
 
 // Sort tutor by using rating give
 //void sortTutorByRating();
