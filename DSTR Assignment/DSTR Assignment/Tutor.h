@@ -33,7 +33,7 @@ void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tut
 //void searchTutorByRating();
 void searchTutorBySubject(Tutor* tutorList, int size);
 void quickSort(Tutor* data, int start, int end);
-void sortTutorById(Tutor* data, int size);
+void sortTutorById(Tutor* tutorList, int size);
 
 //void sortTutorByRating();
 void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);

@@ -505,14 +505,19 @@ string toUpper(string s) {
  }
 
 // Sort tutor by using tutor id
- void sortTutorById(Tutor* data, int size) {
+ void sortTutorById(Tutor* tutorList, int size) {
 	 if (size <= 1) {
 		 return;
 	 }
 	 else {
-		 quickSort(data, 0, size - 1);
+		 quickSort(tutorList, 0, size - 1);
 	 }
+	 //show the sortted data
+	 system("cls");
 	 cout << "Operation done! The data already sort by ID." << endl;
+	 displayAllTutors(tutorList, size);
+	 system("pause");
+
 }
 
 // // Sort tutor by using rating give
