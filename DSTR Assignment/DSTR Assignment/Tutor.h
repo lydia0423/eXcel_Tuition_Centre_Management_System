@@ -31,8 +31,10 @@ Tutor* addNewTutor(Tutor* oldList, int size);
 //void modifyTutorRecord();
 void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
 //void searchTutorByRating();
-//void searchTutorBySubject();
-//void sortTutorById();
+void searchTutorBySubject(Tutor* tutorList, int size);
+void quickSort(Tutor* data, int start, int end);
+void sortTutorById(Tutor* data, int size);
+
 //void sortTutorByRating();
 void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);

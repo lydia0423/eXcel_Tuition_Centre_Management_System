@@ -468,11 +468,51 @@ string toUpper(string s) {
 	 system("pause");
 }
 
+//Quick Sort by ID- supporting function 
+ void quickSort(Tutor* data, int start, int end) {
+	 if (start < end) //execute when data can be divided
+	 {
+		 Tutor base = data[start]; //set first element as base
+		 int low = start;
+		 int high = end + 1;
 
-// // Sort tutor by using tutor id
- void sortTutorById() {
-	 string upperId = toUpper(tutorId);
-	 int id = stoi(splitStr(upperId, "TR"));
+		 while (start < end) {
+			 //search ele is greater than base
+			 while (low < end && stoi(splitStr(data[++low].tutorId, "TR")) <= stoi(splitStr(base.tutorId, "TR")));
+			 //find ele less than base
+			 while (high > start &&  stoi(splitStr(data[--high].tutorId, "TR")) >= stoi(splitStr(base.tutorId, "TR")));
+
+			 if (low < high) //exchange if bigger one is under smaller one 
+			 {
+				 Tutor temp;
+				 temp = data[low];
+				 data[low] = data[high];
+				 data[high] = temp;
+
+			 }
+			 else // stop after traversing all elements
+			 {
+				 break;
+			 }
+		 }
+		 //exchange position of base and the first element under all greater elements(greater than base)
+		 data[start] = data[high];
+		 data[high] = base;
+		 //recursive - divide list into 2 and do the above things again 
+		 quickSort(data, start, high - 1); //element that all less than base
+		 quickSort(data, high + 1, end); //element that all greater than base
+	 }
+ }
+
+// Sort tutor by using tutor id
+ void sortTutorById(Tutor* data, int size) {
+	 if (size <= 1) {
+		 return;
+	 }
+	 else {
+		 quickSort(data, 0, size - 1);
+	 }
+	 cout << "Operation done! The data already sort by ID." << endl;
 }
 
 // // Sort tutor by using rating give
