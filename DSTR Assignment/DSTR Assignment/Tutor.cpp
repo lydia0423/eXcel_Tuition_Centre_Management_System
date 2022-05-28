@@ -357,8 +357,6 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 	} while (choose != 0);
 }
 
-
-
 string splitStr(string s, string del) {
 	 int start = 0;
 	 int end = s.find(del);
@@ -423,14 +421,14 @@ string toUpper(string s) {
 	 //ask and read searched subject from user
 	 string subjectKey;
 	 cout << "Please enter a substring of subject that you want to search: ";
-	 cin >> subjectKey;
-	 while (cin.fail()) {
-		 cin.clear();
-		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		 cout << "Invalid Input!" << endl;
-		 cout << "Please enter correct substring of subject that you want to search: ";
-		 cin >> subjectKey;
-	 }
+	 getline(cin, subjectKey);
+	 //while (cin.fail()) {
+		// cin.clear();
+		// cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		// cout << "Invalid Input!" << endl;
+		// cout << "Please enter correct substring of subject that you want to search: ";
+		// cin >> subjectKey;
+	 //}
 
 	 //searching
 	 int suitNo = 0; //variable for recording how many tutors match condition

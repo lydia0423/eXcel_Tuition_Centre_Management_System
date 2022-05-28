@@ -485,7 +485,56 @@ void searchTutorById(string tutorId) {
 //void searchTutorByRating();
 
 // Search tutor based on the subject teaching
-//void searchTutorBySubject();
+void searchTutorBySubject() {
+	if (headTutor == NULL) {
+		system("cls");
+		cout << "Empty list! Cannot do searching!" << endl;
+		system("pause");
+		return;
+	}
+	else {
+		system("cls");
+		Tutor* current = headTutor->nextAddress;
+		int matchNo = 0;
+		//ask and read searched subject from user
+		string subjectKey;
+		cout << "Please enter a substring of subject that you want to search: ";
+		getline(cin, subjectKey);
+		//while (cin.fail()) {
+		   // cin.clear();
+		   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		   // cout << "Invalid Input!" << endl;
+		   // cout << "Please enter correct substring of subject that you want to search: ";
+		   // cin >> subjectKey;
+		//}
+		while (current != NULL) {
+			if (current->subjectName.find(subjectKey) != string::npos) {
+				matchNo = matchNo + 1;
+				cout << "Record of No." << matchNo << " Tutor matches the condition is as following : " << endl;
+				cout << "TutorId" << "\t\t" << " : " << current->tutorId << endl;
+				cout << "TutorName" << "\t" << " : " << current->name << endl;
+				cout << "IC" << "\t\t" << " : " << current->ic << endl;
+				cout << "FieldOfStudy" << "\t" << " : " << current->fieldOfStudy << endl;
+				cout << "Address" << "\t\t" << " : " << current->address << endl;
+				cout << "Phone" << "\t\t" << " : " << current->phone << endl;
+				cout << "DateJoined" << "\t" << " : " << current->dateJoined << endl;
+				cout << "DateTerminated" << "\t" << " : " << current->dateTerminated << endl;
+				cout << "TuitionCenterCode" << ": " << current->tuitionCenterCode << endl;
+				cout << "TuitionCenterName" << ": " << current->tuitionCenterName << endl;
+				cout << "SubjectCode" << "\t" << " : " << current->subjectCode << endl;
+				cout << "SubjectName" << "\t" << " : " << current->subjectName << endl;
+				cout << "HourlyPayRate" << "\t" << " : " << current->hourlyPayRate << endl;
+				cout << "Experience" << "\t" << " : " << current->experience << endl;
+				cout << "Rating" << "\t\t" << " : " << current->rating << endl;
+				cout << string(50, '=') << endl;
+				current = current->nextAddress;
+			}
+		}
+		cout << endl << "These are all records that match searching condition.";
+		system("pause");
+		return;	
+	}
+}
 
 // Sort tutor by using tutor id
 //void sortTutorById();
