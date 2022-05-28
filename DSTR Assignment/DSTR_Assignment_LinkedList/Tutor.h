@@ -25,7 +25,7 @@ void displayAllTutors();
 
 void displayAllTutorsByLocation();
 
-//void modifyTutorRecord();
+
 
 void searchTutorById(string tutorId);
 
@@ -33,7 +33,9 @@ void searchTutorById(string tutorId);
 
 void searchTutorBySubject();
 
-//void sortTutorById();
+void sortTutorById();
+
+void modifyTutorRecord();
 
 //void sortTutorByRating();
 

@@ -551,6 +551,8 @@ string toUpper(string s) {
 				 cout << endl << "Please enter your choice : ";
 				 //read choice from user
 				 cin >> modiCho;
+				 cin.clear();
+				 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				 //check whether the user's input is valid, until get expected input
 				 while (cin.fail() || modiCho < 0 || modiCho > 15) {
 					 cin.clear();
@@ -737,8 +739,6 @@ string toUpper(string s) {
 			 return;
 		 }
 	 }
-	
-
 
  }
 

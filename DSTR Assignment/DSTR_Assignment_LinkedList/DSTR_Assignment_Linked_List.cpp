@@ -16,7 +16,11 @@ int main()
 	//registerNewTutor();
 	//displayAllTutors();
 
-	searchTutorBySubject();
+	//searchTutorBySubject();
+	sortTutorById();
+	displayAllTutors();
+	modifyTutorRecord();
+	displayAllTutors();
 
 	return 0;
 }
