@@ -361,8 +361,63 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 	} while (choose != 0);
 }
 
-// Modify =tutor record ()
-// void modifyTutorRecord();
+//Modify tutor record by searching ID
+void modifyTutorRecord(Tutor* tutorList, int curSize) {
+	system("cls");
+	
+	int id;
+	cout << "Please enter the tutor's ID that you want to modify : TR";
+	cin >> id;
+	while (cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		cout << "Please enter correct tutor ID, only number is required : TR";
+		cin >> id;
+	}
+	//
+	quickSort();
+	//binary search
+	int startIndex = 0, endIndex = curSize - 1;
+	while (startIndex <= endIndex) {
+		int middle = startIndex + (endIndex - startIndex) / 2;
+		if (stoi(splitStr(tutorList[middle].tutorId, "TR")) == id) {
+			system("cls");
+			cout << "The tutor you want to modify is :" << tutorList[middle].name <<endl;			
+
+			cout << "TutorId" << "\t\t" << " : " << tutorList[middle].tutorId << endl;
+			cout << "TutorName" << "\t" << " : " << tutorList[middle].name << endl;
+			cout << "IC" << "\t\t" << " : " << tutorList[middle].ic << endl;
+			cout << "FieldOfStudy" << "\t" << " : " << tutorList[middle].fieldOfStudy << endl;
+			cout << "Address" << "\t\t" << " : " << tutorList[middle].address << endl;
+			cout << "Phone" << "\t\t" << " : " << tutorList[middle].phone << endl;
+			cout << "DateJoined" << "\t" << " : " << tutorList[middle].dateJoined << endl;
+			cout << "DateTerminated" << "\t" << " : " << tutorList[middle].dateTerminated << endl;
+			cout << "TuitionCenterCode" << ": " << tutorList[middle].tuitionCenterCode << endl;
+			cout << "TuitionCenterName" << ": " << tutorList[middle].tuitionCenterName << endl;
+			cout << "SubjectCode" << "\t" << " : " << tutorList[middle].subjectCode << endl;
+			cout << "SubjectName" << "\t" << " : " << tutorList[middle].subjectName << endl;
+			cout << "HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
+			cout << "Experience" << "\t" << " : " << tutorList[middle].experience << endl;
+			cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl;
+
+			
+			break;
+		}
+		else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
+			startIndex = middle + 1;
+		}
+		else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) > id) {
+			endIndex = middle - 1;
+		}
+		else {
+			cout << endl << "The provided Tutor Id is not match with the record." << endl;
+		}
+	}
+	
+	
+
+}
 
 string splitStr(string s, string del) {
 	 int start = 0;
