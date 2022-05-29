@@ -17,8 +17,8 @@ int main()
 	//displayAllTutors();
 
 	//searchTutorBySubject();
-	sortTutorById();
-	displayAllTutors();
+	//sortTutorById();
+	//displayAllTutors();
 	modifyTutorRecord();
 	displayAllTutors();
 

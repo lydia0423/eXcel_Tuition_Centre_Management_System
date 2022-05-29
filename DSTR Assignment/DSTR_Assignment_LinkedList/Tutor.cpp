@@ -448,7 +448,7 @@ void modifyTutorRecord() {
 		cout << "There is no record, cannot modify!" << endl;
 		return;
 	}
-
+	sortTutorById();//before using binary search, need to sort first
 	system("cls");
 	int id;
 	cout << "Please enter the tutor's ID that you want to modify : TR";
@@ -469,6 +469,7 @@ void modifyTutorRecord() {
 			while (modiCho != 0)
 			{
 				system("cls");
+				cout << "Information of the tutor you can modify is as follows:" << endl;
 				cout << "1.TutorId" << "\t\t" << " : " << mid->tutorId << endl;
 				cout << "2.TutorName" << "\t" << " : " << mid->name << endl;
 				cout << "3.IC" << "\t\t" << " : " << mid->ic << endl;
