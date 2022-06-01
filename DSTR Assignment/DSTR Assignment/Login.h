@@ -11,3 +11,5 @@ struct Login{
 	Login();
 	Login(string account, string password, int authority);
 };
+
+Login* generateLoginRecord();
