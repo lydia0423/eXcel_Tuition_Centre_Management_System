@@ -25,9 +25,7 @@ void displayAllTutors();
 
 void displayAllTutorsByLocation();
 
-
-
-void searchTutorById(string tutorId);
+void searchTutorById();
 
 //void searchTutorByRating();
 
@@ -45,6 +43,4 @@ void mergeSortTutorByHourlyPayRate();
 
 //void deleteTutorRecord();
 
-void getCurrentDateTime();
-
-int tutorMenu();
+int adminMenu();

@@ -47,6 +47,49 @@ string convertToString(char* a, int size)
 	return s;
 }
 
+
+string splitStr(string s, string del) {
+	int start = 0;
+	int end = s.find(del);
+	while (end != -1) {
+		cout << s.substr(start, end - start) << endl;
+		start = end + del.size();
+		end = s.find(del, start);
+	}
+	return s.substr(start, end - start);
+}
+
+string toUpper(string s) {
+	for (int i = 0; i < (s.length() - 3); i++) {
+		s[i] = toupper(s[i]);
+	}
+
+	return s;
+}
+
+// Search =tutor based on their tutor id
+bool searchTutorId(Tutor tutorList[], int startIndex, int endIndex, string tutorId) {
+	//convert small letter to capital letter
+	string upperId = toUpper(tutorId);
+	int id = stoi(splitStr(upperId, "TR"));
+	while (startIndex <= endIndex) {
+		int middle = startIndex + (endIndex - startIndex) / 2;
+		if (stoi(splitStr(tutorList[middle].tutorId, "TR")) == id) {
+			cout << "The record already exists. Please try again" << endl;
+			return true;
+		}
+		else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
+			startIndex = middle + 1;
+		}
+		else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) > id) {
+			endIndex = middle - 1;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
 Tutor* generateTutorRecord() {
 	Tutor* tutorList = new Tutor[6];
 
@@ -78,6 +121,10 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 
 	cout << "Tutor Id : ";
 	getline(cin, tutorId);
+	while (searchTutorId(oldList, 0, size-1, tutorId) == true) {
+		cout << "Tutor Id : ";
+		getline(cin, tutorId);
+	}
 	cout << "Tutor Name : ";
 	getline(cin, name);
 	cout << "IC : ";
@@ -357,25 +404,6 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 	} while (choose != 0);
 }
 
-string splitStr(string s, string del) {
-	 int start = 0;
-	 int end = s.find(del);
-	 while (end != -1) {
-		 cout << s.substr(start, end - start) << endl;
-		 start = end + del.size();
-		 end = s.find(del, start);
-	 }
-	 return s.substr(start, end - start);
-}
-
-string toUpper(string s) {
-	for (int i = 0; i < (s.length() - 3); i++) {
-		s[i] = toupper(s[i]);
-	}
-
-	return s;
-}
-
  // Search =tutor based on their tutor id
  void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId) {
 	 //convert small letter to capital letter
@@ -412,44 +440,41 @@ string toUpper(string s) {
 	 }
  }
 
-void searchTutorByRating(Tutor* tutorList, int size)
-{
-	//convert small letter to capital letter
-	 string upperrating = toUpper(rating);
-	 int rating = stoi(splitStr(upperrating, "TR"));
-	 while (startIndex <= endIndex) { 
-		 int middle = startIndex + (endIndex - startIndex) / 2;
-		 if (stoi(splitStr(tutorList[middle].rating, "TR")) == id) {
-			 system("cls");
-			 cout << "TutorId" << "\t\t" << " : " << tutorList[middle].tutorId << endl;
-			 cout << "TutorName" << "\t" << " : " << tutorList[middle].name << endl;
-			 cout << "IC" << "\t\t" << " : " << tutorList[middle].ic << endl;
-			 cout << "FieldOfStudy" << "\t" << " : " << tutorList[middle].fieldOfStudy << endl;
-			 cout << "Address" << "\t\t" << " : " << tutorList[middle].address << endl;
-			 cout << "Phone" << "\t\t" << " : " << tutorList[middle].phone << endl;
-			 cout << "DateJoined" << "\t" << " : " << tutorList[middle].dateJoined << endl;
-			 cout << "DateTerminated" << "\t" << " : " << tutorList[middle].dateTerminated << endl;
-			 cout << "TuitionCenterCode" << ": " << tutorList[middle].tuitionCenterCode << endl;
-			 cout << "TuitionCenterName" << ": " << tutorList[middle].tuitionCenterName << endl;
-			 cout << "SubjectCode" << "\t" << " : " << tutorList[middle].subjectCode << endl;
-			 cout << "SubjectName" << "\t" << " : " << tutorList[middle].subjectName << endl;
-			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
-			 cout << "Experience" << "\t" << " : " << tutorList[middle].experience << endl;
-			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl;
-			 break;
-		 }else if (stoi(splitStr(tutorList[middle].rating, "TR")) < id) {
-			 startIndex = middle + 1;
-		 }else if(stoi(splitStr(tutorList[middle].rating, "TR")) > id){
-			 endIndex = middle - 1;
-		 }
-		 else {
-			 cout << "The provided Tutor rating is not match with the record." << endl;
-		 }
-	 }
-}
-
-// // Search tutor based on the rating given by student
-// void searchTutorByRating();
+//void searchTutorByRating(Tutor* tutorList, int size)
+//{
+//	//convert small letter to capital letter
+//	 string upperrating = toUpper(rating);
+//	 int rating = stoi(splitStr(upperrating, "TR"));
+//	 while (startIndex <= endIndex) { 
+//		 int middle = startIndex + (endIndex - startIndex) / 2;
+//		 if (stoi(splitStr(tutorList[middle].rating, "TR")) == id) {
+//			 system("cls");
+//			 cout << "TutorId" << "\t\t" << " : " << tutorList[middle].tutorId << endl;
+//			 cout << "TutorName" << "\t" << " : " << tutorList[middle].name << endl;
+//			 cout << "IC" << "\t\t" << " : " << tutorList[middle].ic << endl;
+//			 cout << "FieldOfStudy" << "\t" << " : " << tutorList[middle].fieldOfStudy << endl;
+//			 cout << "Address" << "\t\t" << " : " << tutorList[middle].address << endl;
+//			 cout << "Phone" << "\t\t" << " : " << tutorList[middle].phone << endl;
+//			 cout << "DateJoined" << "\t" << " : " << tutorList[middle].dateJoined << endl;
+//			 cout << "DateTerminated" << "\t" << " : " << tutorList[middle].dateTerminated << endl;
+//			 cout << "TuitionCenterCode" << ": " << tutorList[middle].tuitionCenterCode << endl;
+//			 cout << "TuitionCenterName" << ": " << tutorList[middle].tuitionCenterName << endl;
+//			 cout << "SubjectCode" << "\t" << " : " << tutorList[middle].subjectCode << endl;
+//			 cout << "SubjectName" << "\t" << " : " << tutorList[middle].subjectName << endl;
+//			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
+//			 cout << "Experience" << "\t" << " : " << tutorList[middle].experience << endl;
+//			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl;
+//			 break;
+//		 }else if (stoi(splitStr(tutorList[middle].rating, "TR")) < id) {
+//			 startIndex = middle + 1;
+//		 }else if(stoi(splitStr(tutorList[middle].rating, "TR")) > id){
+//			 endIndex = middle - 1;
+//		 }
+//		 else {
+//			 cout << "The provided Tutor rating is not match with the record." << endl;
+//		 }
+//	 }
+//}
 
 // // Search tutor based on the subject teaching
  void searchTutorBySubject(Tutor* tutorList, int size) {
@@ -533,52 +558,52 @@ void searchTutorByRating(Tutor* tutorList, int size)
 	 }
  }
 
- void deleteTutorRecord(Tutor* tutorList, int curSize)
- {
-	 if (curSize == 0) {
-		 cout << "There is no record, cannot delete!" << endl;
-		 return;
-	 }
-	 else {
-		 quickSort(tutorList, 0, curSize - 1);
-	 }
+ //void deleteTutorRecord(Tutor* tutorList, int curSize)
+ //{
+	// if (curSize == 0) {
+	//	 cout << "There is no record, cannot delete!" << endl;
+	//	 return;
+	// }
+	// else {
+	//	 quickSort(tutorList, 0, curSize - 1);
+	// }
 
-	 system("cls");
+	// system("cls");
 
-	 int id;
-	 cout << "Please enter the tutor's ID that you want to delete : TR";
-	 cin >> id;
-	 while (cin.fail()) {
-		 cin.clear();
-		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		 cout << "Invalid Input!" << endl;
-		 cout << "Please enter correct tutor ID, only number is required : TR";
-		 cin >> id;
-	 }
-	 //binary search
-	 int startIndex = 0, endIndex = curSize - 1;
-	 while (startIndex <= endIndex) {
-		 int middle = startIndex + (endIndex - startIndex) / 2;
-		 if (stoi(splitStr(tutorList[middle].tutorId, "TR")) == id) {
-			 int modiCho = 99;
-			 while (modiCho != 0)
-			 {
-				 system("cls");
-				 cout << endl << "Are you sure to design? please type in y" << endl;
-				 String answer;
-				 cin>>answer;
-				 if (answer == "y")
-				 {
-					 tutorList[middle].tutorId = null;
-				 }
-				 else
-				 {
-					 break;
-				 }
-			 }
-		 }
-	 }
- }
+	// int id;
+	// cout << "Please enter the tutor's ID that you want to delete : TR";
+	// cin >> id;
+	// while (cin.fail()) {
+	//	 cin.clear();
+	//	 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//	 cout << "Invalid Input!" << endl;
+	//	 cout << "Please enter correct tutor ID, only number is required : TR";
+	//	 cin >> id;
+	// }
+	// //binary search
+	// int startIndex = 0, endIndex = curSize - 1;
+	// while (startIndex <= endIndex) {
+	//	 int middle = startIndex + (endIndex - startIndex) / 2;
+	//	 if (stoi(splitStr(tutorList[middle].tutorId, "TR")) == id) {
+	//		 int modiCho = 99;
+	//		 while (modiCho != 0)
+	//		 {
+	//			 system("cls");
+	//			 cout << endl << "Are you sure to design? please type in y" << endl;
+	//			 String answer;
+	//			 cin>>answer;
+	//			 if (answer == "y")
+	//			 {
+	//				 tutorList[middle].tutorId = null;
+	//			 }
+	//			 else
+	//			 {
+	//				 break;
+	//			 }
+	//		 }
+	//	 }
+	// }
+ //}
 
  //Modify tutor record by searching ID
  void modifyTutorRecord(Tutor* tutorList, int curSize) {
@@ -836,7 +861,7 @@ void searchTutorByRating(Tutor* tutorList, int size)
 		 return;
 	 }
 	 else {
-		 quickSortrating(tutorList, 0, size - 1);
+		 quickSort(tutorList, 0, size - 1);
 	 }
 	 //show the sortted data
 	 system("cls");
@@ -846,41 +871,42 @@ void searchTutorByRating(Tutor* tutorList, int size)
 
 }
 
-void quickSortrating(Tutor* data, int start, int end) {
-	 if (start < end) //execute when data can be divided
-	 {
-		 Tutor base = data[start]; //set first element as base
-		 int low = start;
-		 int high = end + 1;
+//void quickSortrating(Tutor* data, int start, int end) {
+//	 if (start < end) //execute when data can be divided
+//	 {
+//		 Tutor base = data[start]; //set first element as base
+//		 int low = start;
+//		 int high = end + 1;
+//
+//		 while (start < end) {
+//			 //search ele is greater than base
+//			 while (low < end && stoi(splitStr(data[++low].rating, "TR")) <= stoi(splitStr(base.rating, "TR")));
+//			 //find ele less than base
+//			 while (high > start &&  stoi(splitStr(data[--high].rating, "TR")) >= stoi(splitStr(base.rating, "TR")));
+//
+//			 if (low < high) //exchange if bigger one is under smaller one 
+//			 {
+//				 Tutor temp;
+//				 temp = data[low];
+//				 data[low] = data[high];
+//				 data[high] = temp;
+//
+//			 }
+//			 else // stop after traversing all elements
+//			 {
+//				 break;
+//			 }
+//		 }
+//		 //exchange position of base and the first element under all greater elements(greater than base)
+//		 data[start] = data[high];
+//		 data[high] = base;
+//		 //recursive - divide list into 2 and do the above things again 
+//		 quickSortrating(data, start, high - 1); //element that all less than base
+//		 quickSortrating(data, high + 1, end); //element that all greater than base
+//	 }
+// }
 
-		 while (start < end) {
-			 //search ele is greater than base
-			 while (low < end && stoi(splitStr(data[++low].rating, "TR")) <= stoi(splitStr(base.rating, "TR")));
-			 //find ele less than base
-			 while (high > start &&  stoi(splitStr(data[--high].rating, "TR")) >= stoi(splitStr(base.rating, "TR")));
-
-			 if (low < high) //exchange if bigger one is under smaller one 
-			 {
-				 Tutor temp;
-				 temp = data[low];
-				 data[low] = data[high];
-				 data[high] = temp;
-
-			 }
-			 else // stop after traversing all elements
-			 {
-				 break;
-			 }
-		 }
-		 //exchange position of base and the first element under all greater elements(greater than base)
-		 data[start] = data[high];
-		 data[high] = base;
-		 //recursive - divide list into 2 and do the above things again 
-		 quickSortrating(data, start, high - 1); //element that all less than base
-		 quickSortrating(data, high + 1, end); //element that all greater than base
-	 }
- }
-
+// Sort tutor by using rating give
 void sortTutorByRating(Tutor* tutorList, int size)
 {
 	if (size == 0) {
@@ -902,8 +928,6 @@ void sortTutorByRating(Tutor* tutorList, int size)
 
 }
 
-// // Sort tutor by using rating give
-// void sortTutorByRating();
 
 //merge function -- helper class
 void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle, int endIndex, Tutor temp[]) {
@@ -950,23 +974,76 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 	 }
  };
 
-// // View profile
-// void viewProfile();
 
-// // Delete the tutor record after 6 months termination (only HR can do it)
-// void deleteTutorRecord();
+ //int tutorMenu() {
+	// system("cls");
+	// int choice = 99;
 
- int tutorMenu() {
+	// while (choice != 0 && choice != -1)
+	// {
+	//	 //menu content
+	//	 cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
+	//	 cout << "The following actions are available for tutor : " << endl << endl;
+	//	 //function introduction
+	//	 cout << "1. View profile of yourself." << endl;
+	//	 cout << "0. Logout and Go back to Login interface." << endl;
+	//	 cout << "-1. Quit the whole system." << endl;
+	//	 //ask choice
+	//	 cout << endl << "Please enter correct number to select what action do you want : ";
+
+	//	 //read choice from user
+	//	 cin >> choice;
+	//	 //check whether the user's input is valid, until get expected input
+	//	 while (cin.fail() || choice < -1 || choice > 10) {
+	//		 cin.clear();
+	//		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//		 cout << "Invalid Input!" << endl;
+	//		 cout << "Please enter a correct number to select what action do you want : ";
+	//		 cin >> choice;
+	//	 }
+
+	//	 //execute chosen function according to user's choice
+	//	 switch (choice)
+	//	 {
+	//	 case -1:
+	//		 system("cls");
+	//		 cout << "Quiting the system, thank you for using!" << endl;
+	//		 return choice;
+	//	 case 0:
+	//		 system("cls");
+	//		 return choice;
+	//	 case 1:
+	//		 system("cls");
+	//		 cout << "choice is 1";
+	//		 break;
+	//	 default:
+	//		 cout << "no choice";
+	//		 break;
+	//	 }
+	// }
+ //}
+
+ int adminMenu() {
 	 system("cls");
 	 int choice = 99;
 
 	 while (choice != 0 && choice != -1)
 	 {
+		 system("cls");
 		 //menu content
-		 cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
-		 cout << "The following actions are available for tutor : " << endl << endl;
+		 cout << "\t----------Welcome to Admin Menu----------" << endl << endl;
+		 cout << "The following actions are available for administrator : " << endl << endl;
 		 //function introduction
-		 cout << "1. View profile of yourself." << endl;
+		 cout << "1. Display all tutors' record." << endl;
+		 cout << "2. Display all tutors' record according to tutor's Location." << endl;
+		 cout << "3. Search tutor's record by tutor's ID." << endl;
+		 cout << "4. Search tutor's record by tutor's Overall Performance." << endl;
+		 cout << "5. Search tutor's record by tutor's Teaching Subject." << endl;
+		 cout << "6. Sort and display all tutor's record by tutor's ID." << endl;
+		 cout << "7. Sort and display all tutor's record by tutor's Overall Performance." << endl;
+		 cout << "8. Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
+		 cout << "9. Add a record for new tutor." << endl;
+		 cout << "10. Modify tutor's record by tutor's ID." << endl;
 		 cout << "0. Logout and Go back to Login interface." << endl;
 		 cout << "-1. Quit the whole system." << endl;
 		 //ask choice
@@ -996,6 +1073,49 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 		 case 1:
 			 system("cls");
 			 cout << "choice is 1";
+			 //displayAllTutors();
+			 break;
+		 case 2:
+			 system("cls");
+			 cout << "choice is 2";
+			 break;
+		 case 3:
+			 system("cls");
+			 cout << "choice is 3";
+			 break;
+		 case 4:
+			 system("cls");
+			 cout << "choice is 4";
+			 break;
+		 case 5:
+			 system("cls");
+			 cout << "choice is 5";
+			 break;
+		 case 6:
+			 system("cls");
+			 cout << "choice is 6";
+			 break;
+		 case 7:
+			 system("cls");
+			 cout << "choice is 7";
+			 break;
+		 case 8:
+			 system("cls");
+			 cout << "choice is 8";
+			 break;
+		 case 9:
+		 {
+			 system("cls");
+			 Tutor* tutorList = generateTutorRecord();
+			 int numberOfTutor = 6;
+			 Tutor* newList = addNewTutor(tutorList, numberOfTutor);
+			 tutorList = newList;
+			 numberOfTutor++;
+		 }
+		 break;
+		 case 10:
+			 system("cls");
+			 cout << "choice is 10";
 			 break;
 		 default:
 			 cout << "no choice";

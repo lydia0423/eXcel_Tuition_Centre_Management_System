@@ -19,7 +19,7 @@ Login::Login(string account, string password, int authority){
 Login* generateLoginRecord(){
   Login* loginList = new Login[6];
 
-	loginList[0] = Login("30001", "123456", 1);
+  loginList[0] = Login("30001", "123456", 1);
   loginList[1] = Login("30002", "123456", 1);
   loginList[2] = Login("30003", "123456", 1);
   loginList[3] = Login("30004", "123456", 1);

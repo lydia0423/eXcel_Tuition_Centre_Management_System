@@ -19,26 +19,20 @@ struct Tutor {
 
 
 
-int tutorMenu();
+int adminMenu();
 Tutor* generateTutorRecord();
-
-//void registerNewTutor(Tutor tutorList[], int numberOfTutor);
-//void saveTutor(Tutor* newTutor);
-
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
 void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor);
 Tutor* addNewTutor(Tutor* oldList, int size);
-//void modifyTutorRecord();
+void modifyTutorRecord();
 void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
-//void searchTutorByRating();
+void searchTutorByRating();
 void searchTutorBySubject(Tutor* tutorList, int size);
 void quickSort(Tutor* data, int start, int end);
 void sortTutorById(Tutor* tutorList, int size);
-
-//void sortTutorByRating();
+void sortTutorByRating();
 void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
-//void viewProfile();
-//void deleteTutorRecord();
+void deleteTutorRecord();
 
 
