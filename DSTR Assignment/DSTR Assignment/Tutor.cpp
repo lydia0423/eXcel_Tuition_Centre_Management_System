@@ -472,10 +472,11 @@ string toUpper(string s) {
 			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
 			 cout << "Experience" << "\t" << " : " << tutorList[middle].experience << endl;
 			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl << endl;
-
+			 system("pause");
 			 auto t2 = high_resolution_clock::now();
 			 duration<double, std::milli> ms_double = t2 - t1;
 			 std::cout << "Execution time : " << ms_double.count() << "ms\n";
+			 system("pause");
 			 break;
 		 }else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
 			 startIndex = middle + 1;
@@ -484,9 +485,11 @@ string toUpper(string s) {
 		 }
 		 else {
 			 cout << "The provided Tutor Id is not match with the record." << endl << endl;
+			 system("pause");
 			 auto t2 = high_resolution_clock::now();
 			 duration<double, std::milli> ms_double = t2 - t1;
 			 std::cout << "Execution time : " << ms_double.count() << "ms\n";
+			 system("pause");
 		 }
 	 }
  }

@@ -77,8 +77,16 @@ int main() {
 				displayAllTutorsByLocation(tutorList, sizeOfTutorList);
 				break;
 			case 3:
+			{
 				system("cls");
-				cout << "choice is 3";
+				string tutorId;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Please enter The Tutor Id that you want to search : ";
+				getline(cin, tutorId);
+				searchTutorById(tutorList, 0, sizeOfTutorList - 1, tutorId);
+
+			}
 				break;
 			case 4:
 				system("cls");
