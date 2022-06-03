@@ -57,18 +57,18 @@ string convertToString(char* a, int size)
 Tutor* generateTutorRecord() {
 	Tutor* tutorList = new Tutor[6];
 
-	tutorList[0] = Tutor("TR001", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
-	tutorList[1] = Tutor("TR002", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
-	tutorList[2] = Tutor("TR003", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
-	tutorList[3] = Tutor("TR004", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
-	tutorList[4] = Tutor("TR005", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
-	tutorList[5] = Tutor("TR006", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
+	tutorList[0] = Tutor("TR002", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
+	tutorList[1] = Tutor("TR001", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
+	tutorList[2] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
+	tutorList[3] = Tutor("TR003", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5.6, 10.0, 4);
+	tutorList[4] = Tutor("TR006", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10.2, 10.0, 4);
+	tutorList[5] = Tutor("TR005", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 1.8, 10.0, 4);
 
 	return tutorList;
 }
 
 Tutor* addNewTutor(Tutor* oldList, int size) {
-	auto t1 = high_resolution_clock::now();
+	
 	//Create new array 
 	Tutor* newList = new Tutor[size + 1];
 	//Copy data
@@ -153,12 +153,14 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 	sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
 	dateJoined = convertToString(currDate, 10);
 
+	auto t1 = high_resolution_clock::now();
 	newList[size] = Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, 
 		subjectName, password, hourlyPayRate, experience, 0);
 
 	auto t2 = high_resolution_clock::now();
 	duration<double, std::milli> ms_double = t2 - t1;
 	std::cout << "Execution time : " << ms_double.count() << "ms\n";
+	system("pause");
 
 	return newList;
 }
@@ -498,6 +500,8 @@ string toUpper(string s) {
 	 //ask and read searched subject from user
 	 string subjectKey;
 	 cout << "Please enter a substring of subject that you want to search: ";
+	 cin.clear();
+	 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	 getline(cin, subjectKey);
 	 //while (cin.fail()) {
 		// cin.clear();
@@ -506,6 +510,7 @@ string toUpper(string s) {
 		// cout << "Please enter correct substring of subject that you want to search: ";
 		// cin >> subjectKey;
 	 //}
+	 auto t1 = high_resolution_clock::now();
 
 	 //searching
 	 int suitNo = 0; //variable for recording how many tutors match condition
@@ -535,6 +540,10 @@ string toUpper(string s) {
 	 if (suitNo == 0) {
 		 cout << "There is no tutors matching the search criteria" << endl;
 	 }
+
+	 auto t2 = high_resolution_clock::now();
+	 duration<double, std::milli> ms_double = t2 - t1;
+	 std::cout << "Execution time : " << ms_double.count() << "ms\n";
 	 system("pause");
 }
 
@@ -590,7 +599,6 @@ string toUpper(string s) {
 	 //show the sortted data
 	 system("cls");
 	 cout << "Operation done! The data is already sorted by ID." << endl;
-	 displayAllTutors(tutorList, size);
 	 system("pause");
 
  }
@@ -716,9 +724,17 @@ string toUpper(string s) {
 				 case 1:
 				 {
 					 system("cls");
+					 //{
+						// string tutorId;
+						// cout << "Please enter The Tutor Id that you want to search : ";
+						// getline(cin, tutorId);
+						// searchTutorById(tutorList, 0, sizeOfTutorList - 1, tutorId);
+					 //} 
+					 
 					 string tutorId;
 					 cout << "Please enter New Tutor Id : ";
 					 getline(cin, tutorId);
+
 					 tutorList[middle].tutorId = tutorId;
 				 }
 					 break;
@@ -983,7 +999,7 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
  }
 
 // // Sort tutor based on the hourly pay rate (merge sort)
- void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]) {
+void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]) {
 	 auto t1 = high_resolution_clock::now();
 	 if (startIndex < endIndex) {
 		 int middle = (startIndex + endIndex) / 2;

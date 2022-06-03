@@ -5,18 +5,22 @@
 using namespace std;
 
 int main() {
-	int login_loop = 0;
+	int login_loop = 0; //use to loop login interface
 	int sizeOfTutorList = 6;
 	Tutor* tutorList = generateTutorRecord();
 
 	while (login_loop == 0)
 	{
-		//此处写login识别功能
+		//Write the login identification function here
 
-		//if(登陆者为hr时)
+
+
+		//If (when the login is HR)
 		//login_loop = hrMenu(tutorList, sizeOfTutorList);
 
-		//if(登陆者为admin时)
+
+
+		//If (when the login is admin)
 		system("cls");
 		int choice = 99;
 		while (choice != 0 && choice != -1)
@@ -82,11 +86,11 @@ int main() {
 				break;
 			case 5:
 				system("cls");
-				cout << "choice is 5";
+				searchTutorBySubject(tutorList, sizeOfTutorList);
 				break;
 			case 6:
 				system("cls");
-				cout << "choice is 6";
+				sortTutorById(tutorList, sizeOfTutorList);
 				break;
 			case 7:
 				system("cls");
@@ -99,22 +103,21 @@ int main() {
 			case 9:
 			{
 				system("cls");
-
-
 				tutorList = addNewTutor(tutorList, sizeOfTutorList);
-
 				sizeOfTutorList++;
 			}
 			break;
 			case 10:
 				system("cls");
-				cout << "choice is 10";
+				modifyTutorRecord(tutorList, sizeOfTutorList);
 				break;
 			default:
 				cout << "no choice";
 				break;
 			}
 		}
+
+
 
 		//if(登陆者为tutor时)
 		//login_loop = tutorMenu(tutorList, sizeOfTutorList);
