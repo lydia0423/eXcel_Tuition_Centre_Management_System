@@ -25,7 +25,7 @@ Admin* generateNewAdmin() {
 	adminList[2] = Admin("AD003", "Rose", 123456789, "Johor", 123456789, "TC001", "Elite", "abc123");
 	adminList[3] = Admin("AD004", "Mary", 123456789, "Johor", 123456789, "TC001", "Elite", "abc123");
 	adminList[4] = Admin("AD005", "Sam", 123456789, "Johor", 123456789, "TC001", "Elite", "abc123");
-	adminList[5] = Admin("AD006", "John", 123456789, "Johor", 123456789, "TC001", "Elite", "abc123");
+	adminList[5] = Admin("HR006", "John", 123456789, "Johor", 123456789, "TC001", "Elite", "abc123");
 
 	return adminList;
 }

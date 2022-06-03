@@ -491,7 +491,7 @@ void displayAllTutorsByLocation() {
 					auto t2 = high_resolution_clock::now();
 					duration<double, std::milli> ms_double = t2 - t1;
 					std::cout << "Execution time : " << ms_double.count() << "ms\n";
-					system("pasue");
+					system("pause");
 					return;
 				}
 			case 2:
