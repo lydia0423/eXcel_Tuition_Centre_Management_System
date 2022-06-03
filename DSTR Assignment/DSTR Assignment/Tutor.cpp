@@ -801,8 +801,6 @@ string toUpper(string s) {
 
  }
 
-
-
 //void quickSortrating(Tutor* data, int start, int end) {
 //	 if (start < end) //execute when data can be divided
 //	 {

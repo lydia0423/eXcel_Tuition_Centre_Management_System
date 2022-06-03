@@ -540,21 +540,8 @@ void modifyTutorRecord() {
 			{
 				system("cls");
 				cout << "Information of the tutor you can modify is as follows:" << endl;
-				cout << "1.TutorId" << "\t\t" << " : " << mid->tutorId << endl;
-				cout << "2.TutorName" << "\t" << " : " << mid->name << endl;
-				cout << "3.IC" << "\t\t" << " : " << mid->ic << endl;
-				cout << "4.FieldOfStudy" << "\t" << " : " << mid->fieldOfStudy << endl;
-				cout << "5.Address" << "\t\t" << " : " << mid->address << endl;
-				cout << "6.Phone" << "\t\t" << " : " << mid->phone << endl;
-				cout << "7.DateTerminated" << "\t" << " : " << mid->dateTerminated << endl;
-				cout << "8.TuitionCenterCode" << ": " << mid->tuitionCenterCode << endl;
-				cout << "9.TuitionCenterName" << ": " << mid->tuitionCenterName << endl;
-				cout << "10.SubjectCode" << "\t" << " : " << mid->subjectCode << endl;
-				cout << "11.SubjectName" << "\t" << " : " << mid->subjectName << endl;
-				cout << "12.HourlyPayRate" << "\t" << " : " << mid->hourlyPayRate << endl;
-				cout << "13.Experience" << "\t" << " : " << mid->experience << endl;
-				cout << "14.Rating" << "\t\t" << " : " << mid->rating << endl;
-				cout << "15.Passowrd" << "\t\t" << " : " << mid->password << endl;
+				cout << "1.Address" << "\t\t" << " : " << mid->address << endl;
+				cout << "2.Phone" << "\t\t" << " : " << mid->phone << endl;		
 
 				//ask choice
 				cout << endl << "Enter correct number to modify corresponding information, enter 0 if you don't want to modify." << endl;
@@ -583,49 +570,8 @@ void modifyTutorRecord() {
 					std::cout << "Execution time : " << ms_double.count() << "ms\n";
 					system("pause");
 				}
-
 					return;
 				case 1:
-				{
-					system("cls");
-					string tutorId;
-					cout << "Please enter New Tutor Id : ";
-					getline(cin, tutorId);
-					mid->tutorId = tutorId;
-				}
-				break;
-				case 2:
-				{
-					system("cls");
-					string tutorName;
-					cout << "Please enter New Tutor Name : ";
-					getline(cin, tutorName);
-					mid->name = tutorName;
-				}
-				break;
-				case 3:
-				{
-					system("cls");
-					int ic;
-					cout << "Please enter New ic : ";
-					while (!(cin >> ic)) {
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << endl << "Please enter New ic : ";
-					}
-					mid->ic = ic;
-				}
-				break;
-				case 4:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter New Field of study : ";
-					getline(cin, temp);
-					mid->fieldOfStudy = temp;
-				}
-				break;
-				case 5:
 				{
 					system("cls");
 					string temp;
@@ -634,7 +580,7 @@ void modifyTutorRecord() {
 					mid->address = temp;
 				}
 				break;
-				case 6:
+				case 2:
 				{
 					system("cls");
 					int temp;
@@ -647,102 +593,11 @@ void modifyTutorRecord() {
 					mid->phone = temp;
 				}
 				break;
-				case 7:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter termitated Date (format is DD-MM-YYYY): ";
-					getline(cin, temp);
-					mid->dateTerminated = temp;
-				}
-				break;
-				case 8:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter New Tuition Center Code : ";
-					getline(cin, temp);
-					mid->tuitionCenterCode = temp;
-				}
-				break;
-				case 9:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter New Tuition Center Name : ";
-					getline(cin, temp);
-					mid->tuitionCenterName = temp;
-				}
-				break;
-				case 10:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter New Subject Code : ";
-					getline(cin, temp);
-					mid->subjectCode = temp;
-				}
-				break;
-				case 11:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter New Subject Name : ";
-					getline(cin, temp);
-					mid->subjectName = temp;
-				}
-				break;
-				case 12:
-				{
-					double temp;
-					cout << "Please enter New Hourly Pay Rate : ";
-					while (!(cin >> temp)) {
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << endl << "Please enter New Hourly Pay Rate : ";
-					}
-					mid->hourlyPayRate = temp;
-				}
-				break;
-				case 13:
-				{
-					double temp;
-					cout << "Please enter New Experince of teaching : ";
-					while (!(cin >> temp)) {
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << endl << "Please enter New Experince of teaching : ";
-					}
-					mid->experience = temp;
-				}
-				break;
-				case 14:
-				{
-					int temp;
-					cout << "Please enter New Rating : ";
-					while (!(cin >> temp)) {
-						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						cout << endl << "Please enter New Rating : ";
-					}
-					mid->rating = temp;
-				}
-				break;
-				case 15:
-				{
-					system("cls");
-					string temp;
-					cout << "Please enter New Password : ";
-					getline(cin, temp);
-					mid->password = temp;
-				}
-				break;
 				default:
 					cout << "no choice";
 					break;
 				}
 			}
-
 			return;
 		}
 		else if (stoi(splitStr(mid->tutorId, "TR")) < id) {
