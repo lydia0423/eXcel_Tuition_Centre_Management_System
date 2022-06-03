@@ -3,12 +3,19 @@
 #include <cctype>
 #include <string>
 #include <ctime>
+#include <sstream>
+#include <chrono>
 #include "Tutor.h"
 
 
 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 int phone, rating, ic;
 double hourlyPayRate, experience;
+
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::duration;
+using std::chrono::milliseconds;
 
 // default size of the array (will keep increasing when new element is added)
 //int numberOfTutor = 3;
@@ -47,49 +54,6 @@ string convertToString(char* a, int size)
 	return s;
 }
 
-
-string splitStr(string s, string del) {
-	int start = 0;
-	int end = s.find(del);
-	while (end != -1) {
-		cout << s.substr(start, end - start) << endl;
-		start = end + del.size();
-		end = s.find(del, start);
-	}
-	return s.substr(start, end - start);
-}
-
-string toUpper(string s) {
-	for (int i = 0; i < (s.length() - 3); i++) {
-		s[i] = toupper(s[i]);
-	}
-
-	return s;
-}
-
-// Search =tutor based on their tutor id
-bool searchTutorId(Tutor tutorList[], int startIndex, int endIndex, string tutorId) {
-	//convert small letter to capital letter
-	string upperId = toUpper(tutorId);
-	int id = stoi(splitStr(upperId, "TR"));
-	while (startIndex <= endIndex) {
-		int middle = startIndex + (endIndex - startIndex) / 2;
-		if (stoi(splitStr(tutorList[middle].tutorId, "TR")) == id) {
-			cout << "The record already exists. Please try again" << endl;
-			return true;
-		}
-		else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
-			startIndex = middle + 1;
-		}
-		else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) > id) {
-			endIndex = middle - 1;
-		}
-		else {
-			return false;
-		}
-	}
-}
-
 Tutor* generateTutorRecord() {
 	Tutor* tutorList = new Tutor[6];
 
@@ -104,7 +68,7 @@ Tutor* generateTutorRecord() {
 }
 
 Tutor* addNewTutor(Tutor* oldList, int size) {
-
+	auto t1 = high_resolution_clock::now();
 	//Create new array 
 	Tutor* newList = new Tutor[size + 1];
 	//Copy data
@@ -119,14 +83,22 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 	cout << "Please enter the following details to register a new tutor." << endl;
 	cout << string(20, '=') << endl;
 
-	cout << "Tutor Id : ";
-	getline(cin, tutorId);
-	while (searchTutorId(oldList, 0, size-1, tutorId) == true) {
-		cout << "Tutor Id : ";
-		getline(cin, tutorId);
+	//convert int to string
+	stringstream stream;
+	stream << size + 1;
+	string str;
+	stream >> str;
+
+	if (size < 10) {
+		tutorId = "TR00" + str;
 	}
+	else {
+		tutorId = "TR0" + str;
+	}
+
+	cout << "Tutor Id : " << tutorId << endl;
 	cout << "Tutor Name : ";
-	getline(cin, name);
+	cin >> name;
 	cout << "IC : ";
 	while (!(cin >> ic)) {
 		cout << "IC : ";
@@ -167,6 +139,12 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 		cin.clear();
 		cin.ignore(22, '\n');
 	}
+	cout << "Rating : ";
+	while (!(cin >> rating)) {
+		cout << "Rating : ";
+		cin.clear();
+		cin.ignore(22, '\n');
+	}
 	
 	//get current date
 	char currDate[10];
@@ -175,7 +153,12 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 	sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
 	dateJoined = convertToString(currDate, 10);
 
-	newList[size] = Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, 0);
+	newList[size] = Tutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, 
+		subjectName, password, hourlyPayRate, experience, 0);
+
+	auto t2 = high_resolution_clock::now();
+	duration<double, std::milli> ms_double = t2 - t1;
+	std::cout << "Execution time : " << ms_double.count() << "ms\n";
 
 	return newList;
 }
@@ -313,6 +296,7 @@ void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor t
 };
 
 void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
+	auto t1 = high_resolution_clock::now();
 	//sort the tutors based on branch
 	int endIndex = numberOfTutor - 1;
 	Tutor* temp = new Tutor[numberOfTutor];
@@ -382,7 +366,11 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 					page++;
 					break;
 				}else if (page == totalPage) {
-					cout << "You have reached end of the page." << endl;
+					cout << endl;
+					cout << "You have reached end of the page." << endl << endl;
+					auto t2 = high_resolution_clock::now();
+					duration<double, std::milli> ms_double = t2 - t1;
+					std::cout << "Execution time : " << ms_double.count() << "ms\n";
 					return;
 				}
 			case 2:
@@ -404,8 +392,27 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 	} while (choose != 0);
 }
 
+string splitStr(string s, string del) {
+	int start = 0;
+	int end = s.find(del);
+	while (end != -1) {
+		cout << s.substr(start, end - start) << endl;
+		start = end + del.size();
+		end = s.find(del, start);
+	}
+	return s.substr(start, end - start);
+}
+
+string toUpper(string s) {
+	for (int i = 0; i < (s.length() - 3); i++) {
+		s[i] = toupper(s[i]);
+	}
+
+	return s;
+}
  // Search =tutor based on their tutor id
  void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId) {
+	 auto t1 = high_resolution_clock::now();
 	 //convert small letter to capital letter
 	 string upperId = toUpper(tutorId);
 	 int id = stoi(splitStr(upperId, "TR"));
@@ -427,7 +434,11 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 			 cout << "SubjectName" << "\t" << " : " << tutorList[middle].subjectName << endl;
 			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
 			 cout << "Experience" << "\t" << " : " << tutorList[middle].experience << endl;
-			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl;
+			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl << endl;
+
+			 auto t2 = high_resolution_clock::now();
+			 duration<double, std::milli> ms_double = t2 - t1;
+			 std::cout << "Execution time : " << ms_double.count() << "ms\n";
 			 break;
 		 }else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
 			 startIndex = middle + 1;
@@ -435,7 +446,10 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 			 endIndex = middle - 1;
 		 }
 		 else {
-			 cout << "The provided Tutor Id is not match with the record." << endl;
+			 cout << "The provided Tutor Id is not match with the record." << endl << endl;
+			 auto t2 = high_resolution_clock::now();
+			 duration<double, std::milli> ms_double = t2 - t1;
+			 std::cout << "Execution time : " << ms_double.count() << "ms\n";
 		 }
 	 }
  }
@@ -966,12 +980,18 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 
 // // Sort tutor based on the hourly pay rate (merge sort)
  void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]) {
+	 auto t1 = high_resolution_clock::now();
 	 if (startIndex < endIndex) {
 		 int middle = (startIndex + endIndex) / 2;
 		 sortTutorByHourlyPayRate(tutorList, 0, middle, temp);
 		 sortTutorByHourlyPayRate(tutorList, middle + 1, endIndex, temp);
 		 mergeSortTutorByHourlyPayRate(tutorList, startIndex, middle, endIndex, temp);
 	 }
+
+	 cout << endl << endl;
+	 auto t2 = high_resolution_clock::now();
+	 duration<double, std::milli> ms_double = t2 - t1;
+	 std::cout << "Execution time : " << ms_double.count() << "ms\n";
  };
 
 

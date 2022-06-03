@@ -3,12 +3,19 @@
 #include <string>
 #include <conio.h>
 #include <ctime>
+#include <sstream> 
+#include <chrono>
 #include "Tutor.h"
 
 Tutor* headTutor = new Tutor;
 Tutor* tailTutor = new Tutor;
 
 int sizeOfTutorLinkedList = 0;
+
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::duration;
+using std::chrono::milliseconds;
 
 Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, string address, int phone, string dateJoined, string dateTerminated,
 	string tuitionCenterCode, string tuitionCenterName, string subjectCode, string subjectName, string password,
@@ -60,70 +67,6 @@ string convertToString(char* a, int size)
 	return s;
 }
 
-string splitStr(string s, string del) {
-	int start = 0;
-	int end = s.find(del);
-	while (end != -1) {
-		cout << s.substr(start, end - start) << endl;
-		start = end + del.size();
-		end = s.find(del, start);
-	}
-	return s.substr(start, end - start);
-}
-
-string toUpper(string s) {
-	for (int i = 0; i < (s.length() - 3); i++) {
-		s[i] = toupper(s[i]);
-	}
-
-	return s;
-}
-
-Tutor* middle(Tutor* startNode, Tutor* endNode) {
-	if (startNode == NULL) {
-		return NULL;
-	}
-
-	Tutor* slow = startNode;
-	Tutor* fast = startNode->nextAddress;
-
-	while (fast != endNode) {
-		fast = fast->nextAddress;
-		if (fast != endNode) {
-			slow = slow->nextAddress;
-			fast = fast->nextAddress;
-		}
-	}
-
-	return slow;
-}
-
-bool searchTutorId(string tutorId) {
-	string upperId = toUpper(tutorId);
-	int id = stoi(splitStr(upperId, "TR"));
-
-	do {
-		//find middle
-		Tutor* mid = middle(headTutor, tailTutor);
-
-		if (mid == NULL) {
-			return false;
-		}
-
-		if (stoi(splitStr(mid->tutorId, "TR")) == id) {
-			cout << "The record already exists. Please try again" << endl;
-			return true;
-		}
-		else if (stoi(splitStr(mid->tutorId, "TR")) < id) {
-			headTutor = mid->nextAddress;
-		}
-		else {
-			tailTutor = mid;
-		}
-	} while (tailTutor != NULL || tailTutor != headTutor);
-}
-
-
 // Ask the user to key in the tutor details
 void registerNewTutor(){
 	 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
@@ -133,14 +76,22 @@ void registerNewTutor(){
      cout << "Please enter the following details to register a new tutor." << endl;
      cout << string(20, '=') << endl;
 		
-     cout << "Tutor Id : ";
-     getline(cin, tutorId);
-	 while (searchTutorId(tutorId) == true) {
-		 cout << "Tutor Id : ";
-		 getline(cin, tutorId);
+	 //convert int to string
+	 stringstream stream;
+	 stream << ::sizeOfTutorLinkedList + 1;
+	 string str;
+	 stream >> str;
+
+	 if (::sizeOfTutorLinkedList < 10) {
+		 tutorId = "TR00" + str;
 	 }
+	 else {
+		 tutorId = "TR0" + str;
+	 }
+	 cout << "Tutor Id : " << tutorId << endl;
      cout << "Tutor Name : ";
-     getline(cin, name);
+	 cin >> name;
+     //getline(cin, name);
      cout << "IC : ";
 	 while (!(cin >> ic)) {
 		 cout << "IC : ";
@@ -197,35 +148,37 @@ void registerNewTutor(){
 	 sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
 	 dateJoined = convertToString(currDate, 10);
 
-	 Tutor* newTutor = addNewTutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password, hourlyPayRate, experience, rating);
+	 Tutor* newTutor = addNewTutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, 
+		 subjectName, password, hourlyPayRate, experience, rating);
 	 saveTutor(newTutor);
 
-	 cout << endl << "Added new tutor successfully" << endl;
-
+	 cout << endl << "Added new tutor successfully" << endl << endl;
  }
 
 // Generate tutor record every time the system is being compiled so the action has been done wouldn't affect it
 void generateTutorRecord() {
 	headTutor = tailTutor = NULL;
-	Tutor* newTutor = addNewTutor("TR001", "James", 123456789, "Biomedical", "Johor", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 4.0, 10.0, 4);
+	Tutor* newTutor;
+	
+	newTutor = addNewTutor("TR001", "James", 123456789, "Biomedical", "Johor", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 4.0, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR004", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 5.5, 10.0, 4);
+	newTutor = addNewTutor("TR002", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 5.5, 10.0, 4);
 	saveTutor(newTutor);
 
 	newTutor = addNewTutor("TR003", "Andy", 123456789, "Applied Maths", "Kuala Lumpur", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 9.0, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR002", "Julie", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 8.7, 10.0, 4);
+	newTutor = addNewTutor("TR004", "Julie", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 8.7, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR007", "Jessic", 123456789, "Applied Maths", "Johor", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 3.5, 10.0, 4);
+	newTutor = addNewTutor("TR005", "Andrew", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR006", "Andrew", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
+	newTutor = addNewTutor("TR006", "John", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR005", "John", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
+	newTutor = addNewTutor("TR076", "Jessic", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
 	saveTutor(newTutor);
 }
 
@@ -382,6 +335,7 @@ void mergeSortTutorByAddress(Tutor** startNode) {
 
 //Display the records that categorized by location
 void displayAllTutorsByLocation() {
+	auto t1 = high_resolution_clock::now();
 	//sort the tutors based on address
 	mergeSortTutorByAddress(&headTutor);
 
@@ -454,7 +408,11 @@ void displayAllTutorsByLocation() {
 					break;
 				}
 				else if (page == totalPage) {
-					cout << "You have reached end of the page." << endl;
+					cout << endl;
+					cout << "You have reached end of the page." << endl << endl;
+					auto t2 = high_resolution_clock::now();
+					duration<double, std::milli> ms_double = t2 - t1;
+					std::cout << "Execution time : " << ms_double.count() << "ms\n";
 					return;
 				}
 			case 2:
@@ -711,8 +669,47 @@ void displayAllTutorsByLocation() {
 //	} while (tailTutor != NULL || tailTutor != headTutor);
 //}
 
+string splitStr(string s, string del) {
+	int start = 0;
+	int end = s.find(del);
+	while (end != -1) {
+		cout << s.substr(start, end - start) << endl;
+		start = end + del.size();
+		end = s.find(del, start);
+	}
+	return s.substr(start, end - start);
+}
+
+string toUpper(string s) {
+	for (int i = 0; i < (s.length() - 3); i++) {
+		s[i] = toupper(s[i]);
+	}
+
+	return s;
+}
+
+Tutor* middle(Tutor* startNode, Tutor* endNode) {
+	if (startNode == NULL) {
+		return NULL;
+	}
+
+	Tutor* slow = startNode;
+	Tutor* fast = startNode->nextAddress;
+
+	while (fast != endNode) {
+		fast = fast->nextAddress;
+		if (fast != endNode) {
+			slow = slow->nextAddress;
+			fast = fast->nextAddress;
+		}
+	}
+
+	return slow;
+}
+
 // Search =tutor based on their tutor id
 void searchTutorById() {
+	auto t1 = high_resolution_clock::now();
 	string tutorId;
 
 	cout << "Please enter a Tutor Id : ";
@@ -753,8 +750,11 @@ void searchTutorById() {
 			tailTutor = mid;
 		}	
 	} while (tailTutor != NULL || tailTutor != headTutor);
-}
 
+	auto t2 = high_resolution_clock::now();
+	duration<double, std::milli> ms_double = t2 - t1;
+	std::cout << "Execution time : " << ms_double.count() << "ms\n";
+}
 
 // Search tutor based on the subject teaching
 void searchTutorBySubject() {
@@ -889,6 +889,7 @@ Tutor* sortTutorByHourlyPayRate(Tutor* a, Tutor* b) {
 
 // Sort tutor based on the hourly pay rate
 void mergeSortTutorByHourlyPayRate() {
+	auto t1 = high_resolution_clock::now();
 	if (headTutor == NULL || (headTutor)->nextAddress == NULL) {
 		return;
 	}
@@ -906,6 +907,11 @@ void mergeSortTutorByHourlyPayRate() {
 	headTutor = sortTutorByHourlyPayRate(a, b);
 
 	displayAllTutors();
+
+	cout << endl << endl;
+	auto t2 = high_resolution_clock::now();
+	duration<double, std::milli> ms_double = t2 - t1;
+	std::cout << "Execution time : " << ms_double.count() << "ms\n";
 }
 
 
@@ -963,7 +969,6 @@ int adminMenu() {
 
 	while (choice != 0 && choice != -1)
 	{
-		system("cls");
 		//menu content
 		cout << "----------------------------Welcome to Admin Menu----------------------------" << endl << endl;
 		cout << "The following actions are available for administrator : " << endl << endl;
@@ -1015,6 +1020,7 @@ int adminMenu() {
 		case 3:
 			system("cls");
 			searchTutorById();
+			cout << endl << endl;
 			break;
 		case 4:
 			system("cls");
@@ -1039,7 +1045,7 @@ int adminMenu() {
 			break;
 		case 9:
 			system("cls");
-			cout << "choice is 9";
+			registerNewTutor();
 			break;
 		case 10:
 			system("cls");
