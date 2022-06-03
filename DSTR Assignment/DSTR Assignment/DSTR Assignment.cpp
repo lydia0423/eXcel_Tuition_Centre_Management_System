@@ -79,6 +79,8 @@ int main() {
 			case 3:
 			{
 				system("cls");
+				sortTutorById(tutorList, sizeOfTutorList);
+				system("cls");
 				string tutorId;
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');

@@ -621,6 +621,7 @@ string toUpper(string s) {
 
  // Sort tutor by using tutor id
  void sortTutorById(Tutor* tutorList, int size) {
+	 auto t1 = high_resolution_clock::now();
 	 if (size == 0) {
 		 cout << "There is no record, cannot sort!" << endl;
 		 return;
@@ -632,9 +633,13 @@ string toUpper(string s) {
 	 else {
 		 quickSort(tutorList, 0, size - 1);
 	 }
+
+	 auto t2 = high_resolution_clock::now();
+	 duration<double, std::milli> ms_double = t2 - t1;
 	 //show the sortted data
-	 system("cls");
+	 system("cls"); 
 	 cout << "Operation done! The data is already sorted by ID." << endl;
+	 std::cout << "Execution time : " << ms_double.count() << "ms\n";
 	 system("pause");
 
  }
@@ -933,6 +938,7 @@ string toUpper(string s) {
 		 }
 		 else {
 			 cout << endl << "The provided Tutor Id is not in records." << endl;
+			 system("pause");
 			 return;
 		 }
 	 }
