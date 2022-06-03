@@ -505,11 +505,6 @@ void displayAllTutorsByLocation() {
 
 // Modify tutor record by ID
 void modifyTutorRecord() {
-	if (::sizeOfTutorLinkedList == 0) {
-		cout << "There is no record, cannot modify!" << endl;
-		return;
-	}
-	sortTutorById();//before using binary search, need to sort first
 	system("cls");
 	int id;
 	cout << "Please enter the tutor's ID that you want to modify : TR";
@@ -521,6 +516,14 @@ void modifyTutorRecord() {
 		cout << "Please enter correct tutor ID, only number is required : TR";
 		cin >> id;
 	}
+	
+	if (::sizeOfTutorLinkedList == 0) {
+		cout << "There is no record, cannot modify!" << endl;
+		return;
+	}
+	
+	//before using binary search, need to sort first
+	sortTutorById();
 	//binary search
 	do {
 		//find middle
