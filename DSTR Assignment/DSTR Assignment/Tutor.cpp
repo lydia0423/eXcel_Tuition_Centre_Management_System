@@ -166,7 +166,8 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 }
 
 void displayAllTutors(Tutor tutorList[], int numberOfTutor){
-     //display records by page
+	auto t1 = high_resolution_clock::now();
+	//display records by page
 	int chunk = 3; //prefer row for display per page
 	int totalPage = 0;
 	if (numberOfTutor <= 3) {
@@ -214,14 +215,26 @@ void displayAllTutors(Tutor tutorList[], int numberOfTutor){
 		}
 		else {
 			cout << "1. Next " << endl;
-			cout << "2. Previous " << endl;
-			cout << "3. First Page " << endl;
-			cout << "4. Last Page " << endl;
+			if (page != 1) {
+				cout << "2. Previous " << endl;
+				cout << "3. First Page " << endl;
+				cout << "4. Last Page " << endl;
+			}
 			cout << "0. Back to Menu " << endl;
-
 
 			cout << "Enter your choice : ";
 			cin >> choose;
+			if (page == 1) {
+				//check whether the user's input is valid, until get expected input
+				while (cin.fail() || choose < -1 || choose > 1) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid Input!" << endl;
+					cout << "Enter your choice : ";
+					cin >> choose;
+				}
+			}
+			
 
 			switch (choose) {
 			case 0:
@@ -231,8 +244,14 @@ void displayAllTutors(Tutor tutorList[], int numberOfTutor){
 					system("cls");
 					page++;
 					break;
-				}else if (page == totalPage) {
-					cout << "You have reached end of the page." << endl;
+				}
+				else if (page == totalPage) {
+					cout << endl;
+					cout << "You have reached end of the page." << endl << endl;
+					auto t2 = high_resolution_clock::now();
+					duration<double, std::milli> ms_double = t2 - t1;
+					std::cout << "Execution time : " << ms_double.count() << "ms\n";
+					system("pasue");
 					return;
 				}
 			case 2:
@@ -354,12 +373,25 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 		}
 		else {
 			cout << "1. Next " << endl;
-			cout << "2. Previous " << endl;
-			cout << "3. First Page " << endl;
-			cout << "4. Last Page " << endl;
+			if (page != 1) {
+				cout << "2. Previous " << endl;
+				cout << "3. First Page " << endl;
+				cout << "4. Last Page " << endl;
+			}
+			cout << "0. Back to Menu " << endl;
 
 			cout << "Enter your choice : ";
 			cin >> choose;
+			if (page == 1) {
+				//check whether the user's input is valid, until get expected input
+				while (cin.fail() || choose < -1 || choose > 1) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid Input!" << endl;
+					cout << "Enter your choice : ";
+					cin >> choose;
+				}
+			}
 
 			switch (choose) {
 			case 0:
@@ -375,6 +407,7 @@ void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor) {
 					auto t2 = high_resolution_clock::now();
 					duration<double, std::milli> ms_double = t2 - t1;
 					std::cout << "Execution time : " << ms_double.count() << "ms\n";
+					system("pasue");
 					return;
 				}
 			case 2:

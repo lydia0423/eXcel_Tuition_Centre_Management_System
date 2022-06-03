@@ -74,7 +74,7 @@ int main() {
 				break;
 			case 2:
 				system("cls");
-				cout << "choice is 2";
+				displayAllTutorsByLocation(tutorList, sizeOfTutorList);
 				break;
 			case 3:
 				system("cls");

@@ -235,13 +235,25 @@ void displayAllTutors() {
 		}
 		else {
 			cout << "1. Next " << endl;
-			cout << "2. Previous " << endl;
-			cout << "3. First Page " << endl;
-			cout << "4. Last Page " << endl;
+			if (page != 1) {
+				cout << "2. Previous " << endl;
+				cout << "3. First Page " << endl;
+				cout << "4. Last Page " << endl;
+			}
 			cout << "0. Back to Menu " << endl;
 
 			cout << "Enter your choice : ";
 			cin >> choose;
+			if (page == 1) {
+				//check whether the user's input is valid, until get expected input
+				while (cin.fail() || choose < -1 || choose > 1) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid Input!" << endl;
+					cout << "Enter your choice : ";
+					cin >> choose;
+				}
+			}
 
 			switch (choose) {
 			case 0:
@@ -414,6 +426,7 @@ void displayAllTutorsByLocation() {
 					auto t2 = high_resolution_clock::now();
 					duration<double, std::milli> ms_double = t2 - t1;
 					std::cout << "Execution time : " << ms_double.count() << "ms\n";
+					system("pause");
 					return;
 				}
 			case 2:
