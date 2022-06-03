@@ -208,7 +208,6 @@ int main() {
 								//login_loop = hrMenu(tutorList, sizeOfTutorList);
 							}
 						}
-
 					}
 					if (jud == false) {
 						cout << "This user does not exist!" << endl;
