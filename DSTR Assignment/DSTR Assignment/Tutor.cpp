@@ -1082,11 +1082,11 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 		 case 9:
 		 {
 			 system("cls");
-			 Tutor* tutorList = generateTutorRecord();
-			 int numberOfTutor = 6;
-			 Tutor* newList = addNewTutor(tutorList, numberOfTutor);
-			 tutorList = newList;
-			 numberOfTutor++;
+
+
+			 tutorList = addNewTutor(tutorList, sizeOfTutorList);
+
+			 sizeOfTutorList++;
 		 }
 		 break;
 		 case 10:
