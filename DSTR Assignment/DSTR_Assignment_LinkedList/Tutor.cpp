@@ -194,6 +194,7 @@ void generateTutorRecord() {
 }
 
 void displayAllTutors() {
+	auto t1 = high_resolution_clock::now();
 	//display records by page
 	Tutor *current = headTutor;
 	int chunk = 3; //prefer row for display per page
@@ -276,7 +277,11 @@ void displayAllTutors() {
 					break;
 				}
 				else if (page == totalPage) {
-					cout << "You have reached end of the page." << endl;
+					cout << endl;
+					cout << "You have reached end of the page." << endl << endl;
+					auto t2 = high_resolution_clock::now();
+					duration<double, std::milli> ms_double = t2 - t1;
+					std::cout << "Execution time : " << ms_double.count() << "ms\n";
 					return;
 				}
 			case 2:
