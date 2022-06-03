@@ -69,7 +69,7 @@ int Loginmenu(){
        case 1:
          system("cls");
          cout << "please enter your account" << endl;
-         String acc,pass,cpass;
+         string acc,pass,cpass;
          cin >> acc;
          cout << "please enter your password" << endl;
          cin >> pass;
