@@ -13,8 +13,5 @@ struct HumanResourceManager {
 
 int hrMenu();
 
-void registerNewHR();
 
-void generateNewHR();
 
-void displayAllHRs();
