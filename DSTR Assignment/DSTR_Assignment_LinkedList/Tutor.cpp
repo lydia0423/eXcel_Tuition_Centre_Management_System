@@ -67,6 +67,17 @@ string convertToString(char* a, int size)
 	return s;
 }
 
+string splitStr(string s, string del) {
+	int start = 0;
+	int end = s.find(del);
+	while (end != -1) {
+		cout << s.substr(start, end - start) << endl;
+		start = end + del.size();
+		end = s.find(del, start);
+	}
+	return s.substr(start, end - start);
+}
+
 // Ask the user to key in the tutor details
 void registerNewTutor(){
 	 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
@@ -178,7 +189,7 @@ void generateTutorRecord() {
 	newTutor = addNewTutor("TR006", "John", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR076", "Jessic", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
+	newTutor = addNewTutor("TR007", "Jessic", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
 	saveTutor(newTutor);
 }
 
@@ -272,11 +283,13 @@ void displayAllTutors() {
 				if (page >= 1) {
 					system("cls");
 					page--;
+					current = current->prevAddress->prevAddress->prevAddress->prevAddress->prevAddress->prevAddress;
 					break;
 				}
 			case 3:
 				system("cls");
 				page = 1;
+				current = headTutor;
 				break;
 			case 4:
 				system("cls");
@@ -302,6 +315,33 @@ void split(Tutor* startNode, Tutor** a, Tutor** b) {
 
 	*b = slow->nextAddress;
 	slow->nextAddress = NULL;
+}
+
+string toUpper(string s) {
+	for (int i = 0; i < (s.length() - 3); i++) {
+		s[i] = toupper(s[i]);
+	}
+
+	return s;
+}
+
+Tutor* middle(Tutor* startNode, Tutor* endNode) {
+	if (startNode == NULL) {
+		return NULL;
+	}
+
+	Tutor* slow = startNode;
+	Tutor* fast = startNode->nextAddress;
+
+	while (fast != endNode) {
+		fast = fast->nextAddress;
+		if (fast != endNode) {
+			slow = slow->nextAddress;
+			fast = fast->nextAddress;
+		}
+	}
+
+	return slow;
 }
 
 //recursive function to merge nodes of two sorted lists into a single sorted list
@@ -404,12 +444,25 @@ void displayAllTutorsByLocation() {
 		}
 		else {
 			cout << "1. Next " << endl;
-			cout << "2. Previous " << endl;
-			cout << "3. First Page " << endl;
-			cout << "4. Last Page " << endl;
+			if (page != 1) {
+				cout << "2. Previous " << endl;
+				cout << "3. First Page " << endl;
+				cout << "4. Last Page " << endl;
+			}
+			cout << "0. Back to Menu " << endl;
 
 			cout << "Enter your choice : ";
 			cin >> choose;
+			if (page == 1) {
+				//check whether the user's input is valid, until get expected input
+				while (cin.fail() || choose < -1 || choose > 1) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid Input!" << endl;
+					cout << "Enter your choice : ";
+					cin >> choose;
+				}
+			}
 
 			switch (choose) {
 			case 0:
@@ -426,18 +479,20 @@ void displayAllTutorsByLocation() {
 					auto t2 = high_resolution_clock::now();
 					duration<double, std::milli> ms_double = t2 - t1;
 					std::cout << "Execution time : " << ms_double.count() << "ms\n";
-					system("pause");
+					system("pasue");
 					return;
 				}
 			case 2:
 				if (page >= 1) {
 					system("cls");
 					page--;
+					current = current->prevAddress->prevAddress->prevAddress->prevAddress->prevAddress->prevAddress;
 					break;
 				}
 			case 3:
 				system("cls");
 				page = 1;
+				current = headTutor;
 				break;
 			case 4:
 				system("cls");
@@ -448,277 +503,239 @@ void displayAllTutorsByLocation() {
 	} while (choose != 0);
 }
 
-//// Modify tutor record by ID
-//void modifyTutorRecord() {
-//	if (::sizeOfTutorLinkedList == 0) {
-//		cout << "There is no record, cannot modify!" << endl;
-//		return;
-//	}
-//	sortTutorById();//before using binary search, need to sort first
-//	system("cls");
-//	int id;
-//	cout << "Please enter the tutor's ID that you want to modify : TR";
-//	cin >> id;
-//	while (cin.fail()) {
-//		cin.clear();
-//		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//		cout << "Invalid Input!" << endl;
-//		cout << "Please enter correct tutor ID, only number is required : TR";
-//		cin >> id;
-//	}
-//	//binary search
-//	do {
-//		//find middle
-//		Tutor* mid = middle(headTutor, tailTutor);
-//		if (stoi(splitStr(mid->tutorId, "TR")) == id) {
-//			int modiCho = 99;
-//			while (modiCho != 0)
-//			{
-//				system("cls");
-//				cout << "Information of the tutor you can modify is as follows:" << endl;
-//				cout << "1.TutorId" << "\t\t" << " : " << mid->tutorId << endl;
-//				cout << "2.TutorName" << "\t" << " : " << mid->name << endl;
-//				cout << "3.IC" << "\t\t" << " : " << mid->ic << endl;
-//				cout << "4.FieldOfStudy" << "\t" << " : " << mid->fieldOfStudy << endl;
-//				cout << "5.Address" << "\t\t" << " : " << mid->address << endl;
-//				cout << "6.Phone" << "\t\t" << " : " << mid->phone << endl;
-//				cout << "7.DateTerminated" << "\t" << " : " << mid->dateTerminated << endl;
-//				cout << "8.TuitionCenterCode" << ": " << mid->tuitionCenterCode << endl;
-//				cout << "9.TuitionCenterName" << ": " << mid->tuitionCenterName << endl;
-//				cout << "10.SubjectCode" << "\t" << " : " << mid->subjectCode << endl;
-//				cout << "11.SubjectName" << "\t" << " : " << mid->subjectName << endl;
-//				cout << "12.HourlyPayRate" << "\t" << " : " << mid->hourlyPayRate << endl;
-//				cout << "13.Experience" << "\t" << " : " << mid->experience << endl;
-//				cout << "14.Rating" << "\t\t" << " : " << mid->rating << endl;
-//				cout << "15.Passowrd" << "\t\t" << " : " << mid->password << endl;
-//
-//				//ask choice
-//				cout << endl << "Enter correct number to modify corresponding information, enter 0 if you don't want to modify." << endl;
-//				cout << endl << "Please enter your choice : ";
-//				//read choice from user
-//				cin >> modiCho;
-//				cin.clear();
-//				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//				//check whether the user's input is valid, until get expected input
-//				while (cin.fail() || modiCho < 0 || modiCho > 15) {
-//					cin.clear();
-//					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//					cout << "Invalid Input!" << endl;
-//					cout << "Please enter your choice again : ";
-//					cin >> modiCho;
-//				}
-//
-//				//execute chosen function according to user's choice
-//				switch (modiCho)
-//				{
-//				case 0:
-//					system("cls");
-//					return;
-//				case 1:
-//				{
-//					system("cls");
-//					string tutorId;
-//					cout << "Please enter New Tutor Id : ";
-//					getline(cin, tutorId);
-//					mid->tutorId = tutorId;
-//				}
-//				break;
-//				case 2:
-//				{
-//					system("cls");
-//					string tutorName;
-//					cout << "Please enter New Tutor Name : ";
-//					getline(cin, tutorName);
-//					mid->name = tutorName;
-//				}
-//				break;
-//				case 3:
-//				{
-//					system("cls");
-//					int ic;
-//					cout << "Please enter New ic : ";
-//					while (!(cin >> ic)) {
-//						cin.clear();
-//						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//						cout << endl << "Please enter New ic : ";
-//					}
-//					mid->ic = ic;
-//				}
-//				break;
-//				case 4:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Field of study : ";
-//					getline(cin, temp);
-//					mid->fieldOfStudy = temp;
-//				}
-//				break;
-//				case 5:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Address : ";
-//					getline(cin, temp);
-//					mid->address = temp;
-//				}
-//				break;
-//				case 6:
-//				{
-//					system("cls");
-//					int temp;
-//					cout << "Please enter New phone number : ";
-//					while (!(cin >> temp)) {
-//						cin.clear();
-//						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//						cout << endl << "Please enter New phone number : ";
-//					}
-//					mid->phone = temp;
-//				}
-//				break;
-//				case 7:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter termitated Date (format is DD-MM-YYYY): ";
-//					getline(cin, temp);
-//					mid->dateTerminated = temp;
-//				}
-//				break;
-//				case 8:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Tuition Center Code : ";
-//					getline(cin, temp);
-//					mid->tuitionCenterCode = temp;
-//				}
-//				break;
-//				case 9:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Tuition Center Name : ";
-//					getline(cin, temp);
-//					mid->tuitionCenterName = temp;
-//				}
-//				break;
-//				case 10:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Subject Code : ";
-//					getline(cin, temp);
-//					mid->subjectCode = temp;
-//				}
-//				break;
-//				case 11:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Subject Name : ";
-//					getline(cin, temp);
-//					mid->subjectName = temp;
-//				}
-//				break;
-//				case 12:
-//				{
-//					double temp;
-//					cout << "Please enter New Hourly Pay Rate : ";
-//					while (!(cin >> temp)) {
-//						cin.clear();
-//						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//						cout << endl << "Please enter New Hourly Pay Rate : ";
-//					}
-//					mid->hourlyPayRate = temp;
-//				}
-//				break;
-//				case 13:
-//				{
-//					double temp;
-//					cout << "Please enter New Experince of teaching : ";
-//					while (!(cin >> temp)) {
-//						cin.clear();
-//						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//						cout << endl << "Please enter New Experince of teaching : ";
-//					}
-//					mid->experience = temp;
-//				}
-//				break;
-//				case 14:
-//				{
-//					int temp;
-//					cout << "Please enter New Rating : ";
-//					while (!(cin >> temp)) {
-//						cin.clear();
-//						cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//						cout << endl << "Please enter New Rating : ";
-//					}
-//					mid->rating = temp;
-//				}
-//				break;
-//				case 15:
-//				{
-//					system("cls");
-//					string temp;
-//					cout << "Please enter New Password : ";
-//					getline(cin, temp);
-//					mid->password = temp;
-//				}
-//				break;
-//				default:
-//					cout << "no choice";
-//					break;
-//				}
-//			}
-//
-//			return;
-//		}
-//		else if (stoi(splitStr(mid->tutorId, "TR")) < id) {
-//			headTutor = mid->nextAddress;
-//		}
-//		else {
-//			tailTutor = mid;
-//		}
-//	} while (tailTutor != NULL || tailTutor != headTutor);
-//}
-
-string splitStr(string s, string del) {
-	int start = 0;
-	int end = s.find(del);
-	while (end != -1) {
-		cout << s.substr(start, end - start) << endl;
-		start = end + del.size();
-		end = s.find(del, start);
+// Modify tutor record by ID
+void modifyTutorRecord() {
+	if (::sizeOfTutorLinkedList == 0) {
+		cout << "There is no record, cannot modify!" << endl;
+		return;
 	}
-	return s.substr(start, end - start);
-}
-
-string toUpper(string s) {
-	for (int i = 0; i < (s.length() - 3); i++) {
-		s[i] = toupper(s[i]);
+	sortTutorById();//before using binary search, need to sort first
+	system("cls");
+	int id;
+	cout << "Please enter the tutor's ID that you want to modify : TR";
+	cin >> id;
+	while (cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		cout << "Please enter correct tutor ID, only number is required : TR";
+		cin >> id;
 	}
+	//binary search
+	do {
+		//find middle
+		Tutor* mid = middle(headTutor, tailTutor);
+		if (stoi(splitStr(mid->tutorId, "TR")) == id) {
+			int modiCho = 99;
+			while (modiCho != 0)
+			{
+				system("cls");
+				cout << "Information of the tutor you can modify is as follows:" << endl;
+				cout << "1.TutorId" << "\t\t" << " : " << mid->tutorId << endl;
+				cout << "2.TutorName" << "\t" << " : " << mid->name << endl;
+				cout << "3.IC" << "\t\t" << " : " << mid->ic << endl;
+				cout << "4.FieldOfStudy" << "\t" << " : " << mid->fieldOfStudy << endl;
+				cout << "5.Address" << "\t\t" << " : " << mid->address << endl;
+				cout << "6.Phone" << "\t\t" << " : " << mid->phone << endl;
+				cout << "7.DateTerminated" << "\t" << " : " << mid->dateTerminated << endl;
+				cout << "8.TuitionCenterCode" << ": " << mid->tuitionCenterCode << endl;
+				cout << "9.TuitionCenterName" << ": " << mid->tuitionCenterName << endl;
+				cout << "10.SubjectCode" << "\t" << " : " << mid->subjectCode << endl;
+				cout << "11.SubjectName" << "\t" << " : " << mid->subjectName << endl;
+				cout << "12.HourlyPayRate" << "\t" << " : " << mid->hourlyPayRate << endl;
+				cout << "13.Experience" << "\t" << " : " << mid->experience << endl;
+				cout << "14.Rating" << "\t\t" << " : " << mid->rating << endl;
+				cout << "15.Passowrd" << "\t\t" << " : " << mid->password << endl;
 
-	return s;
-}
+				//ask choice
+				cout << endl << "Enter correct number to modify corresponding information, enter 0 if you don't want to modify." << endl;
+				cout << endl << "Please enter your choice : ";
+				//read choice from user
+				cin >> modiCho;
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				//check whether the user's input is valid, until get expected input
+				while (cin.fail() || modiCho < 0 || modiCho > 15) {
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "Invalid Input!" << endl;
+					cout << "Please enter your choice again : ";
+					cin >> modiCho;
+				}
 
-Tutor* middle(Tutor* startNode, Tutor* endNode) {
-	if (startNode == NULL) {
-		return NULL;
-	}
+				//execute chosen function according to user's choice
+				switch (modiCho)
+				{
+				case 0:
+					system("cls");
+					return;
+				case 1:
+				{
+					system("cls");
+					string tutorId;
+					cout << "Please enter New Tutor Id : ";
+					getline(cin, tutorId);
+					mid->tutorId = tutorId;
+				}
+				break;
+				case 2:
+				{
+					system("cls");
+					string tutorName;
+					cout << "Please enter New Tutor Name : ";
+					getline(cin, tutorName);
+					mid->name = tutorName;
+				}
+				break;
+				case 3:
+				{
+					system("cls");
+					int ic;
+					cout << "Please enter New ic : ";
+					while (!(cin >> ic)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << endl << "Please enter New ic : ";
+					}
+					mid->ic = ic;
+				}
+				break;
+				case 4:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Field of study : ";
+					getline(cin, temp);
+					mid->fieldOfStudy = temp;
+				}
+				break;
+				case 5:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Address : ";
+					getline(cin, temp);
+					mid->address = temp;
+				}
+				break;
+				case 6:
+				{
+					system("cls");
+					int temp;
+					cout << "Please enter New phone number : ";
+					while (!(cin >> temp)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << endl << "Please enter New phone number : ";
+					}
+					mid->phone = temp;
+				}
+				break;
+				case 7:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter termitated Date (format is DD-MM-YYYY): ";
+					getline(cin, temp);
+					mid->dateTerminated = temp;
+				}
+				break;
+				case 8:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Tuition Center Code : ";
+					getline(cin, temp);
+					mid->tuitionCenterCode = temp;
+				}
+				break;
+				case 9:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Tuition Center Name : ";
+					getline(cin, temp);
+					mid->tuitionCenterName = temp;
+				}
+				break;
+				case 10:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Subject Code : ";
+					getline(cin, temp);
+					mid->subjectCode = temp;
+				}
+				break;
+				case 11:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Subject Name : ";
+					getline(cin, temp);
+					mid->subjectName = temp;
+				}
+				break;
+				case 12:
+				{
+					double temp;
+					cout << "Please enter New Hourly Pay Rate : ";
+					while (!(cin >> temp)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << endl << "Please enter New Hourly Pay Rate : ";
+					}
+					mid->hourlyPayRate = temp;
+				}
+				break;
+				case 13:
+				{
+					double temp;
+					cout << "Please enter New Experince of teaching : ";
+					while (!(cin >> temp)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << endl << "Please enter New Experince of teaching : ";
+					}
+					mid->experience = temp;
+				}
+				break;
+				case 14:
+				{
+					int temp;
+					cout << "Please enter New Rating : ";
+					while (!(cin >> temp)) {
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout << endl << "Please enter New Rating : ";
+					}
+					mid->rating = temp;
+				}
+				break;
+				case 15:
+				{
+					system("cls");
+					string temp;
+					cout << "Please enter New Password : ";
+					getline(cin, temp);
+					mid->password = temp;
+				}
+				break;
+				default:
+					cout << "no choice";
+					break;
+				}
+			}
 
-	Tutor* slow = startNode;
-	Tutor* fast = startNode->nextAddress;
-
-	while (fast != endNode) {
-		fast = fast->nextAddress;
-		if (fast != endNode) {
-			slow = slow->nextAddress;
-			fast = fast->nextAddress;
+			return;
 		}
-	}
-
-	return slow;
+		else if (stoi(splitStr(mid->tutorId, "TR")) < id) {
+			headTutor = mid->nextAddress;
+		}
+		else {
+			tailTutor = mid;
+		}
+	} while (tailTutor != NULL || tailTutor != headTutor);
 }
 
 // Search =tutor based on their tutor id
@@ -928,7 +945,6 @@ void mergeSortTutorByHourlyPayRate() {
 	std::cout << "Execution time : " << ms_double.count() << "ms\n";
 }
 
-
 //int tutorMenu() {
 //	system("cls");
 //	int choice = 99;
@@ -983,6 +999,7 @@ int adminMenu() {
 
 	while (choice != 0 && choice != -1)
 	{
+		system("cls");
 		//menu content
 		cout << "----------------------------Welcome to Admin Menu----------------------------" << endl << endl;
 		cout << "The following actions are available for administrator : " << endl << endl;
@@ -1034,6 +1051,7 @@ int adminMenu() {
 		case 3:
 			system("cls");
 			searchTutorById();
+			system("pause");
 			cout << endl << endl;
 			break;
 		case 4:
@@ -1042,7 +1060,7 @@ int adminMenu() {
 			break;
 		case 5:
 			system("cls");
-			cout << "choice is 5";
+			searchTutorBySubject();
 			break;
 		case 6:
 			system("cls");
@@ -1063,7 +1081,7 @@ int adminMenu() {
 			break;
 		case 10:
 			system("cls");
-			cout << "choice is 10";
+			modifyTutorRecord();
 			break;
 		default:
 			cout << "no choice";

@@ -27,7 +27,7 @@ int main() {
 		{
 			system("cls");
 			//menu content
-			cout << "\t----------Welcome to Admin Menu----------" << endl << endl;
+			cout << "----------------------------Welcome to Admin Menu----------------------------" << endl << endl;
 			cout << "The following actions are available for administrator : " << endl << endl;
 			//function introduction
 			cout << "1. Display all tutors' record." << endl;
@@ -81,6 +81,7 @@ int main() {
 				system("cls");
 				sortTutorById(tutorList, sizeOfTutorList);
 				system("cls");
+<<<<<<< Updated upstream
 				string tutorId;
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -89,6 +90,8 @@ int main() {
 				searchTutorById(tutorList, 0, sizeOfTutorList - 1, tutorId);
 
 			}
+=======
+>>>>>>> Stashed changes
 				break;
 			case 4:
 				system("cls");

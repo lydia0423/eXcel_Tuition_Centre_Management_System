@@ -448,8 +448,9 @@ string toUpper(string s) {
 	return s;
 }
  // Search =tutor based on their tutor id
- void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId) {
+ void searchTutorById(Tutor tutorList[], int startIndex, int endIndex) {
 	 auto t1 = high_resolution_clock::now();
+
 	 //convert small letter to capital letter
 	 string upperId = toUpper(tutorId);
 	 int id = stoi(splitStr(upperId, "TR"));
