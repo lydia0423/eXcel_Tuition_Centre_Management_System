@@ -37,7 +37,7 @@ int hrMenu() {
 		//read choice from user
 		cin >> choice;
 		//check whether the user's input is valid, until get expected input
-		while (cin.fail() || choice < -1 || choice > 10) {
+		while (cin.fail() || choice < -1 || choice > 11) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cout << "Invalid Input!" << endl;

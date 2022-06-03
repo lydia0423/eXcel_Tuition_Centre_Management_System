@@ -19,7 +19,7 @@ struct Tutor {
 
 
 
-int adminMenu();
+
 Tutor* generateTutorRecord();
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
 void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor);
@@ -34,5 +34,6 @@ void sortTutorByRating();
 void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 void deleteTutorRecord();
+int adminMenu(Tutor tutorList[], int sizeOfTutorList);
 
 

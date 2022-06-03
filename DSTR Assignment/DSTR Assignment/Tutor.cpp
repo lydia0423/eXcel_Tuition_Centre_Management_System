@@ -572,6 +572,27 @@ string toUpper(string s) {
 	 }
  }
 
+ // Sort tutor by using tutor id
+ void sortTutorById(Tutor* tutorList, int size) {
+	 if (size == 0) {
+		 cout << "There is no record, cannot sort!" << endl;
+		 return;
+	 }
+	 else if (size == 1) {
+		 cout << "There is only 1 record, cannot sort!" << endl;
+		 return;
+	 }
+	 else {
+		 quickSort(tutorList, 0, size - 1);
+	 }
+	 //show the sortted data
+	 system("cls");
+	 cout << "Operation done! The data is already sorted by ID." << endl;
+	 displayAllTutors(tutorList, size);
+	 system("pause");
+
+ }
+
  //void deleteTutorRecord(Tutor* tutorList, int curSize)
  //{
 	// if (curSize == 0) {
@@ -864,26 +885,7 @@ string toUpper(string s) {
 
  }
 
-// Sort tutor by using tutor id
- void sortTutorById(Tutor* tutorList, int size) {
-	 if (size == 0) {
-		 cout << "There is no record, cannot sort!" << endl;
-		 return;
-	 }
-	 else if(size == 1){
-		 cout << "There is only 1 record, cannot sort!" << endl;
-		 return;
-	 }
-	 else {
-		 quickSort(tutorList, 0, size - 1);
-	 }
-	 //show the sortted data
-	 system("cls");
-	 cout << "Operation done! The data is already sorted by ID." << endl;
-	 displayAllTutors(tutorList, size);
-	 system("pause");
 
-}
 
 //void quickSortrating(Tutor* data, int start, int end) {
 //	 if (start < end) //execute when data can be divided
@@ -995,55 +997,8 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
  };
 
 
- //int tutorMenu() {
-	// system("cls");
-	// int choice = 99;
 
-	// while (choice != 0 && choice != -1)
-	// {
-	//	 //menu content
-	//	 cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
-	//	 cout << "The following actions are available for tutor : " << endl << endl;
-	//	 //function introduction
-	//	 cout << "1. View profile of yourself." << endl;
-	//	 cout << "0. Logout and Go back to Login interface." << endl;
-	//	 cout << "-1. Quit the whole system." << endl;
-	//	 //ask choice
-	//	 cout << endl << "Please enter correct number to select what action do you want : ";
-
-	//	 //read choice from user
-	//	 cin >> choice;
-	//	 //check whether the user's input is valid, until get expected input
-	//	 while (cin.fail() || choice < -1 || choice > 10) {
-	//		 cin.clear();
-	//		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	//		 cout << "Invalid Input!" << endl;
-	//		 cout << "Please enter a correct number to select what action do you want : ";
-	//		 cin >> choice;
-	//	 }
-
-	//	 //execute chosen function according to user's choice
-	//	 switch (choice)
-	//	 {
-	//	 case -1:
-	//		 system("cls");
-	//		 cout << "Quiting the system, thank you for using!" << endl;
-	//		 return choice;
-	//	 case 0:
-	//		 system("cls");
-	//		 return choice;
-	//	 case 1:
-	//		 system("cls");
-	//		 cout << "choice is 1";
-	//		 break;
-	//	 default:
-	//		 cout << "no choice";
-	//		 break;
-	//	 }
-	// }
- //}
-
- int adminMenu() {
+ int adminMenu(Tutor tutorList[], int sizeOfTutorList) {
 	 system("cls");
 	 int choice = 99;
 
@@ -1086,14 +1041,13 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 		 case -1:
 			 system("cls");
 			 cout << "Quiting the system, thank you for using!" << endl;
-			 return choice;
+			 return -1;
 		 case 0:
 			 system("cls");
-			 return choice;
+			 return 0;
 		 case 1:
 			 system("cls");
-			 cout << "choice is 1";
-			 //displayAllTutors();
+			 displayAllTutors(tutorList, sizeOfTutorList);
 			 break;
 		 case 2:
 			 system("cls");
@@ -1143,3 +1097,52 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 		 }
 	 }
  }
+
+
+ //int tutorMenu() {
+	// system("cls");
+	// int choice = 99;
+
+	// while (choice != 0 && choice != -1)
+	// {
+	//	 //menu content
+	//	 cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
+	//	 cout << "The following actions are available for tutor : " << endl << endl;
+	//	 //function introduction
+	//	 cout << "1. View profile of yourself." << endl;
+	//	 cout << "0. Logout and Go back to Login interface." << endl;
+	//	 cout << "-1. Quit the whole system." << endl;
+	//	 //ask choice
+	//	 cout << endl << "Please enter correct number to select what action do you want : ";
+
+	//	 //read choice from user
+	//	 cin >> choice;
+	//	 //check whether the user's input is valid, until get expected input
+	//	 while (cin.fail() || choice < -1 || choice > 1) {
+	//		 cin.clear();
+	//		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//		 cout << "Invalid Input!" << endl;
+	//		 cout << "Please enter a correct number to select what action do you want : ";
+	//		 cin >> choice;
+	//	 }
+
+	//	 //execute chosen function according to user's choice
+	//	 switch (choice)
+	//	 {
+	//	 case -1:
+	//		 system("cls");
+	//		 cout << "Quiting the system, thank you for using!" << endl;
+	//		 return choice;
+	//	 case 0:
+	//		 system("cls");
+	//		 return choice;
+	//	 case 1:
+	//		 system("cls");
+	//		 cout << "choice is 1";
+	//		 break;
+	//	 default:
+	//		 cout << "no choice";
+	//		 break;
+	//	 }
+	// }
+ //}
