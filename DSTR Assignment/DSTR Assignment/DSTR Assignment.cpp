@@ -81,7 +81,7 @@ int main() {
 				system("cls");
 				sortTutorById(tutorList, sizeOfTutorList);
 				system("cls");
-<<<<<<< Updated upstream
+
 				string tutorId;
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -90,8 +90,6 @@ int main() {
 				searchTutorById(tutorList, 0, sizeOfTutorList - 1, tutorId);
 
 			}
-=======
->>>>>>> Stashed changes
 				break;
 			case 4:
 				system("cls");
@@ -129,8 +127,6 @@ int main() {
 				break;
 			}
 		}
-
-
 
 		//if(µÇÂ½ÕßÎªtutorÊ±)
 		//login_loop = tutorMenu(tutorList, sizeOfTutorList);

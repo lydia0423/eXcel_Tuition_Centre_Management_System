@@ -448,7 +448,7 @@ string toUpper(string s) {
 	return s;
 }
  // Search =tutor based on their tutor id
- void searchTutorById(Tutor tutorList[], int startIndex, int endIndex) {
+ void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId) {
 	 auto t1 = high_resolution_clock::now();
 
 	 //convert small letter to capital letter
@@ -725,22 +725,9 @@ string toUpper(string s) {
 			 while (modiCho != 0)
 			 {
 				 system("cls");
-				 cout << "Information of the tutor you can modify is as follows:" << endl;
-				 cout << "1.TutorId" << "\t\t" << " : " << tutorList[middle].tutorId << endl;
-				 cout << "2.TutorName" << "\t" << " : " << tutorList[middle].name << endl;
-				 cout << "3.IC" << "\t\t" << " : " << tutorList[middle].ic << endl;
-				 cout << "4.FieldOfStudy" << "\t" << " : " << tutorList[middle].fieldOfStudy << endl;
-				 cout << "5.Address" << "\t\t" << " : " << tutorList[middle].address << endl;
-				 cout << "6.Phone" << "\t\t" << " : " << tutorList[middle].phone << endl;
-				 cout << "7.DateTerminated" << "\t" << " : " << tutorList[middle].dateTerminated << endl;
-				 cout << "8.TuitionCenterCode" << ": " << tutorList[middle].tuitionCenterCode << endl;
-				 cout << "9.TuitionCenterName" << ": " << tutorList[middle].tuitionCenterName << endl;
-				 cout << "10.SubjectCode" << "\t" << " : " << tutorList[middle].subjectCode << endl;
-				 cout << "11.SubjectName" << "\t" << " : " << tutorList[middle].subjectName << endl;
-				 cout << "12.HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
-				 cout << "13.Experience" << "\t" << " : " << tutorList[middle].experience << endl;
-				 cout << "14.Rating" << "\t\t" << " : " << tutorList[middle].rating << endl;
-				 cout << "15.Rating" << "\t\t" << " : " << tutorList[middle].password << endl;
+				 cout << "The following are the information can be modifed:" << endl;
+				 cout << "1.Address" << "\t\t" << " : " << tutorList[middle].address << endl;
+				 cout << "2.Phone" << "\t\t" << " : " << tutorList[middle].phone << endl;
 
 				 //ask choice
 				 cout << endl << "Enter correct number to modify corresponding information, enter 0 if you don't want to modify." << endl;
@@ -769,57 +756,8 @@ string toUpper(string s) {
 						 std::cout << "Execution time : " << ms_double.count() << "ms\n";
 						 system("pause");
 					 }
-
 					 return;
 				 case 1:
-				 {
-					 system("cls");
-					 //{
-						// string tutorId;
-						// cout << "Please enter The Tutor Id that you want to search : ";
-						// getline(cin, tutorId);
-						// searchTutorById(tutorList, 0, sizeOfTutorList - 1, tutorId);
-					 //} 
-					 
-					 string tutorId;
-					 cout << "Please enter New Tutor Id : ";
-					 getline(cin, tutorId);
-
-					 tutorList[middle].tutorId = tutorId;
-				 }
-					 break;
-				 case 2:
-				 {
-					 system("cls");
-					 string tutorName;
-					 cout << "Please enter New Tutor Name : ";
-					 getline(cin, tutorName);
-					 tutorList[middle].name = tutorName;
-				 }
-					 break;
-				 case 3:
-				 {
-					 system("cls");
-					 int ic;
-					 cout << "Please enter New ic : ";
-					 while (!(cin >> ic)) {			 
-						 cin.clear();
-						 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						 cout << endl << "Please enter New ic : ";
-					 }
-					 tutorList[middle].ic = ic;
-				 }
-					 break;
-				 case 4:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter New Field of study : ";
-					 getline(cin, temp);
-					 tutorList[middle].fieldOfStudy = temp;
-				 }
-					 break;
-				 case 5:
 				 {
 					 system("cls");
 					 string temp;
@@ -828,7 +766,7 @@ string toUpper(string s) {
 					 tutorList[middle].address = temp;
 				 }
 					 break;
-				 case 6:
+				 case 2:
 				 {
 					 system("cls");
 					 int temp;
@@ -841,96 +779,6 @@ string toUpper(string s) {
 					 tutorList[middle].phone = temp;
 				 }
 					 break;
-				 case 7:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter termitated Date (format is DD-MM-YYYY): ";
-					 getline(cin, temp);
-					 tutorList[middle].dateTerminated = temp;
-				 }
-					 break;
-				 case 8:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter New Tuition Center Code : ";
-					 getline(cin, temp);
-					 tutorList[middle].tuitionCenterCode = temp;
-				 }
-					 break;
-				 case 9:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter New Tuition Center Name : ";
-					 getline(cin, temp);
-					 tutorList[middle].tuitionCenterName = temp;
-				 }
-				 break;
-				 case 10:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter New Subject Code : ";
-					 getline(cin, temp);
-					 tutorList[middle].subjectCode = temp;
-				 }
-					 break;
-				 case 11:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter New Subject Name : ";
-					 getline(cin, temp);
-					 tutorList[middle].subjectName = temp;
-				 }
-					 break;
-				 case 12:
-				 {
-					 double temp;
-					 cout << "Please enter New Hourly Pay Rate : ";
-					 while (!(cin >> temp)) {
-						 cin.clear();
-						 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						 cout << endl << "Please enter New Hourly Pay Rate : ";
-					 }
-					 tutorList[middle].hourlyPayRate = temp;
-				 }
-					break;
-				 case 13:
-				 {
-					 double temp;
-					 cout << "Please enter New Experince of teaching : ";
-					 while (!(cin >> temp)) {
-						 cin.clear();
-						 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						 cout << endl << "Please enter New Experince of teaching : ";
-					 }
-					 tutorList[middle].experience = temp;
-				 }
-					break;
-				 case 14:
-				 {
-					 int temp;
-					 cout << "Please enter New Rating : ";
-					 while (!(cin >> temp)) {
-						 cin.clear();
-						 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-						 cout << endl << "Please enter New Rating : ";
-					 }
-					 tutorList[middle].rating = temp;
-				 }
-					break;
-				 case 15:
-				 {
-					 system("cls");
-					 string temp;
-					 cout << "Please enter New Password : ";
-					 getline(cin, temp);
-					 tutorList[middle].password = temp;
-				 }
-					break;
 				 default:
 					 cout << "no choice";
 					 break;
