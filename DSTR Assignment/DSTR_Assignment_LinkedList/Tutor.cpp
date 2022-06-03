@@ -746,7 +746,7 @@ void modifyTutorRecord() {
 	} while (tailTutor != NULL || tailTutor != headTutor);
 }
 
-// Search =tutor based on their tutor id
+// Search tutor based on their tutor id
 void searchTutorById() {
 	auto t1 = high_resolution_clock::now();
 	string tutorId;
@@ -810,14 +810,17 @@ void searchTutorBySubject() {
 		//ask and read searched subject from user
 		string subjectKey;
 		cout << "Please enter a substring of subject that you want to search: ";
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		getline(cin, subjectKey);
 		//while (cin.fail()) {
-		   // cin.clear();
-		   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		    //cin.clear();
+		    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		   // cout << "Invalid Input!" << endl;
 		   // cout << "Please enter correct substring of subject that you want to search: ";
 		   // cin >> subjectKey;
 		//}
+		auto t1 = high_resolution_clock::now();
 		while (current != NULL) {
 			if (current->subjectName.find(subjectKey) != string::npos) {
 				matchNo = matchNo + 1;
@@ -837,7 +840,8 @@ void searchTutorBySubject() {
 				cout << "HourlyPayRate" << "\t" << " : " << current->hourlyPayRate << endl;
 				cout << "Experience" << "\t" << " : " << current->experience << endl;
 				cout << "Rating" << "\t\t" << " : " << current->rating << endl;
-				cout << string(50, '=') << endl;	
+				cout << string(50, '=') << endl;
+				
 			}
 			current = current->nextAddress;
 		}
@@ -847,13 +851,19 @@ void searchTutorBySubject() {
 		else {
 			cout << endl << "These are all records that match searching condition.";
 		}
+		//system("cls");
 
+		auto t2 = high_resolution_clock::now();
+		duration<double, std::milli> ms_double = t2 - t1;
+		std::cout << "Execution time : " << ms_double.count() << "ms\n";
+		system("pause");
 		return;	
 	}
 }
 
 // Sort tutor by using tutor id - insert sort
 void sortTutorById() {
+	
 	if (headTutor == NULL) {
 		system("cls");
 		cout << "There is no element in List, cannot sort!" << endl;
@@ -863,6 +873,7 @@ void sortTutorById() {
 		cout << "There is only 1 record, no need to sort!" << endl;
 	}
 	else {
+		auto t1 = high_resolution_clock::now();
 		Tutor *p = headTutor->nextAddress, *q, *key;
 
 		for (p = p->nextAddress; p != NULL; p = p->nextAddress)
@@ -899,6 +910,9 @@ void sortTutorById() {
 				}
 			}
 		}
+		auto t2 = high_resolution_clock::now();
+		duration<double, std::milli> ms_double = t2 - t1;
+		std::cout << "Execution time : " << ms_double.count() << "ms\n";
 	}
 }
 
@@ -1002,7 +1016,7 @@ void mergeSortTutorByHourlyPayRate() {
 //}
 
 int adminMenu() {
-	system("cls");
+	
 	int choice = 99;
 
 	while (choice != 0 && choice != -1)
@@ -1073,7 +1087,6 @@ int adminMenu() {
 		case 6:
 			system("cls");
 			sortTutorById();
-			displayAllTutors();
 			break;
 		case 7:
 			system("cls");
