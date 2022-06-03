@@ -871,62 +871,62 @@ string toUpper(string s) {
 
  }
 
- void quickSortrating(Tutor* data, int start, int end) {
-	 if (start < end) //execute when data can be divided
-	 {
-		 Tutor base = data[start]; //set first element as base
-		 int low = start;
-		 int high = end + 1;
+ //void quickSortrating(Tutor* data, int start, int end) {
+	// if (start < end) //execute when data can be divided
+	// {
+	//	 Tutor base = data[start]; //set first element as base
+	//	 int low = start;
+	//	 int high = end + 1;
 
-		 while (start < end) {
-			 //search ele is greater than base
-			 while (low < end && tutorList[++low].rating <= base.rating);
-			 //find ele less than base
-			 while (high > start && tutorList[--high].rating >= base.rating);
+	//	 while (start < end) {
+	//		 //search ele is greater than base
+	//		 while (low < end && tutorList[++low].rating <= base.rating);
+	//		 //find ele less than base
+	//		 while (high > start && tutorList[--high].rating >= base.rating);
 
-			 if (low < high) //exchange if bigger one is under smaller one
-			 {
-				 Tutor temp;
-				 temp = data[low];
-				 data[low] = data[high];
-				 data[high] = temp;
+	//		 if (low < high) //exchange if bigger one is under smaller one
+	//		 {
+	//			 Tutor temp;
+	//			 temp = data[low];
+	//			 data[low] = data[high];
+	//			 data[high] = temp;
 
-			 }
-			 else // stop after traversing all elements
-			 {
-				 break;
-			 }
-		 }
-		 //exchange position of base and the first element under all greater elements(greater than base)
-		 data[start] = data[high];
-		 data[high] = base;
-		 //recursive - divide list into 2 and do the above things again
-		 quickSortrating(data, start, high - 1); //element that all less than base
-		 quickSortrating(data, high + 1, end); //element that all greater than base
-	 }
- }
+	//		 }
+	//		 else // stop after traversing all elements
+	//		 {
+	//			 break;
+	//		 }
+	//	 }
+	//	 //exchange position of base and the first element under all greater elements(greater than base)
+	//	 data[start] = data[high];
+	//	 data[high] = base;
+	//	 //recursive - divide list into 2 and do the above things again
+	//	 quickSortrating(data, start, high - 1); //element that all less than base
+	//	 quickSortrating(data, high + 1, end); //element that all greater than base
+	// }
+ //}
 
- // Sort tutor by using rating give
- void quickSortrating(Tutor* tutorList, int size)
- {
-	 if (size == 0) {
-		 cout << "There is no record, cannot sort!" << endl;
-		 return;
-	 }
-	 else if (size == 1) {
-		 cout << "There is only 1 record, cannot sort!" << endl;
-		 return;
-	 }
-	 else {
-		 quickSort(tutorList, 0, size - 1);
-	 }
-	 //show the sortted data
-	 system("cls");
-	 cout << "Operation done! The data is already sorted by ID." << endl;
-	 displayAllTutors(tutorList, size);
-	 system("pause");
+ //// Sort tutor by using rating give
+ //void quickSortrating(Tutor* tutorList, int size)
+ //{
+	// if (size == 0) {
+	//	 cout << "There is no record, cannot sort!" << endl;
+	//	 return;
+	// }
+	// else if (size == 1) {
+	//	 cout << "There is only 1 record, cannot sort!" << endl;
+	//	 return;
+	// }
+	// else {
+	//	 quickSort(tutorList, 0, size - 1);
+	// }
+	// //show the sortted data
+	// system("cls");
+	// cout << "Operation done! The data is already sorted by ID." << endl;
+	// displayAllTutors(tutorList, size);
+	// system("pause");
 
- }
+ //}
 
 // Sort tutor by using rating give
 void sortTutorByRating(Tutor* tutorList, int size)
