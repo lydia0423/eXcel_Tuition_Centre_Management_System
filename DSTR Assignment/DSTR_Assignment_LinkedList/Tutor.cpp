@@ -527,7 +527,7 @@ void modifyTutorRecord() {
 		cout << "There is no record, cannot modify!" << endl;
 		return;
 	}
-	
+	auto t1 = high_resolution_clock::now();
 	//before using binary search, need to sort first
 	sortTutorById();
 	//binary search
@@ -576,7 +576,14 @@ void modifyTutorRecord() {
 				switch (modiCho)
 				{
 				case 0:
+				{
 					system("cls");
+					auto t2 = high_resolution_clock::now();
+					duration<double, std::milli> ms_double = t2 - t1;
+					std::cout << "Execution time : " << ms_double.count() << "ms\n";
+					system("pause");
+				}
+
 					return;
 				case 1:
 				{
@@ -864,7 +871,7 @@ void searchTutorBySubject() {
 
 // Sort tutor by using tutor id - insert sort
 void sortTutorById() {
-	
+	auto t1 = high_resolution_clock::now();
 	if (headTutor == NULL) {
 		system("cls");
 		cout << "There is no element in List, cannot sort!" << endl;
