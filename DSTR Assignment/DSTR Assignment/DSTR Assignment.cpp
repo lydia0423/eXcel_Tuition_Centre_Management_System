@@ -159,7 +159,6 @@ int main() {
 										getline(cin, tutorId);
 										searchTutorById(tutorList, 0, sizeOfTutorList - 1, tutorId);
 									}
-									
 										break;
 									case 4:
 										system("cls");
@@ -200,7 +199,7 @@ int main() {
 							}
 							else if (ID.substr(0, 2) == "TR")
 							{
-								//if(µÇÂ½ÕßÎªtutorÊ±)
+								//if(tutor)
 								//login_loop = tutorMenu(tutorList, sizeOfTutorList);
 							}
 							else if (ID.substr(0, 2) == "HR")
@@ -209,11 +208,7 @@ int main() {
 								//login_loop = hrMenu(tutorList, sizeOfTutorList);
 							}
 						}
-						//else {
-							//cout << "This user does not exist!" << endl;
-							//system("pause");
-							//break;
-						//}
+
 					}
 					if (jud == false) {
 						cout << "This user does not exist!" << endl;
