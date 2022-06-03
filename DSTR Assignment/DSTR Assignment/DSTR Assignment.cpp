@@ -175,7 +175,7 @@ int main() {
 										break;
 									case 7:
 										system("cls");
-										sortTutorByRating(tutorList, sizeOfTutorList);
+										//sortTutorByRating(tutorList, sizeOfTutorList);
 										break;
 									case 8:
 									{
@@ -292,7 +292,7 @@ int main() {
 										break;
 									case 7:
 										system("cls");
-										sortTutorByRating(tutorList, sizeOfTutorList);
+										//sortTutorByRating(tutorList, sizeOfTutorList);
 										break;
 									case 8:
 									{
@@ -319,7 +319,7 @@ int main() {
 										break;
 									case 11:
 										system("cls");
-										deleteTutorRecord(tutorList, sizeOfTutorList);
+										//deleteTutorRecord(tutorList, sizeOfTutorList);
 										break;
 									default:
 										cout << "no choice";
