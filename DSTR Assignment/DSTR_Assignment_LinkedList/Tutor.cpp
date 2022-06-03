@@ -238,6 +238,7 @@ void displayAllTutors() {
 			cout << "2. Previous " << endl;
 			cout << "3. First Page " << endl;
 			cout << "4. Last Page " << endl;
+			cout << "0. Back to Menu " << endl;
 
 			cout << "Enter your choice : ";
 			cin >> choose;
