@@ -159,11 +159,17 @@ void registerNewTutor(){
 	 sprintf(currDate, "%d/%d/%d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
 	 dateJoined = convertToString(currDate, 10);
 
+	 auto t1 = high_resolution_clock::now();
 	 Tutor* newTutor = addNewTutor(tutorId, name, ic, fieldOfStudy, address, phone, dateJoined, "NULL", tuitionCenterCode, tuitionCenterName, subjectCode, 
 		 subjectName, password, hourlyPayRate, experience, rating);
+
 	 saveTutor(newTutor);
 
 	 cout << endl << "Added new tutor successfully" << endl << endl;
+	 auto t2 = high_resolution_clock::now();
+	 duration<double, std::milli> ms_double = t2 - t1;
+	 std::cout << "Execution time : " << ms_double.count() << "ms\n";
+	 system("pause");
  }
 
 // Generate tutor record every time the system is being compiled so the action has been done wouldn't affect it
@@ -773,9 +779,12 @@ void sortTutorById() {
 				}
 			}
 		}
+		system("cls");
+		cout << "The sort by ID operatino is done !" << endl << endl;
 		auto t2 = high_resolution_clock::now();
 		duration<double, std::milli> ms_double = t2 - t1;
 		std::cout << "Execution time : " << ms_double.count() << "ms\n";
+		system("pause");
 	}
 }
 

@@ -891,7 +891,6 @@ void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle
 	 }
 
 	 system("cls");
-	 displayAllTutors(temp, endIndex + 1);
  }
 
 // // Sort tutor based on the hourly pay rate (merge sort)
