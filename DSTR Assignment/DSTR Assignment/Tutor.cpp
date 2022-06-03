@@ -694,14 +694,6 @@ string toUpper(string s) {
  //Modify tutor record by searching ID
  void modifyTutorRecord(Tutor* tutorList, int curSize) {
 	 //
-	 if (curSize == 0) {
-		 cout << "There is no record, cannot modify!" << endl;
-		 return;
-	 }
-	 else {
-		 quickSort(tutorList, 0, curSize - 1);
-	 }
-
 	 system("cls");
 
 	 int id;
@@ -713,6 +705,15 @@ string toUpper(string s) {
 		 cout << "Invalid Input!" << endl;
 		 cout << "Please enter correct tutor ID, only number is required : TR";
 		 cin >> id;
+	 }
+	 
+	 auto t1 = high_resolution_clock::now();
+	 if (curSize == 0) {
+		 cout << "There is no record, cannot modify!" << endl;
+		 return;
+	 }
+	 else {
+		 quickSort(tutorList, 0, curSize - 1);
 	 }
 	 //binary search
 	 int startIndex = 0, endIndex = curSize - 1;
@@ -761,6 +762,13 @@ string toUpper(string s) {
 				 {
 				 case 0:
 					 system("cls");
+					 {
+						 auto t2 = high_resolution_clock::now();
+						 duration<double, std::milli> ms_double = t2 - t1;
+						 std::cout << "Execution time : " << ms_double.count() << "ms\n";
+						 system("pause");
+					 }
+
 					 return;
 				 case 1:
 				 {
@@ -927,7 +935,6 @@ string toUpper(string s) {
 					 break;
 				 }
 			 }
-
 			 return;
 		 }
 		 else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
