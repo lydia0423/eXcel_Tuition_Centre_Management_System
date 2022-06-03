@@ -318,8 +318,8 @@ int main() {
 										modifyTutorRecord(tutorList, sizeOfTutorList);
 										break;
 									case 11:
-										system("cls");
-										deleteTutorRecord(tutorList, sizeOfTutorList);
+										/*system("cls");
+										deleteTutorRecord(tutorList, sizeOfTutorList);*/
 										break;
 									default:
 										cout << "no choice";
