@@ -12,6 +12,6 @@ struct Admin {
 
 Admin* addNewAdmin(string adminId, string name, int ic, string address, int phone, string tuitionCenterCode, string tuitionCenterName, string password);
 
-//void registerNewAdmin(Admin* newAdmin);
+void saveAdmin(Admin* newAdmin);
 
-//void generateNewAdmin();
+void generateNewAdmin();

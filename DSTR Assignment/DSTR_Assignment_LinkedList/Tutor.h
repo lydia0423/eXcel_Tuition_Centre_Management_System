@@ -16,31 +16,19 @@ Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, str
 	double hourlyPayRate, double experience, int rating);
 
 void registerNewTutor();
-
 void saveTutor(Tutor *newTutor);
-
 void generateTutorRecord();
-
 void displayAllTutors();
-
 void displayAllTutorsByLocation();
-
 void searchTutorById();
-
-//void searchTutorByRating();
-
+void searchTutorByRating();
 void searchTutorBySubject();
-
 void sortTutorById();
-
 void modifyTutorRecord();
-
-//void sortTutorByRating();
-
+void sortTutorByRating();
 void mergeSortTutorByHourlyPayRate();
-
-//void viewProfile();
-
-//void deleteTutorRecord();
-
+void viewProfile();
+void deleteTutorRecord();
 int adminMenu();
+
+
