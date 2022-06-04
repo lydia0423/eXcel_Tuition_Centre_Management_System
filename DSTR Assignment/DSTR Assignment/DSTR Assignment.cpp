@@ -175,7 +175,7 @@ int main() {
 										break;
 									case 7:
 										system("cls");
-										sortTutorByRating(tutorList, sizeOfTutorList);
+										//sortTutorByRating(tutorList, sizeOfTutorList);
 										break;
 									case 8:
 									{
@@ -292,7 +292,7 @@ int main() {
 										break;
 									case 7:
 										system("cls");
-										sortTutorByRating(tutorList, sizeOfTutorList);
+										//sortTutorByRating(tutorList, sizeOfTutorList);
 										break;
 									case 8:
 									{

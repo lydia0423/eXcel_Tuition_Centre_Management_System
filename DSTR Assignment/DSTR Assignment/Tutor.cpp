@@ -949,28 +949,6 @@ void sortTutorByRating(Tutor* tutorList, int size)
 
 }
 
-void displayAllTutors1(Tutor temp[], int numberOfTutor) {
-	for (int i = 0; i < numberOfTutor; i++) {
-		cout << "TutorId" << "\t\t" << " : " << temp[i].tutorId << endl;
-		cout << "TutorName" << "\t" << " : " << temp[i].name << endl;
-		cout << "IC" << "\t\t" << " : " << temp[i].ic << endl;
-		cout << "FieldOfStudy" << "\t" << " : " << temp[i].fieldOfStudy << endl;
-		cout << "Address" << "\t\t" << " : " << temp[i].address << endl;
-		cout << "Phone" << "\t\t" << " : " << temp[i].phone << endl;
-		cout << "DateJoined" << "\t" << " : " << temp[i].dateJoined << endl;
-		cout << "DateTerminated" << "\t" << " : " << temp[i].dateTerminated << endl;
-		cout << "TuitionCenterCode" << ": " << temp[i].tuitionCenterCode << endl;
-		cout << "TuitionCenterName" << ": " << temp[i].tuitionCenterName << endl;
-		cout << "SubjectCode" << "\t" << " : " << temp[i].subjectCode << endl;
-		cout << "SubjectName" << "\t" << " : " << temp[i].subjectName << endl;
-		cout << "HourlyPayRate" << "\t" << " : " << temp[i].hourlyPayRate << endl;
-		cout << "Experience" << "\t" << " : " << temp[i].experience << endl;
-		cout << "Rating" << "\t\t" << " : " << temp[i].rating << endl;
-		cout << string(50, '=') << endl;
-	}
-}
-
-
 //merge function -- helper class
 void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle, int endIndex, Tutor temp[]) {
 	//int middle = (startIndex + endIndex) / 2;
