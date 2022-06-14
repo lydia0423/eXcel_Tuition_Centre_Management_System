@@ -109,6 +109,7 @@ int main() {
 									cout << "8. Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
 									cout << "9. Add a record for new tutor." << endl;
 									cout << "10. Modify tutor's record by tutor's ID." << endl;
+									cout << "11. Delete tutor's record by tutor's ID and update." << endl;
 									cout << "0. Logout and Go back to Login interface." << endl;
 									cout << "-1. Quit the whole system." << endl;
 									//ask choice
@@ -117,7 +118,7 @@ int main() {
 									//read choice from user
 									cin >> choice2;
 									//check whether the user's input is valid, until get expected input
-									while (cin.fail() || choice2 < -1 || choice2 > 10) {
+									while (cin.fail() || choice2 < -1 || choice2 > 11) {
 										cin.clear();
 										cin.ignore(numeric_limits<streamsize>::max(), '\n');
 										cout << "Invalid Input!" << endl;
@@ -162,7 +163,12 @@ int main() {
 									break;
 									case 4:
 										system("cls");
-										cout << "choice is 4";
+										int rating;
+										cout << "Please enter The Tutor Overall Performance that you want to search : ";
+										cin.clear();
+										cin.ignore(numeric_limits<streamsize>::max(), '\n');
+										cin >> rating;
+										searchTutorByRating(tutorList, sizeOfTutorList, rating);
 										break;
 									case 5:
 										system("cls");
@@ -175,7 +181,7 @@ int main() {
 										break;
 									case 7:
 										system("cls");
-										//sortTutorByRating(tutorList, sizeOfTutorList);
+										sortTutorByRating(tutorList, sizeOfTutorList);
 										break;
 									case 8:
 									{
@@ -280,7 +286,12 @@ int main() {
 									break;
 									case 4:
 										system("cls");
-										cout << "choice is 4";
+										int rating;
+										cout << "Please enter The Tutor Overall Performance that you want to search : ";
+										cin.clear();
+										cin.ignore(numeric_limits<streamsize>::max(), '\n');
+										cin >> rating;
+										searchTutorByRating(tutorList, sizeOfTutorList, rating);
 										break;
 									case 5:
 										system("cls");
@@ -292,7 +303,7 @@ int main() {
 										break;
 									case 7:
 										system("cls");
-										//sortTutorByRating(tutorList, sizeOfTutorList);
+										sortTutorByRating(tutorList, sizeOfTutorList);
 										break;
 									case 8:
 									{
@@ -318,8 +329,9 @@ int main() {
 										modifyTutorRecord(tutorList, sizeOfTutorList);
 										break;
 									case 11:
-										/*system("cls");
-										deleteTutorRecord(tutorList, sizeOfTutorList);*/
+										system("cls");
+										sizeOfTutorList = deleteTutorRecord(tutorList, sizeOfTutorList);
+										cout << "Now there are " << sizeOfTutorList << " records of tutors." << endl;
 										break;
 									default:
 										cout << "no choice";

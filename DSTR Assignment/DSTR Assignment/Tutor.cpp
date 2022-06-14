@@ -57,13 +57,13 @@ string convertToString(char* a, int size)
 Tutor* generateTutorRecord() {
 	Tutor* tutorList = new Tutor[7];
 
-	tutorList[0] = Tutor("TR002", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5, 10.0, 4);
-	tutorList[1] = Tutor("TR001", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10, 10.0, 4);
+	tutorList[0] = Tutor("TR002", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5, 10.0, 3);
+	tutorList[1] = Tutor("TR001", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10, 10.0, 5);
 	tutorList[2] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 2, 10.0, 4);
-	tutorList[3] = Tutor("TR003", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 4, 10.0, 4);
-	tutorList[4] = Tutor("TR006", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 12.3, 10.0, 4);
+	tutorList[3] = Tutor("TR003", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 4, 10.0, 1);
+	tutorList[4] = Tutor("TR006", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 12.3, 10.0, 3);
 	tutorList[5] = Tutor("TR005", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 11.8, 10.0, 4);
-	tutorList[6] = Tutor("TR007", "Steve", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 4);
+	tutorList[6] = Tutor("TR007", "Steve", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
 
 	return tutorList;
 }
@@ -928,26 +928,26 @@ string toUpper(string s) {
 
  //}
 
-// Sort tutor by using rating give
-void sortTutorByRating(Tutor* tutorList, int size)
-{
-	if (size == 0) {
-		 cout << "There is no record, cannot sort!" << endl;
-		 return;
-	 }
-	 else if(size == 1){
-		 cout << "There is only 1 record, cannot sort!" << endl;
-		 return;
-	 }
-	 else {
-		 quickSort(tutorList, 0, size - 1);
-	 }
-	 //show the sortted data
-	 system("cls");
-	 displayAllTutors(tutorList, size);
-	 system("pause");
-
-}
+//// Sort tutor by using rating give
+//void sortTutorByRating(Tutor* tutorList, int size)
+//{
+//	if (size == 0) {
+//		 cout << "There is no record, cannot sort!" << endl;
+//		 return;
+//	 }
+//	 else if(size == 1){
+//		 cout << "There is only 1 record, cannot sort!" << endl;
+//		 return;
+//	 }
+//	 else {
+//		 quickSort(tutorList, 0, size - 1);
+//	 }
+//	 //show the sortted data
+//	 system("cls");
+//	 displayAllTutors(tutorList, size);
+//	 system("pause");
+//
+//}
 
 //merge function -- helper class
 void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle, int endIndex, Tutor temp[]) {
@@ -992,3 +992,196 @@ void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, T
 		 mergeSortTutorByHourlyPayRate(tutorList, startIndex, middle, endIndex, temp);
 	 }
  };
+
+//delete by ID
+int deleteTutorRecord(Tutor* tutorList, int curSize)
+{
+	if (curSize == 0)
+	{
+		cout << "There is no record, cannot delete!" << endl;
+		return curSize;
+	}
+
+	system("cls");
+
+	string id;
+	cout << "Please enter the tutor's ID that you want to delete" << endl;
+	cin >> id;
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cout << "Invalid Input!" << endl;
+		cout << "Please enter correct tutor ID, only number is required : TR";
+		cin >> id;
+	}
+
+	for (int i = 0; i < curSize; i++)
+	{
+		if (tutorList[i].tutorId == id)
+		{
+			system("cls");
+			cout << endl << "Are you sure to delete? please type in y" << endl;
+			string answer;
+			cin >> answer;
+			if (answer == "y")
+			{
+				int j = i;
+				while (j < curSize - 1)
+				{
+					tutorList[j] = tutorList[j + 1];
+					j++;
+				}
+				cout << "DELETE Completed" << endl;
+				curSize = curSize - 1;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+
+	cout << "Now the records terminated are updating" << endl;
+	for (int i = 0; i < curSize; i++)
+	{
+		if (tutorList[i].dateTerminated == "NULL")
+		{
+			continue;
+		}
+		else
+		{
+			int endmonth = atoi(tutorList[i].dateTerminated.substr(3, 2).c_str());
+			int endyear = atoi(tutorList[i].dateTerminated.substr(6, 4).c_str());
+
+			int months = (endyear - 1900) * 12 + endmonth;
+
+			time_t nowtime;
+			struct tm* p;;
+			time(&nowtime);
+			p = localtime(&nowtime);
+
+			int nowmonths = p->tm_year * 12 + p->tm_mon;
+
+			if (nowmonths - months > 6)
+			{
+				int j = i;
+				while (j < curSize - 1)
+				{
+					tutorList[j] = tutorList[j + 1];
+					j++;
+				}
+				cout << "DELETE Completed" << endl;
+				curSize = curSize - 1;
+			}
+			else
+			{
+				continue;
+			}
+		}
+	}
+
+	system("pause");
+	return curSize;
+}
+
+//search by rating
+void searchTutorByRating(Tutor* tutorList, int size, int rating)
+{
+	int judge = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (rating == tutorList[i].rating)
+		{
+			judge = 1;
+			//system("cls");
+			cout << "TutorId" << "\t\t" << " : " << tutorList[i].tutorId << endl;
+			cout << "TutorName" << "\t" << " : " << tutorList[i].name << endl;
+			cout << "IC" << "\t\t" << " : " << tutorList[i].ic << endl;
+			cout << "FieldOfStudy" << "\t" << " : " << tutorList[i].fieldOfStudy << endl;
+			cout << "Address" << "\t\t" << " : " << tutorList[i].address << endl;
+			cout << "Phone" << "\t\t" << " : " << tutorList[i].phone << endl;
+			cout << "DateJoined" << "\t" << " : " << tutorList[i].dateJoined << endl;
+			cout << "DateTerminated" << "\t" << " : " << tutorList[i].dateTerminated << endl;
+			cout << "TuitionCenterCode" << ": " << tutorList[i].tuitionCenterCode << endl;
+			cout << "TuitionCenterName" << ": " << tutorList[i].tuitionCenterName << endl;
+			cout << "SubjectCode" << "\t" << " : " << tutorList[i].subjectCode << endl;
+			cout << "SubjectName" << "\t" << " : " << tutorList[i].subjectName << endl;
+			cout << "HourlyPayRate" << "\t" << " : " << tutorList[i].hourlyPayRate << endl;
+			cout << "Experience" << "\t" << " : " << tutorList[i].experience << endl;
+			cout << "Rating" << "\t\t" << " : " << tutorList[i].rating << endl;
+			cout << "========================================" << endl;
+		}
+	}
+	if (judge == 1)
+	{
+		cout << "Search complete! All the records are displayed" << endl;
+		system("pause");
+	}
+	else
+	{
+		cout << "The provided Tutor Id is not match with the record." << endl;
+		system("pause");
+	}
+}
+
+void quickSortrating(Tutor* data, int start, int end)
+{
+	if (start < end) //execute when data can be divided
+	{
+		Tutor base = data[start]; //set first element as base
+		int low = start;
+		int high = end + 1;
+
+		while (start < end) {
+			//search ele is greater than base
+			while (low < end && data[++low].rating <= base.rating);
+			//find ele less than base
+			while (high > start && data[--high].rating >= base.rating);
+
+			if (low < high) //exchange if bigger one is under smaller one
+			{
+				Tutor temp;
+				temp = data[low];
+				data[low] = data[high];
+				data[high] = temp;
+
+			}
+			else // stop after traversing all elements
+			{
+				break;
+			}
+		}
+		//exchange position of base and the first element under all greater elements(greater than base)
+		data[start] = data[high];
+		data[high] = base;
+		//recursive - divide list into 2 and do the above things again
+		quickSortrating(data, start, high - 1); //element that all less than base
+		quickSortrating(data, high + 1, end); //element that all greater than base
+	}
+}
+
+// Sort tutor by using rating give
+void sortTutorByRating(Tutor* tutorList, int size)
+{
+	auto t1 = high_resolution_clock::now();
+	if (size == 0) {
+		cout << "There is no record, cannot sort!" << endl;
+		return;
+	}
+	else if (size == 1) {
+		cout << "There is only 1 record, cannot sort!" << endl;
+		return;
+	}
+	else {
+		quickSortrating(tutorList, 0, size - 1);
+	}
+	auto t2 = high_resolution_clock::now();
+	duration<double, std::milli> ms_double = t2 - t1;
+	//show the sortted data
+	system("cls");
+	cout << "Operation done! The data is already sorted by Overall Perfomance." << endl;
+	displayAllTutors(tutorList, size);
+	std::cout << "Execution time : " << ms_double.count() << "ms\n";
+	system("pause");
+}

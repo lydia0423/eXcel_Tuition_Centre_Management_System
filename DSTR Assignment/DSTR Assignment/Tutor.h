@@ -23,13 +23,15 @@ Tutor* addNewTutor(Tutor* oldList, int size);
 void modifyTutorRecord(Tutor* tutorList, int curSize);
 
 void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
-void searchTutorByRating();
+
 void searchTutorBySubject(Tutor* tutorList, int size);
 void quickSort(Tutor* data, int start, int end);
 void sortTutorById(Tutor* tutorList, int size, int type);
-void sortTutorByRating(Tutor* tutorList, int size);
 void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
-void deleteTutorRecord(Tutor* tutorList, int curSize);
+int deleteTutorRecord(Tutor* tutorList, int curSize);
+void searchTutorByRating(Tutor* tutorList, int size, int rating);
+void quickSortrating(Tutor* data, int start, int end);
+void sortTutorByRating(Tutor* tutorList, int size);
 
 int adminMenu(Tutor tutorList[], int sizeOfTutorList);
