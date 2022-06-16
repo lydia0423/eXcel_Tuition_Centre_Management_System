@@ -203,13 +203,6 @@ int main() {
 
 										cout << "The format of Cent Code is 'TCxxx'." << endl << "Please enter the Center Code of which center do you want to add: ";
 										cin >> centerCode;
-										while (cin.fail()) {
-											cin.clear();
-											cin.ignore(numeric_limits<streamsize>::max(), '\n');
-											cout << "Invalid Input!" << endl;
-											cout << "Please enter correct Center Code: ";
-											cin >> centerCode;
-										}
 										bool addFlag = checkCenter(tutorList, sizeOfTutorList, centerCode);
 										if (addFlag == true) {
 											system("cls");
@@ -220,7 +213,7 @@ int main() {
 										else {
 											cout << endl << "Cannot add new tutor to this center because it is already full." << endl;
 											system("pause");
-										}									
+										}
 									}
 									break;
 									case 10:
