@@ -155,13 +155,11 @@
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="DSTR Assignment.cpp" />
     <ClCompile Include="HR.cpp" />
-    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Tutor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="HR.h" />
-    <ClInclude Include="Login.h" />
     <ClInclude Include="Tutor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

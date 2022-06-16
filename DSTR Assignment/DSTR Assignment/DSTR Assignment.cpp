@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
 	int login_loop = 0; //use to loop login interface
-	int sizeOfTutorList = 12;
+	int sizeOfTutorList = 20;
 	Tutor* tutorList = generateTutorRecord();
 	int sizeOfAdminList = 6;
 	Admin* adminList = generateNewAdmin();

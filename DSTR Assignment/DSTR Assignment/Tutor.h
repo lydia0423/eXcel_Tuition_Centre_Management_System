@@ -31,11 +31,6 @@ void sortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int endIndex, T
 void sortTutorByAddress(Tutor tutorList[], int startIndex, int endIndex, Tutor temp[]);
 int deleteTutorRecord(Tutor* tutorList, int curSize);
 void searchTutorByRating(Tutor* tutorList, int size, int rating);
-<<<<<<< Updated upstream
-void quickSortrating(Tutor* data, int start, int end);
-void sortTutorByRating(Tutor* tutorList, int size);
-void weeklyReport(Tutor* tutorList, int sizeOfTutorList);
-=======
 void quickSortRating(Tutor* data, int start, int end);
 void sortTutorByRating(Tutor* tutorList, int size);
->>>>>>> Stashed changes
+void weeklyReport(Tutor* tutorList, int sizeOfTutorList);

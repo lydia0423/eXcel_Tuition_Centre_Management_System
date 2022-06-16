@@ -52,21 +52,27 @@ string convertToString(char* a, int size)
 
 // form sample data
 Tutor* generateTutorRecord() {
-	Tutor* tutorList = new Tutor[12];
-
-	tutorList[0] = Tutor("TR002", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5, 10.0, 3);
-	tutorList[1] = Tutor("TR001", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10, 10.0, 5);
-	tutorList[2] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 2, 10.0, 4);
-	tutorList[3] = Tutor("TR003", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 4, 10.0, 1);
-	tutorList[4] = Tutor("TR006", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 12.3, 10.0, 3);
-	tutorList[5] = Tutor("TR005", "Bob", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 11.8, 10.0, 4);
-	tutorList[6] = Tutor("TR007", "Mark", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
-	tutorList[7] = Tutor("TR008", "Anna", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
-	tutorList[8] = Tutor("TR009", "Armstrong", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
-	tutorList[9] = Tutor("TR0010", "Zuai", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
-	tutorList[10] = Tutor("TR0011", "Nuann", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
-	tutorList[11] = Tutor("TR0012", "Steve", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
-
+	Tutor* tutorList = new Tutor[20];
+	tutorList[0] = Tutor("TR002", "James", 123456789, "Biomedical", "Johor", 465462188, "12-03-2018", "NULL", "TC002", "Sunny", "B01", "Biology", "dsd5465", 5, 3.0, 3);
+	tutorList[1] = Tutor("TR001", "Micheal", 456871359, "Physics", "Kuala Lumpur", 453434549, "11-03-2019", "NULL", "TC003", "Future", "P01", "Physcis", "abc123", 10, 4.5, 5);
+	tutorList[2] = Tutor("TR004", "Andy", 685236985, "Applied Maths", "Penang", 45545454, "12-04-2020", "NULL", "TC001", "Elite", "M01", "Maths", "dsfg5465", 2, 2.0, 4);
+	tutorList[3] = Tutor("TR003", "Cindy", 124896574, "Biomedical", "Kuala Lumpur", 968585635, "12-05-2019", "NULL", "TC003", "Future", "B01", "Biology", "gagd4654", 4, 6.0, 2);
+	tutorList[4] = Tutor("TR006", "Wennie", 39562587, "Physics", "Kuala Lumpur", 64536222, "12-07-2018", "NULL", "TC003", "Future", "P01", "Physcis", "asgd6454", 12.3, 4.0, 3);
+	tutorList[5] = Tutor("TR005", "Bob", 648531579, "Applied Maths", "Penang", 135563111, "21-03-2021", "NULL", "TC001", "Elite", "M01", "Maths", "fdgh46654", 11.8, 2.5, 4);
+	tutorList[6] = Tutor("TR007", "Mark", 135789652, "Applied Maths", "Penang", 653385613, "15-03-2022", "NULL", "TC001", "Elite", "M01", "Maths", "fewrr4446", 19, 1.0, 5);
+	tutorList[7] = Tutor("TR008", "Anna", 468523876, "Physics", "Penang", 694362023, "11-08-2020", "NULL", "TC001", "Elite", "P01", "Physics", "bmnvb465456", 13.5, 2.0, 4);
+	tutorList[8] = Tutor("TR009", "Armstrong", 756423851, "Applied Maths", "Penang", 32665494, "02-03-2019", "NULL", "TC001", "Elite", "M01", "Maths", "rtyrty4654", 14.8, 4.0, 3);
+	tutorList[9] = Tutor("TR010", "Zuai", 456328598, "Computer Science", "Penang", 321658863, "11-11-2019", "NULL", "TC001", "Elite", "C01", "Couputing", "fdgdf54465", 10.6, 1.0, 5);
+	tutorList[10] = Tutor("TR014", "Nuann", 354687953, "Applied Maths", "Penang", 895632145, "22-06-2020", "NULL", "TC001", "Elite", "M01", "Maths", "qwerqwe12315", 3.5, 5.5, 3);
+	tutorList[11] = Tutor("TR012", "Hamza", 784562356, "History", "Penang", 954653346, "12-09-2019", "NULL", "TC001", "Elite", "H01", "History", "vbnvb2315", 6.6, 3.5, 5);
+	tutorList[12] = Tutor("TR013", "Paul", 65432584, "English", "Penang", 364885611, "30-04-2020", "NULL", "TC001", "Elite", "E01", "English", "tytuty65465", 8.9, 3.0, 4);
+	tutorList[13] = Tutor("TR011", "Ovel", 465874621, "Applied Maths", "Penang", 755621364, "24-02-2021", "NULL", "TC001", "Elite", "M01", "Maths", "wqerqe3213", 9.8, 5.5, 2);
+	tutorList[14] = Tutor("TR015", "Eva", 325698541, "English", "Johor", 665995632, "12-07-2019", "NULL", "TC002", "Sunny", "E01", "English", "xczv15656", 5.6, 4.5, 5);
+	tutorList[15] = Tutor("TR018", "Stan", 246853256, "Computer Science", "Malacca", 513465569, "17-03-2020", "NULL", "TC004", "Better", "C01", "Computing", "bnmb561621", 20.3, 2.5, 3);
+	tutorList[16] = Tutor("TR017", "Maven", 642228461, "History", "Perlis", 756246214, "29-03-2021", "NULL", "TC005", "Study", "H01", "History", "tyurt64651", 13.2, 1.5, 5);
+	tutorList[17] = Tutor("TR016", "Iri", 46585134, "Applied Maths", "Malacca", 1326946212, "26-08-2019", "NULL", "TC004", "Better", "M01", "Maths", "trrrtg56465", 15.4, 1.0, 4);
+	tutorList[18] = Tutor("TR019", "Loov", 946265842, "History", "Johor", 236545864, "06-10-2020", "NULL", "TC002", "Sunny", "H01", "History", "cxvbx12313", 14.5, 2.2, 5);
+	tutorList[19] = Tutor("TR020", "Steve", 455581238, "English", "Perlis", 4825644512, "01-11-2021", "NULL", "TC005", "Study", "E01", "English", "erter56546", 16.3, 10.0, 4);
 	return tutorList;
 }
 
@@ -498,12 +504,11 @@ void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tut
 			 cout << "SubjectName" << "\t" << " : " << tutorList[middle].subjectName << endl;
 			 cout << "HourlyPayRate" << "\t" << " : " << tutorList[middle].hourlyPayRate << endl;
 			 cout << "Experience" << "\t" << " : " << tutorList[middle].experience << endl;
-			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl << endl;
-			 system("pause");
+			 cout << "Rating" << "\t\t" << " : " << tutorList[middle].rating << endl << endl;			 
 			 auto t2 = high_resolution_clock::now();
 			 duration<double, std::milli> ms_double = t2 - t1;
-			 std::cout << "Execution time : " << ms_double.count() << "ms\n";
-			 
+			 cout << "Execution time : " << ms_double.count() << "ms\n";
+			 system("pause");		 
 			 break;
 		 }else if (stoi(splitStr(tutorList[middle].tutorId, "TR")) < id) {
 			 startIndex = middle + 1;
@@ -515,7 +520,7 @@ void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tut
 			 system("pause");
 			 auto t2 = high_resolution_clock::now();
 			 duration<double, std::milli> ms_double = t2 - t1;
-			 std::cout << "Execution time : " << ms_double.count() << "ms\n";
+			 cout << "Execution time : " << ms_double.count() << "ms\n";
 			 system("pause");
 		 }
 	 }
@@ -544,7 +549,7 @@ void searchTutorBySubject(Tutor* tutorList, int size) {
 	 for (int i = 0; i < size; i++) {
 		 if (tutorList[i].subjectName.find(subjectKey) != string::npos){
 			 suitNo++;
-			 cout << "No. " << suitNo << "record of tutor who meets search criteria is as follows : " << endl;
+			 cout << "No." << suitNo << " record of tutor who meets search criteria is as follows : " << endl;
 			 cout << "TutorId" << "\t\t" << " : " << tutorList[i].tutorId << endl;
 			 cout << "TutorName" << "\t" << " : " << tutorList[i].name << endl;
 			 cout << "IC" << "\t\t" << " : " << tutorList[i].ic << endl;
@@ -958,8 +963,8 @@ void quickSortRating(Tutor* data, int start, int end)
 		data[start] = data[high];
 		data[high] = base;
 		//recursive - divide list into 2 and do the above things again
-		quickSortrating(data, start, high - 1); //element that all less than base
-		quickSortrating(data, high + 1, end); //element that all greater than base
+		quickSortRating(data, start, high - 1); //element that all less than base
+		quickSortRating(data, high + 1, end); //element that all greater than base
 	}
 }
 
@@ -991,14 +996,12 @@ void sortTutorByRating(Tutor* tutorList, int size)
 void weeklyReport(Tutor* tutorList, int sizeOfTutorList)
 {
     time_t nowtime;
-    struct tm* p;;
+    struct tm* p;
     time(&nowtime);
     p = localtime(&nowtime);
     
-    if (p->tm_wday == 7)
-    {
-        displayAllTutors(tutorList, sizeOfTutorList);
-        
+    if (p->tm_wday == 4)
+    {     
         int sizOfCenter1 = 0;
         int sizOfCenter2 = 0;
         int sizOfCenter3 = 0;
@@ -1028,12 +1031,17 @@ void weeklyReport(Tutor* tutorList, int sizeOfTutorList)
                 sizOfCenter5++;
             }
         }
-        
-        cout << "There are " << sizeOfTutorList << " tutors in all." << endl;
-        cout << sizOfCenter1 << " tutors in center 1 and " << 10 - sizOfCenter1 << "positions available" << endl;
-        cout << sizOfCenter2 << " tutors in center 2 and " << 10 - sizOfCenter2 << "positions available" << endl;
-        cout << sizOfCenter3 << " tutors in center 3 and " << 10 - sizOfCenter3 << "positions available" << endl;
-        cout << sizOfCenter4 << " tutors in center 4 and " << 10 - sizOfCenter4 << "positions available" << endl;
-        cout << sizOfCenter5 << " tutors in center 5 and " << 10 - sizOfCenter5 << "positions available" << endl;
+
+		cout << "Tuition Center Code\t\t" << "Tuition Center Name\t\t" << "Location\t\t" << "Current Number of Tutors\t\t" << "Available Space" << endl;
+
+
+
+		cout << "There are " << sizeOfTutorList << " tutors in all centers." << endl;
+		cout << "Center 1 has " << sizOfCenter1 << " tutor now, " << 10 - sizOfCenter1 << " positions are available." << endl;
+        cout << "Center 2 has " << sizOfCenter2 << " tutor now, " << 10 - sizOfCenter2 << " positions are available." << endl;
+        cout << "Center 3 has " << sizOfCenter3 << " tutor now, " << 10 - sizOfCenter3 << " positions are available." << endl;
+        cout << "Center 4 has " << sizOfCenter4 << " tutor now, " << 10 - sizOfCenter4 << " positions are available." << endl;
+        cout << "Center 5 has " << sizOfCenter5 << " tutor now, " << 10 - sizOfCenter5 << " positions are available." << endl;
+		system("pause");
     }
 }
