@@ -401,12 +401,9 @@ int main() {
 						else if (loginFailChoice == 2) {
 							loop_2 = 0;
 						}
-						//system("pause");
-						
+						//system("pause");						
 					}
-
 				}
-
 			}
 		}
 		}
