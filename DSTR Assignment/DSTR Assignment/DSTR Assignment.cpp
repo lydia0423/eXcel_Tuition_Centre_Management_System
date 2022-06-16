@@ -109,6 +109,7 @@ int main() {
 									cout << "8.  Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
 									cout << "9.  Add a record for new tutor." << endl;
 									cout << "10. Modify tutor's record by tutor's ID." << endl;
+									cout << "11. Weekly report." << endl;
 									cout << "0.  Logout and Go back to Login interface." << endl;
 									cout << "-1. Quit the whole system." << endl;
 									//ask choice
@@ -117,7 +118,7 @@ int main() {
 									//read choice from user
 									cin >> choice2;
 									//check whether the user's input is valid, until get expected input
-									while (cin.fail() || choice2 < -1 || choice2 > 10) {
+									while (cin.fail() || choice2 < -1 || choice2 > 11) {
 										cin.clear();
 										cin.ignore(numeric_limits<streamsize>::max(), '\n');
 										cout << "Invalid Input!" << endl;
@@ -219,6 +220,10 @@ int main() {
 									case 10:
 										system("cls");
 										modifyTutorRecord(tutorList, sizeOfTutorList);
+										break;
+									case 11:
+										system("cls");
+										weeklyReport(tutorList, sizeOfTutorList);
 										break;
 									default:
 										cout << "no choice";
