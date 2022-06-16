@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
 	int login_loop = 0; //use to loop login interface
-	int sizeOfTutorList = 7;
+	int sizeOfTutorList = 12;
 	Tutor* tutorList = generateTutorRecord();
 	int sizeOfAdminList = 6;
 	Admin* adminList = generateNewAdmin();
@@ -28,8 +28,8 @@ int main() {
 		cout << "-----------Welcome to eXcel Tutor Management System-----------" << endl << endl;
 		//function introduction
 		cout << string(62, '=') << endl;
-		cout << "1. Login to the system" << endl;
-		cout << "0. Cancel" << endl;
+		cout << "1. Login " << endl;
+		cout << "0. Quit the system" << endl;
 		//ask choice
 		cout << endl << "Your choice: ";
 
@@ -51,7 +51,7 @@ int main() {
 		{
 			system("cls");
 			cout << "Quiting the system, thank you for using!" << endl;
-			//login_loop = choice;
+			login_loop = 99;
 			break;
 		}
 		case 1:
@@ -61,7 +61,7 @@ int main() {
 			while (loop_2 == 0)
 			{
 				system("cls");
-				cout << "Please enter your ID: ";
+				cout << "Please enter your ID as username: ";
 				cin >> ID;
 				cout << endl << "Please enter your password: ";
 				cin >> pass;
@@ -99,26 +99,25 @@ int main() {
 									cout << "----------------------------Welcome to Admin Menu----------------------------" << endl << endl;
 									cout << "The following actions are available for administrator : " << endl << endl;
 									//function introduction
-									cout << "1. Display all tutors' record." << endl;
-									cout << "2. Display all tutors' record according to tutor's Location." << endl;
-									cout << "3. Search tutor's record by tutor's ID." << endl;
-									cout << "4. Search tutor's record by tutor's Overall Performance." << endl;
-									cout << "5. Search tutor's record by tutor's Teaching Subject." << endl;
-									cout << "6. Sort and display all tutor's record by tutor's ID." << endl;
-									cout << "7. Sort and display all tutor's record by tutor's Overall Performance." << endl;
-									cout << "8. Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
-									cout << "9. Add a record for new tutor." << endl;
+									cout << "1.  Display all tutors' record." << endl;
+									cout << "2.  Display all tutors' record according to tutor's Location." << endl;
+									cout << "3.  Search tutor's record by tutor's ID." << endl;
+									cout << "4.  Search tutor's record by tutor's Overall Performance." << endl;
+									cout << "5.  Search tutor's record by tutor's Teaching Subject." << endl;
+									cout << "6.  Sort and display all tutor's record by tutor's ID." << endl;
+									cout << "7.  Sort and display all tutor's record by tutor's Overall Performance." << endl;
+									cout << "8.  Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
+									cout << "9.  Add a record for new tutor." << endl;
 									cout << "10. Modify tutor's record by tutor's ID." << endl;
-									cout << "11. Delete tutor's record by tutor's ID and update." << endl;
-									cout << "0. Logout and Go back to Login interface." << endl;
+									cout << "0.  Logout and Go back to Login interface." << endl;
 									cout << "-1. Quit the whole system." << endl;
 									//ask choice
-									cout << endl << "Please enter correct number to select what action do you want : ";
+									cout << endl << "Please enter your choice : ";
 
 									//read choice from user
 									cin >> choice2;
 									//check whether the user's input is valid, until get expected input
-									while (cin.fail() || choice2 < -1 || choice2 > 11) {
+									while (cin.fail() || choice2 < -1 || choice2 > 10) {
 										cin.clear();
 										cin.ignore(numeric_limits<streamsize>::max(), '\n');
 										cout << "Invalid Input!" << endl;
@@ -134,11 +133,13 @@ int main() {
 										cout << "Exiting the system, thank you for using!" << endl << endl;
 										loop_2 = -1;
 										login_loop = choice2;
+										jud = true;
 										break;
 									case 0:
 										system("cls");
 										loop_2 = -1;
 										login_loop = choice2;
+										jud = true;
 										break;
 									case 1:
 										system("cls");
@@ -198,8 +199,28 @@ int main() {
 									case 9:
 									{
 										system("cls");
-										tutorList = addNewTutor(tutorList, sizeOfTutorList);
-										sizeOfTutorList++;
+										string centerCode;
+
+										cout << "The format of Cent Code is 'TCxxx'." << endl << "Please enter the Center Code of which center do you want to add: ";
+										cin >> centerCode;
+										while (cin.fail()) {
+											cin.clear();
+											cin.ignore(numeric_limits<streamsize>::max(), '\n');
+											cout << "Invalid Input!" << endl;
+											cout << "Please enter correct Center Code: ";
+											cin >> centerCode;
+										}
+										bool addFlag = checkCenter(tutorList, sizeOfTutorList, centerCode);
+										if (addFlag == true) {
+											system("cls");
+											cout << "Can add a new tutor to this center." << endl;
+											tutorList = addNewTutor(tutorList, sizeOfTutorList, centerCode);
+											sizeOfTutorList++;
+										}
+										else {
+											cout << endl << "Cannot add new tutor to this center because it is already full." << endl;
+											system("pause");
+										}									
 									}
 									break;
 									case 10:
@@ -222,21 +243,21 @@ int main() {
 									cout << "----------------------------Welcome to HR Menu----------------------------" << endl << endl;
 									cout << "The following actions are available for administrator : " << endl << endl;
 									//function introduction
-									cout << "1. Display all tutors' record." << endl;
-									cout << "2. Display all tutors' record according to tutor's Location." << endl;
-									cout << "3. Search tutor's record by tutor's ID." << endl;
-									cout << "4. Search tutor's record by tutor's Overall Performance." << endl;
-									cout << "5. Search tutor's record by tutor's Teaching Subject." << endl;
-									cout << "6. Sort and display all tutor's record by tutor's ID." << endl;
-									cout << "7. Sort and display all tutor's record by tutor's Overall Performance." << endl;
-									cout << "8. Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
-									cout << "9. Add a record for new tutor." << endl;
+									cout << "1.  Display all tutors' record." << endl;
+									cout << "2.  Display all tutors' record according to tutor's Location." << endl;
+									cout << "3.  Search tutor's record by tutor's ID." << endl;
+									cout << "4.  Search tutor's record by tutor's Overall Performance." << endl;
+									cout << "5.  Search tutor's record by tutor's Teaching Subject." << endl;
+									cout << "6.  Sort and display all tutor's record by tutor's ID." << endl;
+									cout << "7.  Sort and display all tutor's record by tutor's Overall Performance." << endl;
+									cout << "8.  Sort and display all tutor's record by tutor's Hourly Pay Rate." << endl;
+									cout << "9.  Add a record for new tutor." << endl;
 									cout << "10. Modify tutor's record by tutor's ID." << endl;
 									cout << "11. Delete tutor's record" << endl;
-									cout << "0. Logout and Go back to Login interface." << endl;
+									cout << "0.  Logout and Go back to Login interface." << endl;
 									cout << "-1. Quit the whole system." << endl;
 									//ask choice
-									cout << endl << "Please enter correct number to select what action do you want : ";
+									cout << endl << "Please enter your choice : ";
 
 									//read choice from user
 									cin >> choice2;
@@ -257,11 +278,13 @@ int main() {
 										cout << "Exiting the system, thank you for using!" << endl << endl;
 										loop_2 = -1;
 										login_loop = choice2;
+										jud = true;
 										break;
 									case 0:
 										system("cls");
 										loop_2 = -1;
 										login_loop = choice2;
+										jud = true;
 										break;
 									case 1:
 										system("cls");
@@ -320,8 +343,21 @@ int main() {
 									case 9:
 									{
 										system("cls");
-										tutorList = addNewTutor(tutorList, sizeOfTutorList);
-										sizeOfTutorList++;
+										string centerCode;
+
+										cout << "The format of Cent Code is 'TCxxx'." << endl << "Please enter the Center Code of which center do you want to add: ";
+										cin >> centerCode;
+										bool addFlag = checkCenter(tutorList, sizeOfTutorList, centerCode);
+										if (addFlag == true) {
+											system("cls");
+											cout << "Can add a new tutor to this center." << endl;
+											tutorList = addNewTutor(tutorList, sizeOfTutorList, centerCode);
+											sizeOfTutorList++;
+										}
+										else {
+											cout << endl << "Cannot add new tutor to this center because it is already full." << endl;
+											system("pause");
+										}
 									}
 									break;
 									case 10:
@@ -340,16 +376,35 @@ int main() {
 								}
 							}
 						}
-						else
-						{
-							jud = false;
-						}
+						
 
 					}
 					if (jud == false) {
-						cout << endl << "Account is not found. Please try again!!" << endl;
-						system("pause");
-						loop_2 = 0;
+						system("cls");
+						int loginFailChoice;
+						cout << endl << "The Account or Password is wrong!" << endl;
+						cout << endl << "If you want to back to login menu please enter 1.\nIf you want to re-login please enter 2.";
+						cout << endl << "Please enter your choice here: ";
+
+						
+						cin >> loginFailChoice;
+						//check whether the user's input is valid, until get expected input
+						while (cin.fail() || loginFailChoice < 1 || loginFailChoice > 2)
+						{
+							cin.clear();
+							cin.ignore(numeric_limits<streamsize>::max(), '\n');
+							cout << "Invalid Input!" << endl;
+							cout << "Please enter a correct number of your choice: ";
+							cin >> loginFailChoice;
+						}
+						if (loginFailChoice == 1) {
+							loop_2 = 1;
+						}
+						else if (loginFailChoice == 2) {
+							loop_2 = 0;
+						}
+						//system("pause");
+						
 					}
 
 				}

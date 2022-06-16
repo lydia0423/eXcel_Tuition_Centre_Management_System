@@ -52,21 +52,42 @@ string convertToString(char* a, int size)
 
 // form sample data
 Tutor* generateTutorRecord() {
-	Tutor* tutorList = new Tutor[7];
+	Tutor* tutorList = new Tutor[12];
 
 	tutorList[0] = Tutor("TR002", "James", 123456789, "Biomedical", "Johor", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 5, 10.0, 3);
 	tutorList[1] = Tutor("TR001", "Micheal", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 10, 10.0, 5);
 	tutorList[2] = Tutor("TR004", "Andy", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 2, 10.0, 4);
 	tutorList[3] = Tutor("TR003", "Cindy", 123456789, "Biomedical", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "B01", "Biology", "abc123", 4, 10.0, 1);
 	tutorList[4] = Tutor("TR006", "Wennie", 123456789, "Physics", "Kuala Lumpur", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "P01", "Physcis", "abc123", 12.3, 10.0, 3);
-	tutorList[5] = Tutor("TR005", "Jolin", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 11.8, 10.0, 4);
-	tutorList[6] = Tutor("TR007", "Steve", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	tutorList[5] = Tutor("TR005", "Bob", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 11.8, 10.0, 4);
+	tutorList[6] = Tutor("TR007", "Mark", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	tutorList[7] = Tutor("TR008", "Anna", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	tutorList[8] = Tutor("TR009", "Armstrong", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	tutorList[9] = Tutor("TR0010", "Zuai", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	tutorList[10] = Tutor("TR0011", "Nuann", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	tutorList[11] = Tutor("TR0012", "Steve", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
 
 	return tutorList;
 }
 
+// check center is full or not
+bool checkCenter(Tutor* tutorList, int size, string centerCode) {	
+	int counter = 0;
+
+	for (int a = 0; a < size; a++) {		
+		if (tutorList[a].tuitionCenterCode == centerCode) counter++;
+	}
+
+	if (counter < 10) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 // add new tutor record
-Tutor* addNewTutor(Tutor* oldList, int size) {
+Tutor* addNewTutor(Tutor* oldList, int size, string centerCode) {
 	
 	//Create new array 
 	Tutor* newList = new Tutor[size + 1];
@@ -116,8 +137,9 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 		cin.ignore(22, '\n');
 	}
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	cout << "Tuition Center Code : ";
-	getline(cin, tuitionCenterCode);
+	tuitionCenterCode = centerCode;
+	//cout << "Tuition Center Code : ";
+	//getline(cin, tuitionCenterCode);
 	cout << "Tuition Center Name : ";
 	getline(cin, tuitionCenterName);
 	cout << "Subject Code : ";
@@ -158,6 +180,7 @@ Tutor* addNewTutor(Tutor* oldList, int size) {
 
 	auto t2 = high_resolution_clock::now();
 	duration<double, std::milli> ms_double = t2 - t1;
+	cout << endl << "Successfully Add this record!"<< endl;
 	std::cout << "Execution time : " << ms_double.count() << "ms\n";
 	system("pause");
 

@@ -11,6 +11,3 @@ struct Admin {
 };
 
 Admin* generateNewAdmin();
-
-
-
