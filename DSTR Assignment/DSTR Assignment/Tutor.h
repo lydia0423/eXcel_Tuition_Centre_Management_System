@@ -33,3 +33,4 @@ int deleteTutorRecord(Tutor* tutorList, int curSize);
 void searchTutorByRating(Tutor* tutorList, int size, int rating);
 void quickSortrating(Tutor* data, int start, int end);
 void sortTutorByRating(Tutor* tutorList, int size);
+void weeklyReport(Tutor* tutorList, int sizeOfTutorList);
