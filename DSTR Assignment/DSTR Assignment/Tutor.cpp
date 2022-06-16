@@ -7,7 +7,6 @@
 #include <chrono>
 #include "Tutor.h"
 
-
 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 int phone, rating, ic;
 double hourlyPayRate, experience;
@@ -728,7 +727,7 @@ void modifyTutorRecord(Tutor* tutorList, int curSize) {
 
  }
 
-// merge function -- helper class
+// merge function - helper class
 void mergeSortTutorByHourlyPayRate(Tutor tutorList[], int startIndex, int middle, int endIndex, Tutor temp[]) {
 	//int middle = (startIndex + endIndex) / 2;
 	 int i = startIndex; //starting index for left sub array

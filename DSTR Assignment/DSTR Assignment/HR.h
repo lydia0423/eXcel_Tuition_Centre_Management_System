@@ -12,6 +12,3 @@ struct HumanResourceManager {
 };
 
 int hrMenu();
-
-
-
