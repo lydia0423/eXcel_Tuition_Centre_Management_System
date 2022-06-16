@@ -78,8 +78,28 @@ string splitStr(string s, string del) {
 	return s.substr(start, end - start);
 }
 
+// check center is full or not
+bool checkCenter(string centerCode) {
+	int counter = 0;
+	Tutor* current = headTutor;
+	while (current != NULL) {
+		if (current->tuitionCenterCode == centerCode) {
+			counter++;
+			break;
+		 }
+		current = current->nextAddress;
+	}
+
+	if (counter < 10) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 // Ask the user to key in the tutor details
-void registerNewTutor(){
+void registerNewTutor(string centerCode){
 	 string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 	 int phone, rating, ic;
 	 double hourlyPayRate, experience;
@@ -123,8 +143,7 @@ void registerNewTutor(){
 		 cin.ignore(22, '\n');
 	 }
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-     cout << "Tuition Center Code : ";
-     getline(cin, tuitionCenterCode);
+	 tuitionCenterCode = centerCode;
      cout << "Tuition Center Name : ";
      getline(cin, tuitionCenterName);
      cout << "Subject Code : ";
@@ -186,7 +205,7 @@ void generateTutorRecord() {
 	newTutor = addNewTutor("TR003", "Andy", 123456789, "Applied Maths", "Kuala Lumpur", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 9.0, 10.0, 4);
 	saveTutor(newTutor);
 
-	newTutor = addNewTutor("TR004", "Julie", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 8.7, 10.0, 4);
+	newTutor = addNewTutor("TR004", "Julie", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 8.7, 10.0, 4);
 	saveTutor(newTutor);
 
 	newTutor = addNewTutor("TR005", "Andrew", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
@@ -196,6 +215,21 @@ void generateTutorRecord() {
 	saveTutor(newTutor);
 
 	newTutor = addNewTutor("TR007", "Jessic", 123456789, "Applied Maths", "Penang", 123456789, "12/03/2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 12.4, 10.0, 4);
+	saveTutor(newTutor);
+
+	newTutor = addNewTutor("TR008", "Anna", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	saveTutor(newTutor);
+
+	newTutor = addNewTutor("TR009", "Armstrong", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	saveTutor(newTutor);
+
+	newTutor = addNewTutor("TR0010", "Zuai", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC001", "Elite", "C01", "Maths", "abc123", 19, 10.0, 3);
+	saveTutor(newTutor);
+
+	newTutor = addNewTutor("TR0011", "Nuann", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
+	saveTutor(newTutor);
+
+	newTutor = addNewTutor("TR0012", "Steve", 123456789, "Applied Maths", "Penang", 123456789, "12-03-2012", "NULL", "TC002", "Elite", "C01", "Maths", "abc123", 19, 10.0, 5);
 	saveTutor(newTutor);
 }
 
@@ -730,6 +764,73 @@ void searchTutorBySubject() {
 	}
 }
 
+// Search tutor based on their tutor rating
+void searchTutorByRating() {
+	auto t1 = high_resolution_clock::now();
+	int tutorRating;
+
+	cout << "Please enter a Tutor rating : ";
+	cin >> tutorRating;
+
+	Tutor* iter = headTutor;
+
+	if (headTutor == NULL)
+	{
+		system("cls");
+		cout << "Empty list! Cannot do searching!" << endl;
+		system("pause");
+		return;
+	}
+	else
+	{
+		do {
+			if (iter->rating == tutorRating)
+			{
+				cout << "TutorId" << "\t\t" << " : " << iter->tutorId << endl;
+				cout << "TutorName" << "\t" << " : " << iter->name << endl;
+				cout << "IC" << "\t\t" << " : " << iter->ic << endl;
+				cout << "FieldOfStudy" << "\t" << " : " << iter->fieldOfStudy << endl;
+				cout << "Address" << "\t\t" << " : " << iter->address << endl;
+				cout << "Phone" << "\t\t" << " : " << iter->phone << endl;
+				cout << "DateJoined" << "\t" << " : " << iter->dateJoined << endl;
+				cout << "DateTerminated" << "\t" << " : " << iter->dateTerminated << endl;
+				cout << "TuitionCenterCode" << ": " << iter->tuitionCenterCode << endl;
+				cout << "TuitionCenterName" << ": " << iter->tuitionCenterName << endl;
+				cout << "SubjectCode" << "\t" << " : " << iter->subjectCode << endl;
+				cout << "SubjectName" << "\t" << " : " << iter->subjectName << endl;
+				cout << "HourlyPayRate" << "\t" << " : " << iter->hourlyPayRate << endl;
+				cout << "Experience" << "\t" << " : " << iter->experience << endl;
+				cout << "Rating" << "\t\t" << " : " << iter->rating << endl;
+				cout << "==========================================" << endl;
+			}
+			iter = iter->nextAddress;
+		} while (iter != tailTutor);
+		if (tailTutor->rating == tutorRating)
+		{
+			cout << "TutorId" << "\t\t" << " : " << iter->tutorId << endl;
+			cout << "TutorName" << "\t" << " : " << iter->name << endl;
+			cout << "IC" << "\t\t" << " : " << iter->ic << endl;
+			cout << "FieldOfStudy" << "\t" << " : " << iter->fieldOfStudy << endl;
+			cout << "Address" << "\t\t" << " : " << iter->address << endl;
+			cout << "Phone" << "\t\t" << " : " << iter->phone << endl;
+			cout << "DateJoined" << "\t" << " : " << iter->dateJoined << endl;
+			cout << "DateTerminated" << "\t" << " : " << iter->dateTerminated << endl;
+			cout << "TuitionCenterCode" << ": " << iter->tuitionCenterCode << endl;
+			cout << "TuitionCenterName" << ": " << iter->tuitionCenterName << endl;
+			cout << "SubjectCode" << "\t" << " : " << iter->subjectCode << endl;
+			cout << "SubjectName" << "\t" << " : " << iter->subjectName << endl;
+			cout << "HourlyPayRate" << "\t" << " : " << iter->hourlyPayRate << endl;
+			cout << "Experience" << "\t" << " : " << iter->experience << endl;
+			cout << "Rating" << "\t\t" << " : " << iter->rating << endl;
+			cout << "==========================================" << endl;
+		}
+		cout << "Search Completed -- all records displayed.";
+	}
+	auto t2 = high_resolution_clock::now();
+	duration<double, std::milli> ms_double = t2 - t1;
+	std::cout << "Execution time : " << ms_double.count() << "ms\n";
+}
+
 // Sort tutor by using tutor id - insert sort
 void sortTutorById() {
 	auto t1 = high_resolution_clock::now();
@@ -839,56 +940,134 @@ void mergeSortTutorByHourlyPayRate() {
 	std::cout << "Execution time : " << ms_double.count() << "ms\n";
 }
 
-//int tutorMenu() {
-//	system("cls");
-//	int choice = 99;
-//
-//	while (choice != 0 && choice != -1)
+//// Sort tutor by using tutor rating - insert sort
+//void sortTutorByRating()
+//{
+//	if (headTutor == NULL)
 //	{
-//		//menu content
-//		cout << "\t----------Welcome to Tutor Menu----------" << endl << endl;
-//		cout << "The following actions are available for tutor : " << endl << endl;
-//		//function introduction
-//		cout << "1. View profile of yourself." << endl;
-//		cout << "0. Logout and Go back to Login interface." << endl;
-//		cout << "-1. Quit the whole system." << endl;
-//		//ask choice
-//		cout << endl << "Please enter correct number to select what action do you want : ";
+//		system("cls");
+//		cout << "There is no element in List, cannot sort!" << endl;
+//	}
+//	else if (::sizeOfTutorLinkedList == 1)
+//	{
+//		system("cls");
+//		cout << "There is only 1 record, no need to sort!" << endl;
+//	}
+//	else
+//	{
+//		auto t1 = high_resolution_clock::now();
 //
-//		//read choice from user
-//		cin >> choice;
-//		//check whether the user's input is valid, until get expected input
-//		while (cin.fail() || choice < -1 || choice > 10) {
-//			cin.clear();
-//			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//			cout << "Invalid Input!" << endl;
-//			cout << "Please enter a correct number to select what action do you want : ";
-//			cin >> choice;
-//		}
-//
-//		//execute chosen function according to user's choice
-//		switch (choice)
+//		for (Tutor* iter1 = headTutor; iter1 != tailTutor->nextAddress; iter1 = iter1->nextAddress)
 //		{
-//		case -1:
-//			system("cls");
-//			cout << "Quiting the system, thank you for using!" << endl;
-//			return choice;
-//		case 0:
-//			system("cls");
-//			return choice;
-//		case 1:
-//			system("cls");
-//			cout << "choice is 1";
-//			break;
-//		default:
-//			cout << "no choice";
-//			break;
+//			Tutor* iter2 = headTutor;
+//			for (; iter2 != tailTutor; iter2 = iter2->nextAddress)
+//			{
+//				if (iter2->rating > iter2->nextAddress->rating)
+//				{
+//					Tutor* temp = iter2->prevAddress;
+//					temp->nextAddress = iter2->nextAddress;
+//					iter2->prevAddress = iter2->nextAddress;
+//					iter2->nextAddress->prevAddress = temp;
+//					iter2->nextAddress->nextAddress->prevAddress = iter2;
+//					iter2->nextAddress = iter2->nextAddress->nextAddress;
+//					temp->nextAddress->nextAddress = iter2;
+//				}
+//			}
+//			tailTutor = iter2;
 //		}
+//
+//		system("cls");
+//		cout << "The sort by ID operatino is done !" << endl << endl;
+//		auto t2 = high_resolution_clock::now();
+//		duration<double, std::milli> ms_double = t2 - t1;
+//		std::cout << "Execution time : " << ms_double.count() << "ms\n";
+//		system("pause");
+//		displayAllTutors();
+//		system("pause");
 //	}
 //}
 
+//void deleteTutorRecord()
+//{
+//	auto t1 = high_resolution_clock::now();
+//	string tutorId;
+//
+//	cout << "Please enter a Tutor Id : ";
+//	cin >> tutorId;
+//
+//	string upperId = toUpper(tutorId);
+//	int id = stoi(splitStr(upperId, "TR"));
+//
+//	do {
+//		//find middle
+//		Tutor* mid = middle(headTutor, tailTutor);
+//
+//		if (mid == NULL) {
+//			cout << "The provided Tutor Id is not match with the record." << endl;
+//		}
+//
+//		if (stoi(splitStr(mid->tutorId, "TR")) == id) {
+//			mid->prevAddress->nextAddress = mid->nextAddress;
+//			mid->nextAddress->prevAddress = mid->prevAddress;
+//			Tutor* temp = mid;
+//			mid = mid->nextAddress;
+//			free(temp);
+//			sizeOfTutorLinkedList--;
+//			break;
+//		}
+//		else if (stoi(splitStr(mid->tutorId, "TR")) < id) {
+//			headTutor = mid->nextAddress;
+//		}
+//		else {
+//			tailTutor = mid;
+//		}
+//	} while (tailTutor != NULL || tailTutor != headTutor);
+//
+//	auto t2 = high_resolution_clock::now();
+//	duration<double, std::milli> ms_double = t2 - t1;
+//	std::cout << "Execution time : " << ms_double.count() << "ms\n";
+//
+//	cout << "Now the records terminated are updating" << endl;
+//	for (Tutor* iter = headTutor; iter != NULL; iter = iter->nextAddress)
+//	{
+//		if (iter->dateTerminated == "NULL")
+//		{
+//			continue;
+//		}
+//		else
+//		{
+//			int endmonth = atoi(iter->dateTerminated.substr(3, 2).c_str());
+//			int endyear = atoi(iter->dateTerminated.substr(6, 4).c_str());
+//
+//			int months = (endyear - 1900) * 12 + endmonth;
+//
+//			time_t nowtime;
+//			struct tm* p;;
+//			time(&nowtime);
+//			p = localtime(&nowtime);
+//
+//			int nowmonths = p->tm_year * 12 + p->tm_mon;
+//
+//			if (nowmonths - months > 6)
+//			{
+//				iter->prevAddress->nextAddress = iter->nextAddress;
+//				iter->nextAddress->prevAddress = iter->prevAddress;
+//				Tutor* temp = iter;
+//				iter = iter->nextAddress;
+//				free(temp);
+//				sizeOfTutorLinkedList--;
+//			}
+//			else
+//			{
+//				continue;
+//			}
+//		}
+//	}
+//
+//	system("pause");
+//}
+
 int adminMenu() {
-	
 	int choice = 99;
 
 	while (choice != 0 && choice != -1)
@@ -950,7 +1129,9 @@ int adminMenu() {
 			break;
 		case 4:
 			system("cls");
-			cout << "choice is 4";
+			searchTutorByRating();
+			system("pause");
+			cout << endl << endl;
 			break;
 		case 5:
 			system("cls");
@@ -962,16 +1143,30 @@ int adminMenu() {
 			break;
 		case 7:
 			system("cls");
-			cout << "choice is 7";
+			//sortTutorByRating();
 			break;
 		case 8:
 			system("cls");
 			mergeSortTutorByHourlyPayRate();
 			break;
 		case 9:
+		{
 			system("cls");
-			registerNewTutor();
-			break;
+			string centerCode;
+
+			cout << "The format of Center Code is 'TCxxx'." << endl << "Please enter the Center Code of which center do you want to add: ";
+			cin >> centerCode;
+			if (checkCenter(centerCode) == true) {
+				system("cls");
+				cout << "Can add a new tutor to this center." << endl;
+				registerNewTutor(centerCode);
+			}
+			else {
+				cout << endl << "Cannot add new tutor to this center because it is already full." << endl;
+				system("pause");
+			}
+		}
+		break;
 		case 10:
 			system("cls");
 			modifyTutorRecord();

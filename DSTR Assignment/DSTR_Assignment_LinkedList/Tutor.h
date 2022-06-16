@@ -15,7 +15,7 @@ Tutor* addNewTutor(string tutorId, string name, int ic, string fieldOfStudy, str
 	string tuitionCenterCode, string tuitionCenterName, string subjectCode, string subjectName, string password,
 	double hourlyPayRate, double experience, int rating);
 
-void registerNewTutor();
+void registerNewTutor(string centerCode);
 void saveTutor(Tutor *newTutor);
 void generateTutorRecord();
 void displayAllTutors();

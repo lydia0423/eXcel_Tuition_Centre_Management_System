@@ -927,7 +927,7 @@ void searchTutorByRating(Tutor* tutorList, int size, int rating)
 }
 
 // supporting function for sort by rating
-void quickSortrating(Tutor* data, int start, int end)
+void quickSortRating(Tutor* data, int start, int end)
 {
 	if (start < end) //execute when data can be divided
 	{
@@ -976,7 +976,7 @@ void sortTutorByRating(Tutor* tutorList, int size)
 		return;
 	}
 	else {
-		quickSortrating(tutorList, 0, size - 1);
+		quickSortRating(tutorList, 0, size - 1);
 	}
 	auto t2 = high_resolution_clock::now();
 	duration<double, std::milli> ms_double = t2 - t1;
