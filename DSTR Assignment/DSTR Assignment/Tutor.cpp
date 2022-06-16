@@ -987,3 +987,53 @@ void sortTutorByRating(Tutor* tutorList, int size)
 	std::cout << "Execution time : " << ms_double.count() << "ms\n";
 	system("pause");
 }
+
+void weeklyReport(Tutor* tutorList, int sizeOfTutorList)
+{
+    time_t nowtime;
+    struct tm* p;;
+    time(&nowtime);
+    p = localtime(&nowtime);
+    
+    if (p->tm_wday == 7)
+    {
+        displayAllTutors(tutorList, sizeOfTutorList);
+        
+        int sizOfCenter1 = 0;
+        int sizOfCenter2 = 0;
+        int sizOfCenter3 = 0;
+        int sizOfCenter4 = 0;
+        int sizOfCenter5 = 0;
+        
+        for (int i = 0; i < sizeOfTutorList; i++)
+        {
+            if (tutorList[i].tuitionCenterCode == "TC001")
+            {
+                sizOfCenter1++;
+            }
+            else if (tutorList[i].tuitionCenterCode == "TC002")
+            {
+                sizOfCenter2++;
+            }
+            else if (tutorList[i].tuitionCenterCode == "TC003")
+            {
+                sizOfCenter3++;
+            }
+            else if (tutorList[i].tuitionCenterCode == "TC004")
+            {
+                sizOfCenter4++;
+            }
+            else if (tutorList[i].tuitionCenterCode == "TC005")
+            {
+                sizOfCenter5++;
+            }
+        }
+        
+        cout << "There are " << sizeOfTutorList << " tutors in all." << endl;
+        cout << sizOfCenter1 << " tutors in center 1 and " << 10 - sizOfCenter1 << "positions available" << endl;
+        cout << sizOfCenter2 << " tutors in center 2 and " << 10 - sizOfCenter2 << "positions available" << endl;
+        cout << sizOfCenter3 << " tutors in center 3 and " << 10 - sizOfCenter3 << "positions available" << endl;
+        cout << sizOfCenter4 << " tutors in center 4 and " << 10 - sizOfCenter4 << "positions available" << endl;
+        cout << sizOfCenter5 << " tutors in center 5 and " << 10 - sizOfCenter5 << "positions available" << endl;
+    }
+}
