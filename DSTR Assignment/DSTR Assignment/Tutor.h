@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// data structure
 struct Tutor {
 	string tutorId, name, dateJoined, dateTerminated, fieldOfStudy, address, tuitionCenterCode, tuitionCenterName, subjectCode, subjectName, password;
 	int phone, rating, ic;
@@ -15,15 +16,13 @@ struct Tutor {
 		double hourlyPayRate, double experience, int rating);
 };
 
-
+// prototype
 Tutor* generateTutorRecord();
 void displayAllTutors(Tutor tutorList[], int numberOfTutor);
 void displayAllTutorsByLocation(Tutor tutorList[], int numberOfTutor);
 Tutor* addNewTutor(Tutor* oldList, int size);
 void modifyTutorRecord(Tutor* tutorList, int curSize);
-
 void searchTutorById(Tutor tutorList[], int startIndex, int endIndex, string tutorId);
-
 void searchTutorBySubject(Tutor* tutorList, int size);
 void quickSort(Tutor* data, int start, int end);
 void sortTutorById(Tutor* tutorList, int size, int type);
@@ -33,5 +32,3 @@ int deleteTutorRecord(Tutor* tutorList, int curSize);
 void searchTutorByRating(Tutor* tutorList, int size, int rating);
 void quickSortrating(Tutor* data, int start, int end);
 void sortTutorByRating(Tutor* tutorList, int size);
-
-int adminMenu(Tutor tutorList[], int sizeOfTutorList);
